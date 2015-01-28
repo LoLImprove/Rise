@@ -61,7 +61,7 @@
 - [SubsManager](https://github.com/meteorhacks/subs-manager/)
   - Cache subscriptions and manage them
 
--[Publish composite](https://github.com/englue/meteor-publish-composite/)
+- [Publish composite](https://github.com/englue/meteor-publish-composite/)
   - Reactive updating for published aggregates (top 10 posts, etc...)
 
 ### UI & View Helpers
