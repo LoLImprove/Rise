@@ -29,21 +29,21 @@ Rise.Schemas.UserMetum = new SimpleSchema({
 
 Rise.Schemas.Users = new SimpleSchema({
   username: { type: String, max: 20 },
-  emails:   { type: [Object] },
+  emails:   { type: [Object], minCount: 1, optional: true }, // WUT ? TODO: Remove optional but no can do
   "emails.$.address": { type: String, regEx: SimpleSchema.RegEx.Email },
 
-  meta_information: { type: Rise.Schemas.UserMetum },
+  meta_information: { type: Rise.Schemas.UserMetum, optional: true },
 
-  verified: { type: Boolean, optional: true }, // TODO: Remove optional
-  life_points: { type: Number },
+  verified: { type: Boolean, defaultValue: false }, // TODO: Remove optional
+  life_points: { type: Number, defaultValue: 0 },
 
-  replays_ids: { type: [String] },
-  analyses_ids: { type: [String] },
+  replays_ids: { type: [String], defaultValue: [] },
+  analyses_ids: { type: [String], defaultValue: [] },
 
   profile:  { type: Rise.Schemas.UserProfile, optional: true },
   services: { type: Object, optional: true, blackbox: true },
 
-  created_at: { type: Date },
+  created_at: { type: Date, optional: true },
   updated_at: { type: Date, optional: true }, // TODO: Remove optional
   last_request_at: { type: Date, optional: true } // TODO: Remove optional
 });

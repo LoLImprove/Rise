@@ -1,6 +1,13 @@
-# Rise RTS/MOBA Improvement Platform
+# -- Rise
+
+## RTS/MOBA Improvement Platform
 
 ## Packages :
+
+### Admin
+
+- [Yogiben Admin](https://atmospherejs.com/yogiben/admin)
+  - Depends on : `accounts-base`, `twbs:bootstrap` and `fortawesome:fontawesome`
 
 ### Routing & Sessions
 
@@ -68,5 +75,8 @@
 - [Autoform](https://github.com/aldeed/meteor-autoform/)
   - UI Helpers for forms and validations
 
-- [Accounts-UI](https://atmospherejs.com/meteor/accounts-ui)
-  - UI For login
+- [Bootbox](https://atmospherejs.com/mizzao/bootboxjs)
+  - Modal and prompts
+
+### Misc
+- [Console Log Server Side -> Client side](https://github.com/aldeed/meteor-console-me/)
