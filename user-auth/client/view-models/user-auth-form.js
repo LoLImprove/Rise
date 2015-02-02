@@ -57,6 +57,7 @@ AutoForm.addHooks('user-auth-form', {
           if (e) {
             console.log('Error logging in: ', e);
           } else {
+            Rise.Helpers.Modal.dismiss();
             FlashMessages.sendSuccess("Successfuly logged in");
           }
         });

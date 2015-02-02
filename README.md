@@ -2,6 +2,15 @@
 
 ## RTS/MOBA Improvement Platform
 
+## Useful commands
+
+### Mongo
+
+- Set user as admin
+```bash
+db.users.update({_id: "USER_ID" }, { $set: { roles: ["admin"] } } )
+```
+
 ## Packages :
 
 ### Admin
@@ -82,4 +91,5 @@
   - Modal and prompts
 
 ### Misc
+
 - [Console Log Server Side -> Client side](https://github.com/aldeed/meteor-console-me/)
