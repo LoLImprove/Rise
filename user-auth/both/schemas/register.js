@@ -16,7 +16,7 @@ Rise.Schemas.Form.Register = new SimpleSchema({
   },
   password: {
     type: String,
-    label: "Enter the password",
+    label: "Password",
     min: 6,
     autoform: {
       afFieldInput: {
@@ -26,7 +26,7 @@ Rise.Schemas.Form.Register = new SimpleSchema({
   },
   passwordConfirmation: {
     type: String,
-    label: "Enter the password again",
+    label: "Password confirmation",
     min: 6,
     autoform: {
       afFieldInput: {

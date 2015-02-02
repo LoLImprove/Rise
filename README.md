@@ -72,6 +72,9 @@
   - Reactive updating for published aggregates (top 10 posts, etc...)
 
 ### UI & View Helpers
+- [Flash Messages](https://github.com/camilosw/flash-messages)
+  - JS Flash messages + view helper
+
 - [Autoform](https://github.com/aldeed/meteor-autoform/)
   - UI Helpers for forms and validations
 

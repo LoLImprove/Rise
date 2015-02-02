@@ -1,0 +1,44 @@
+<template name="UserAuthForm">
+  <div class="general-help-block">
+    {{ errors }}
+  </div>
+  {{ #if registration }}
+    {{ #autoForm schema="Rise.Schemas.Form.Register" id="user-auth-form" type="method" meteormethod="user-auth:register" }}
+      <fieldset>
+        {{> afQuickField name='username' }}
+        {{> afQuickFields name='meta_information' }}
+        {{> afQuickField name='email' label='Email' }}
+        {{> afQuickField name='password' }}
+        {{> afQuickField name='passwordConfirmation' }}
+      </fieldset>
+      <input type="submit" class="hide">
+    {{ /autoForm }}
+    <div class="user-auth-tools">
+      <a href="#" class="toggle-registration">
+        Already have an account ? Sign in !
+      </a>
+    </div>
+  {{ else }}
+    <form id="user-auth-form" class="login-form">
+      <fieldset>
+        <div class="form-group">
+          <label class="control-label">Username or Email</label>
+          <input type="text" name="username" class="form-control" required>
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Password</label>
+          <input type="password" name="password" class="form-control" required>
+          <span class="help-block"></span>
+        </div>
+
+        <input type="submit" class="hide">
+      </fieldset>
+    </form>
+    <div class="user-auth-tools">
+      <a href="#" class="toggle-registration">
+        Don't have an account ? Create one
+      </a>
+    </div>
+  {{/if}}
+</template>

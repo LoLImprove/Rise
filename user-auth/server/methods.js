@@ -1,6 +1,6 @@
 Meteor.methods({
   'user-auth:register': function(params) {
-    console.log('Creating user', params);
+    console.log('Trying to create user with : ', params);
     Accounts.createUser({
       username: params.username,
       email: params.email,

@@ -1,7 +1,13 @@
-Template.signInButtons.events = {
+Template.UserAuthButtons.events = {
+  'click .log-out': function (event) {
+    event.preventDefault();
+    Meteor.logout();
+    FlashMessages.sendSuccess("Successfuly logged out");
+  },
+
   'click .sign-in': function (event) {
     //debugger;
-    Rise.Helpers.Modal(Template.signInForm, {
+    Rise.Helpers.Modal.create(Template.UserAuthForm, {
       title: "Login",
       buttons: {
         save: {
@@ -13,9 +19,10 @@ Template.signInButtons.events = {
           }
         },
         cancel: {
-          label: "Danger!",
+          label: "Cancel",
           className: "btn-warning",
           callback: function() {
+            Session.set('user-auth:form:general-errors', ''); // Resets errors when closing
             return true; // Close the modal
           }
         }

@@ -1,3 +1,7 @@
-<template name="signInButtons">
-  <button class="sign-in toggle-modal">Sign In</button>
+<template name="UserAuthButtons">
+  {{ #if currentUser }}
+    <button class="log-out">Log out</button>
+  {{ else }}
+    <button class="sign-in toggle-modal">Sign In</button>
+  {{ /if }}
 </template>
