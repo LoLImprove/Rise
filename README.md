@@ -92,4 +92,5 @@ db.users.update({_id: "USER_ID" }, { $set: { roles: ["admin"] } } )
 
 ### Misc
 
+- [Underscore.js String](https://atmospherejs.com/wizonesolutions/underscore-string)
 - [Console Log Server Side -> Client side](https://github.com/aldeed/meteor-console-me/)

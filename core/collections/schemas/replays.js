@@ -7,9 +7,7 @@ Rise.Schemas.ReplaysGeneralMetum = new SimpleSchema({
 });
 
 Rise.Schemas.ReplaysSpecificMetum = new SimpleSchema({
-  kills:   { type: Number, label: "Kills" },
-  deaths:  { type: Number, label: "Deaths" },
-  assists: { type: Number, label: "Assists" }
+  kda:   { type: String, label: "KDA" },
 });
 
 Rise.Schemas.ReplaysMetum = new SimpleSchema({

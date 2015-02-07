@@ -32,7 +32,7 @@ Rise.Schemas.Users = new SimpleSchema({
   emails:   { type: [Object], minCount: 1, optional: true }, // WUT ? TODO: Remove optional but no can do
   "emails.$.address": { type: String, regEx: SimpleSchema.RegEx.Email },
 
-  meta_information: { type: Rise.Schemas.UserMetum, optional: true },
+  meta_information: { type: Rise.Schemas.UserMetum },
 
   verified: { type: Boolean, defaultValue: false }, // TODO: Remove optional
   life_points: { type: Number, defaultValue: 0 },

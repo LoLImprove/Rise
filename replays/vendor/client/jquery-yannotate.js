@@ -20,6 +20,7 @@ Yannotate = window._Yannotate = (function(playerElement, opts) {
 
   YoutubeAPI.loadVideoById(this.opts.videoId);
   YoutubeAPI.setPlayerElement(playerElement[0]);
+  YoutubeAPI.player = undefined; // Reset if it was already set by the API onload method;
 
   // Callback
   YoutubeAPI.onPlayerStarted = this.opts.onPlayerStarted;
