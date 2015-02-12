@@ -1,0 +1,16 @@
+<template name="ReplayForm">
+  {{ #autoForm collection="Rise.Replays" id=formId doc=replay type=type}}
+    <fieldset>
+      {{> afQuickField name='video_id' }}
+      {{> afFormGroup name='meta_information.general.champion' }}
+      {{> afFormGroup name='meta_information.general.matchup' }}
+      {{> afFormGroup name='meta_information.general.lane' }}
+      {{> afFormGroup name='meta_information.specific.kda' }}
+      {{> afQuickField name='description' }}
+      {{> afQuickField name='duration' }}
+      {{> afQuickField name='patch' }}
+      {{> afQuickField name='victory' }}
+      {{> afQuickField name='replay_file' }}
+    </fieldset>
+  {{ /autoForm }}
+</template>

@@ -1,8 +1,10 @@
 Template.RisePlayer.helpers({
+  // Is triggered each time the video_id is changd
   videoPlayer: function() {
     var el = $('.rise-replay-container')[0];
     var videoContainer = Rise.UI.Buffer.get('rise:player:container');
 
+    // Remove the video player element if it exists
     if (videoContainer) {
       // Seems not to work properly and not removing the DOM object
       // Thus we use jQuerty to ensure it.
@@ -10,35 +12,26 @@ Template.RisePlayer.helpers({
       $('#rise-player').remove();
     }
 
+    // If the container exists, render the player inside the container
     if (el) {
-      var instance = Blaze.renderWithData(
-        Template.RiseVideoContainer,
-        { id: this.valueOf() },
-        el
-      );
-
+      var instance = Blaze.renderWithData(Template.RiseVideoContainer, { id: this.valueOf() }, el);
+      // We keep track of the current player container so we can remove it later on
       Rise.UI.Buffer.set('rise:player:container', instance);
-      console.log('videoContainer rendered', this);
     }
 
   }
 });
 
 Template.RiseVideoContainer.rendered = function() {
-  console.log('Getting player container...');
-  console.log(this, Rise.UI.Buffer.get('rise:player:container'));
-  setUpPlayer(this.data.id);
-}
-
-var setUpPlayer = (function(video_id) {
+  // Sets up the youtube player
   if ( Rise.UI.doesElementExists('#rise-player') ) {
-    console.log(video_id);
+    // Custom jQuery plugin
     $('#rise-player').yannotate({
-      videoId: video_id,
+      videoId: this.data.id,
       dimensions: 'relative',
       onPlayerStarted: function() {
         console.log('player started');
       }
     });
   }
-});
+}

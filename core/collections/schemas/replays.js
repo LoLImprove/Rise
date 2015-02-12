@@ -26,7 +26,11 @@ Rise.Schemas.Replays = new SimpleSchema({
   description:  { type: String, label: "Description" },
   duration:     { type: String, label: "Duration" },
   patch:        { type: String, label: "Patch", optional: true },
-  replay_file:  { type: String, label: "Replay file",   optional: true },
+  replay_file:  { type: String, label: "Replay file",   optional: true, autoform: {
+    afFieldInput: {
+      type: "file"
+    }
+  }},
   created_at:   { type: Date },
   updated_at:   { type: Date }
 });

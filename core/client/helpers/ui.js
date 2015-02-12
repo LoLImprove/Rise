@@ -6,7 +6,6 @@ Rise.UI = Rise.UI || {}
  */
 Rise.UI.getData = (function() {
   if (Template.currentData()) {
-    console.log('Got it from here');
     return Template.currentData();
   } else if (UI.getData()) {
     return UI.getData();
@@ -23,7 +22,7 @@ Rise.UI.get = (function(fieldOrHelperName) {
   var data = Rise.UI.getData();
   if (data) {
     var result = data[fieldOrHelperName];
-    if (result) {
+    if (!_.isUndefined(result)) {
       // If field is a helper we call it passing it he data context
       if (_.isFunction(result)) {
         return result.call(data);

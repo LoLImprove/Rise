@@ -5,11 +5,18 @@ Template.ReplayNew.created = function() {
 Template.ReplayNew.helpers({
   newReplay: function() {
     return Session.get('replay:new-instance');
+  },
+  submitForm: function() {
+    return function(e, id) {
+      Rise.Helpers.Modal._defaultOnValidate(e, id);
+      console.log('helper called');
+      return false; // We want validation first
+    }
   }
 });
 
 Template.ReplayNew.events({
-  'change input, keypress input, blur input': function() {
+  'change input, keyup input, blur input': function() {
     Session.set('replay:new-instance', AutoForm.getFormValues('replay-new-form').insertDoc);
   }
 });
@@ -19,6 +26,12 @@ AutoForm.hooks({
     formToDoc: function(doc, ss, formId) {
       doc.user_id = Meteor.userId();
       return doc;
-    }
+    },
+    onSuccess: function(operation, id, template) {
+      Router.go('replay', { _id: id });
+    },
+    onError: function(operation, error, template) {
+      console.error('Trying to create a new replay but there was an error on ' + operation + ':', error);
+    },
   }
 });

@@ -80,7 +80,11 @@ db.users.update({_id: "USER_ID" }, { $set: { roles: ["admin"] } } )
 - [Publish composite](https://github.com/englue/meteor-publish-composite/)
   - Reactive updating for published aggregates (top 10 posts, etc...)
 
-### UI & View Helpers
+### Upload
+- [S3](https://github.com/Lepozepo/S3)
+  - S3 uploader
+
+  ### UI & View Helpers
 - [Flash Messages](https://github.com/camilosw/flash-messages)
   - JS Flash messages + view helper
 
