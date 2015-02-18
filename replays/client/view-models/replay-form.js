@@ -6,8 +6,8 @@ Template.ReplayForm.helpers({
       return 'replay-new-form';
     }
   },
-  doc: function() {
-    return this.doc;
+  replay: function() {
+    return this.replay;
   },
   type: function() {
     return this.type;

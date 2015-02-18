@@ -6,4 +6,6 @@ Security.defineMethod("ifHasUserSomeId", {
   }
 });
 
-Rise.Replays.permit(['insert']).ifLoggedIn().ifHasUserSomeId('hello').apply();
+Rise.Replays.permit(['insert']).ifLoggedIn().apply();
+// TODO : Make sure user can only update his own replay
+Rise.Replays.permit(['update']).ifLoggedIn().apply();

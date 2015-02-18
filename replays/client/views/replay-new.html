@@ -2,5 +2,6 @@
   {{ #modal title="Post a new replay" id="new-replay-modal" canClose=false validateButton="Save" cancelButton="Cancel" onValidate=submitForm}}
     {{ > ReplayForm type="insert" }}
   {{ /modal }}
-  {{ > ReplayShow newReplay }}
+
+  {{ > ReplayView newReplay }}
 </template>

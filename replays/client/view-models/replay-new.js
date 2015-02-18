@@ -9,7 +9,6 @@ Template.ReplayNew.helpers({
   submitForm: function() {
     return function(e, id) {
       Rise.Helpers.Modal._defaultOnValidate(e, id);
-      console.log('helper called');
       return false; // We want validation first
     }
   }

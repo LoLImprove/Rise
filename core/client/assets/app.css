@@ -21,3 +21,13 @@
         transform: translate3d(10px, 0, 0);
     }
 }
+
+.custom-error .help-block, .custom-error .control-label, .custom-error .radio, .custom-error .checkbox, .custom-error .radio-inline, .custom-error .checkbox-inline, .custom-error.radio label, .custom-error.checkbox label, .custom-error.radio-inline label, .custom-error.checkbox-inline label {
+    color: #a94442;
+}
+
+.custom-error .form-control {
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}

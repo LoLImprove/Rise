@@ -45,13 +45,19 @@ Template.registerHelper('modal', function() {
   return Template._RiseModal;
 });
 
-Template._RiseModal.rendered = function() {
-  var id = this.data.id || "rise-modal";
-  $('#' + id).modal({
-    backdrop: 'static',
-    keyboard: false
-  });
-}
+Template._RiseModal.hooks({
+  rendered: function() {
+    var id = this.data.id || "rise-modal";
+    $('#' + id).modal({
+      backdrop: 'static',
+      keyboard: false
+    });
+  },
+  created: function() {
+    this.context = this.parent(); // Sets the context on the template instance
+    this.data.context = this.context.data; // Sets the context's data in the modal data
+  }
+});
 
 Template._RiseModal.events({
   'click .validate-btn': function(event) {

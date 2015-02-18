@@ -1,5 +1,14 @@
 Rise.UI = Rise.UI || {}
 
+Rise.UI.WaitOnData = (function(templateInstance, callback) {
+  templateInstance.autorun(function(a) {
+    var data = Template.currentData(templateInstance.view);
+    if(!data) return;
+    callback.call(templateInstance, data);
+  });
+
+});
+
 /* Rise.UI.getData, gets the data for the current view context
  * It will try to get the template data (reactive)
  * If failing it will fallback to blaze or iron:controller (not so reactive)

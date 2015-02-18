@@ -1,5 +1,10 @@
 # Meteor {{#modal}} helper
 
+## Dependencies
+
+- [Meteor template-extension](https://github.com/aldeed/meteor-template-extension)
+  `meteor add aldeed:template-extension`
+
 ## Example use
 
 ```html
@@ -22,6 +27,11 @@
    - If not specified, onValidate will search for a form in the modal and submit it.
  -  onCancel, a callback Function, called when the cancel button is clicked.
    - If not specified, onCancel will simply close the modal.
+
+## Context
+
+When you user the `modal` template helper, the context within the block is actually the **modal's context**. Which means `this` will return the **modal object**.
+To access the parent's context, use `this.context`.
 
 ## Callbacks definition
 

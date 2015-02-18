@@ -1,47 +1,9 @@
 <template name="ReplayShow">
-  <div class="rise-replay-header">
-    <h2>{{ > generalMeta meta_information.general }}</h2>
-    <strong class="replay-match-result">{{ upcase victory }}</strong>
-  </div>
+  {{ #if isEditMode }}
+    {{ #isOwnerOf replay }}
+      {{ > ReplayEdit }}
+    {{ /isOwnerOf }}
+  {{ /if }}
 
-  <div class="rise-replay-container">
-    {{ > RisePlayer video_id }}
-  </div>
-  <div class="replay-data">
-    {{ #with user }}
-      <div class="replay-user-information">
-        <img {{ profile.avatar }}>
-        <h3>{{ username }}</h3>
-        {{ > userMeta meta_information }}
-      </div>
-    {{ /with }}
-
-    <div class="replay-description">
-      {{ description}}
-      <button>More...</button>
-    </div>
-
-    <div class="replay-information">
-      <ul>
-        {{ > specificMeta meta_information.specific }}
-        <li>{{duration}}</li>
-        <li>{{patch}}</li>
-      </ul>
-    </div>
-
-    <div class="replay-toolbar">
-      <button>Add a general comment</button>
-      <button>Add an entry to timeline</button>
-      <button>Analyse !</button>
-
-      <ul>
-        {{ #if replay_file }}
-          <li><a href="{{ replay_file }}">Download LPR</a></li>
-        {{/if}}
-        <li><a href="#">Report</a></li>
-        <li><a href="#" class="edit-replay">Edit</a></li>
-      </ul>
-    </div>
-
-  </div>
+  {{ > ReplayView replay }}
 </template>
