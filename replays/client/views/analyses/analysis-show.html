@@ -8,6 +8,15 @@
       {{ /with }}
     </div>
 
-    {{ _id }}
+    <h4>General comment</h4>
+    {{ general_note.content }}
+
+    <h4>Timeline entries</h4>
+    {{ #each timeline_entries }}
+      <ul>
+        <li>Time: {{ time }}</li>
+        <li>{{ content }}</li>
+      </ul>
+    {{ /each }}
   </div>
 </template>
