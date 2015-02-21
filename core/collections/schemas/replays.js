@@ -23,7 +23,15 @@ Rise.Schemas.Replays = new SimpleSchema({
   meta_information: { type: Rise.Schemas.ReplaysMetum },
 
   victory:      { type: Boolean, label: "Victory" },
-  description:  { type: String, label: "Description" },
+  description:  {
+    type: String,
+    label: "Description",
+    autoform: {
+      afFieldInput: {
+        type: "textarea"
+      }
+    }
+  },
   duration:     { type: String, label: "Duration" },
   patch:        { type: String, label: "Patch", optional: true },
   replay_file:  { type: String, label: "Replay file",   optional: true, autoform: {

@@ -330,7 +330,7 @@ function defineHook(template, type) {
   template[type] = function () {
     //console.log(type, orig);
     // call all defined global hooks
-    runGlobalHooks(type, this, arguments);
+    //runGlobalHooks(type, this, arguments);
     // call all defined hooks for this template instance
     runTemplateHooks(type, this, arguments);
   };

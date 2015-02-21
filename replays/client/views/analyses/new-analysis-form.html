@@ -1,0 +1,11 @@
+<template name="NewAnalysisForm">
+  <div class="new-general-note">
+    {{ #autoForm collection="Rise.Analyses" id="analysis-new-form" type="insert" omitFields="general_note.$.comments_ids, timeline_entries.$.comments_ids"}}
+      <fieldset>
+        {{> afQuickField name='general_note.content' label="General note" }}
+        {{> afArrayField name='timeline_entries' template="TimeLineEntriesFields" }}
+      </fieldset>
+      <input type="submit" class="publish-analysis" value="Post">
+    {{ /autoForm }}
+  </div>
+</template>

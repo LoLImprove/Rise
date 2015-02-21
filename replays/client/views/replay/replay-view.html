@@ -17,8 +17,14 @@
     {{ /with }}
 
     <div class="replay-description">
-      {{ description}}
-      <button>More...</button>
+      <span class="description slideDown closed">
+        {{ description }}
+      </span>
+      {{ #if shortDescription }} <!-- Bit useless -->
+        <button class="more">More...</button>
+      {{ else }}
+        <button class="less">Less...</button>
+      {{ /if }}
     </div>
 
     <div class="replay-information">

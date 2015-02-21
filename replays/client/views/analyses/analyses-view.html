@@ -1,0 +1,19 @@
+<template name="AnalysesView">
+  <h2>Latest analyses</h2>
+
+  <div class="rise-new-analysis-container">
+    <div class="analysis-user-information">
+      {{ #with currentUser }}
+        <img {{ profile.avatar }}>
+        <h3>{{ username }}</h3>
+        {{ > userMeta meta_information }}
+      {{ /with }}
+    </div>
+
+    {{ > NewAnalysisForm }}
+  </div>
+
+  {{ #each analyses }}
+    {{ > AnalysisShow }}
+  {{ /each }}
+</template>

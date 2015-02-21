@@ -13,6 +13,7 @@ Meteor.methods({
 });
 
 Accounts.onCreateUser(function(params, user) {
-  user.meta_information = params.meta_information;
+  // TODO : Fix everything wrong with this
+  user.meta_information = { league : 'Gold V' };
   return user;
 });

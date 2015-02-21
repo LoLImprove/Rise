@@ -21,26 +21,45 @@
 Rise.Schemas = Rise.Schemas || {};
 
 Rise.Schemas.GeneralNote = new SimpleSchema({
-  content: { type: String },
-  comments_ids: { type: [Number] }
+  content: { type: String, autoform: {
+      afFieldInput: {
+        type: "textarea"
+      }
+    }
+  },
+
+  comments_ids: { type: [String], denyInsert: true, optional: true }
 });
 
 Rise.Schemas.TimelineEntry = new SimpleSchema({
-  content: { type: String },
-  time: { type: String },
-  comments_ids: { type: [Number] }
+  time: { type: String, regEx: /^\d{1,2}:\d{1,2}$/, defaultValue: '00:00' },
+  content: { type: String, autoform: {
+      afFieldInput: {
+        type: "textarea"
+      }
+    }
+  },
+
+  comments_ids: { type: [String], denyInsert: true, optional: true }
 });
 
 Rise.Schemas.Analyses = new SimpleSchema({
   user_id:   { type: String },
   replay_id: { type: String },
 
-  votes: { type: Number },
-  status: { type: String }, // [Pending, Published]
+  votes: { type: Number, defaultValue: 0 },
+  status: { type: String, defaultValue: "pending" }, // [pending, published]
 
   general_note: { type: Rise.Schemas.GeneralNote },
   timeline_entries: { type: [Rise.Schemas.TimelineEntry] },
 
   created_at:   { type: Date },
   updated_at:   { type: Date }
+});
+
+// TODO : Not working fix the validation msgs pls
+Rise.Schemas.Analyses.messages({
+  "regEx timeline_entries.$.time": [
+    { msg: "[label] must be in digital form (mm/ss): 05:34 for instance" }
+  ]
 });
