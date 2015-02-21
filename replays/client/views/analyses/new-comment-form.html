@@ -1,0 +1,10 @@
+<template name="NewCommentForm">
+  <div class="new-comment">
+    {{ #autoForm collection="Rise.Comments" id=formId type="insert" }}
+      {{> afQuickField name="parent_type" label=false type="hidden" value=type }}
+      {{> afQuickField name='content' label=false placeholder="Share your thoughts" }}
+
+      <input type="submit" class="post-comment" value="Post">
+    {{ /autoForm }}
+  </div>
+</template>

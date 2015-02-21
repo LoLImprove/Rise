@@ -1,12 +1,12 @@
 <template name="UserAuthForm">
-  <div class="general-help-block">
+  <div class="general-help-block has-error">
     {{ errors }}
   </div>
   {{ #if registration }}
-    {{ #autoForm schema="Rise.Schemas.Form.Register" id="user-auth-form" type="method" meteormethod="user-auth:register" }}
+    {{ #autoForm schema="Rise.Schemas.Form.Register" id="user-auth-form" }}
       <fieldset>
         {{> afQuickField name='username' }}
-        {{> afQuickFields name='meta_information' }}
+        {{> afQuickField name='level_of_play' label='League' }}
         {{> afQuickField name='email' label='Email' }}
         {{> afQuickField name='password' }}
         {{> afQuickField name='passwordConfirmation' }}

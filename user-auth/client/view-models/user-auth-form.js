@@ -1,6 +1,6 @@
 Template.UserAuthForm.created = function() {
-  Session.setDefault('user-auth:form:register', false);
-  Session.setDefault('user-auth:form:general-errors', '');
+  Session.set('user-auth:form:register', false);
+  Session.set('user-auth:form:errors', '');
 };
 
 Template.UserAuthForm.helpers({
@@ -8,20 +8,22 @@ Template.UserAuthForm.helpers({
     return Session.get('user-auth:form:register');
   },
   errors: function() {
-    return Session.get('user-auth:form:general-errors');
+    return Session.get('user-auth:form:errors');
   }
 });
 
 Template.UserAuthForm.events({
   'click .toggle-registration': function(e) {
+    // We reset the errors when switching from register to login and vice versa
+    Session.set('user-auth:form:errors', '');
     Session.set('user-auth:form:register', !Session.get('user-auth:form:register'));
   },
-  'submit #user-auth-form': function(event) {
+  'submit #user-auth-form.login-form': function(event) {
     event.preventDefault();
     var form = $(event.target);
 
     $('.modal-content').removeClass('shake animated');
-    Session.set('user-auth:form:general-errors', ''); // Resets errors on submit
+    Session.set('user-auth:form:errors', ''); // Resets errors on submit
 
     // Only login, registration is handled by autoForm
     if (form.hasClass('login-form')) {
@@ -30,7 +32,7 @@ Template.UserAuthForm.events({
       Meteor.loginWithPassword(username.val(), password.val(), function(error) {
         if (error) {
           $('.modal-content').addClass('shake animated');
-          Session.set('user-auth:form:general-errors', 'Incorrect email or password');
+          Session.set('user-auth:form:errors', 'Incorrect email or password');
         } else {
           Rise.Helpers.Modal.dismiss();
           FlashMessages.sendSuccess("Successfuly logged in");
@@ -44,24 +46,29 @@ Template.UserAuthForm.events({
   }
 });
 
-AutoForm.addHooks('user-auth-form', {
-  after: {
-    'user-auth:register': function (error, loginData) {
-      if (error) {
-        Session.set('user-auth:form:general-errors', error.reason);
-      } else {
-        console.log('User created !');
-        console.log('Logging in new user: ', loginData);
-        // Seems unsafe, see user-auth/server/methods
-        Meteor.loginWithPassword(loginData.email, loginData.password, function(e) {
-          if (e) {
-            console.log('Error logging in: ', e);
-          } else {
-            Rise.Helpers.Modal.dismiss();
-            FlashMessages.sendSuccess("Successfuly logged in");
-          }
-        });
-      }
+AutoForm.hooks({
+  'user-auth-form': {
+    onSubmit: function(user) {
+      console.info('Trying to create user with : ', user);
+
+      Accounts.createUser({
+        username: user.username,
+        email: user.email,
+        password: user.password,
+        profile: { level_of_play: user.level_of_play }
+      }, function(error) {
+        if (error) {
+          // Bit of animation
+          $('.modal-content').addClass('shake animated');
+          console.error(error);
+          Session.set('user-auth:form:errors', error.reason);
+        } else {
+          Rise.Helpers.Modal.dismiss();
+          $('.modal-content').removeClass('shake animated');
+          FlashMessages.sendSuccess("Successfuly logged in");
+        }
+      });
+
       return false;
     }
   }

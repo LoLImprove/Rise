@@ -20,11 +20,8 @@
 Rise.Schemas = Rise.Schemas || {};
 
 Rise.Schemas.UserProfile = new SimpleSchema({
+  level_of_play: { type: String },
   avatar: { type: String, optional: true }
-});
-
-Rise.Schemas.UserMetum = new SimpleSchema({
-  league: { type: String }
 });
 
 Rise.Schemas.Users = new SimpleSchema({
@@ -32,15 +29,13 @@ Rise.Schemas.Users = new SimpleSchema({
   emails:   { type: [Object], minCount: 1, optional: true }, // WUT ? TODO: Remove optional but no can do
   "emails.$.address": { type: String, regEx: SimpleSchema.RegEx.Email },
 
-  meta_information: { type: Rise.Schemas.UserMetum },
-
   verified: { type: Boolean, defaultValue: false }, // TODO: Remove optional
   life_points: { type: Number, defaultValue: 0 },
 
   replays_ids: { type: [String], defaultValue: [] },
   analyses_ids: { type: [String], defaultValue: [] },
 
-  profile:  { type: Rise.Schemas.UserProfile, optional: true },
+  profile:  { type: Rise.Schemas.UserProfile },
   services: { type: Object, optional: true, blackbox: true },
 
   created_at: { type: Date, optional: true },

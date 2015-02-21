@@ -26,6 +26,12 @@ Rise.UI.getData = (function() {
   }
 });
 
+Rise.UI.getParentData = (function(level) {
+  if (Template.instance()) {
+    return Template.instance().parent(level).data;
+  }
+});
+
 /* Rise.UI.get, get a property from Rise.UI.getData after if the data has been loaded  */
 Rise.UI.get = (function(fieldOrHelperName) {
   var data = Rise.UI.getData();
@@ -39,7 +45,7 @@ Rise.UI.get = (function(fieldOrHelperName) {
         return result;
       }
     } else {
-      console.log('Could not find key ', fieldOrHelperName, 'in', data);
+      console.error('Could not find key ', fieldOrHelperName, 'in', data);
     }
   }
 

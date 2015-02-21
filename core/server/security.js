@@ -13,3 +13,8 @@ Rise.Replays.permit(['update']).ifLoggedIn().ifCurrentUserOwnsRessource().apply(
 Rise.Analyses.permit(['insert']).ifLoggedIn().apply();
 // Makes sure a user can only update his own analyses
 Rise.Analyses.permit(['update']).ifLoggedIn().ifCurrentUserOwnsRessource().apply();
+
+// Only logged in user can post analysis
+Rise.Comments.permit(['insert']).ifLoggedIn().apply();
+// Makes sure a user can only update his own analyses
+Rise.Comments.permit(['update']).ifLoggedIn().ifCurrentUserOwnsRessource().apply();

@@ -1,5 +1,5 @@
 <template name="AnalysisShow">
-  <div class="rise-analyses-header">
+  <div class="rise-analysis">
     <div class="analysis-user-information">
       {{ #with user }}
         <img {{ profile.avatar }}>
@@ -9,14 +9,28 @@
     </div>
 
     <h4>General comment</h4>
-    {{ general_note.content }}
+    {{ #with general_note }}
+      {{ content }}
+      <div class="rise-comments">
+         {{ > Comments this }}
+         {{ > NewCommentForm }}
+      </div>
+    {{ /with }}
 
     <h4>Timeline entries</h4>
     {{ #each timeline_entries }}
       <ul>
         <li>Time: {{ time }}</li>
         <li>{{ content }}</li>
+        <li>
+          <div class="rise-comments">
+            {{ > Comments this }}
+            {{ > NewCommentForm }}
+          </div>
+        </li>
       </ul>
     {{ /each }}
+
   </div>
+
 </template>

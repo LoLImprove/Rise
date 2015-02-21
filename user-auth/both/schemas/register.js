@@ -8,7 +8,7 @@ Rise.Schemas.Form.Register = new SimpleSchema({
     unique: true
   },
 
-  meta_information: { type: Rise.Schemas.UserMetum },
+  level_of_play: { type: String },
 
   email: {
     type: String,

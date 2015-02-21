@@ -22,7 +22,7 @@ Template.UserAuthButtons.events = {
           label: "Cancel",
           className: "btn-warning",
           callback: function() {
-            Session.set('user-auth:form:general-errors', ''); // Resets errors when closing
+            Session.set('user-auth:form:errors', ''); // Resets errors when closing
             return true; // Close the modal
           }
         }

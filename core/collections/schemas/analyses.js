@@ -21,6 +21,7 @@
 Rise.Schemas = Rise.Schemas || {};
 
 Rise.Schemas.GeneralNote = new SimpleSchema({
+  type: { type: String, denyUpdate: true ,defaultValue: 'general_note' },
   content: { type: String, autoform: {
       afFieldInput: {
         type: "textarea"
@@ -32,6 +33,7 @@ Rise.Schemas.GeneralNote = new SimpleSchema({
 });
 
 Rise.Schemas.TimelineEntry = new SimpleSchema({
+  type: { type: String, denyUpdate: true , defaultValue: 'timeline_entry' },
   time: { type: String, regEx: /^\d{1,2}:\d{1,2}$/, defaultValue: '00:00' },
   content: { type: String, autoform: {
       afFieldInput: {
