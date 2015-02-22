@@ -9,8 +9,54 @@ Rise.Comments.helpers({
   },
   parent: function() {
     var type = this.parent_type;
-    var analysis_id = this.parent_id;
+    var analysisId = this.parent_id;
 
-    return Rise.Analyses.findOne({ _id: analysis_id })[type]; // TODO: Check
+    return Rise.Analyses.findOne({ _id: analysisId })[type]; // TODO: Check
   }
 });
+
+// Only runs on the server otherwise it would be run twice on the client AND the server
+// It could provide to be useful but it is not really needed and add a lot of overhead
+if (Meteor.isServer) {
+  /*
+   * After we insert a comment, we update the analysis record corresponding fields with
+   * the comment id.
+   *
+     {
+       _id: ObjectID(),
+       ...
+       general_note: {
+         _id: ObjectID(),
+         content: 'Some general note',
+         comments_ids: [] <------ UPDATED
+       },
+       timeline_entries: [
+         { ... },
+         {
+           _id: ObjectID(),
+           time: "08:34",
+           content: "Some timeline entry",
+           comments_ids: [] <----- UPDATED
+         },
+         { ... }
+       ]
+   */
+  Rise.Comments.after.insert(function(userId, comment) {
+    var analysisId = comment.analysis_id,
+        parentType = comment.parent_type,
+        parentId   = comment.parent_id,
+        id         = this._id;
+
+    if (parentType === 'general_note') {
+      Rise.Analyses.update({ _id: analysisId }, { $addToSet: { 'general_note.comments_ids': id } });
+    } else if (parentType === 'timeline_entry') {
+      // Sugoi $elemMatch-sama
+      Rise.Analyses.update(
+        { _id: analysisId, timeline_entries: { $elemMatch: { _id: parentId } } },
+        { $addToSet: { 'timeline_entries.$.comments_ids': id } }
+      );
+    }
+
+  });
+
+} // if Meteor.isServer

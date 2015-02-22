@@ -1,7 +1,16 @@
 Template.NewCommentForm.helpers({
   formId: function() {
-    // Lots of different comment forms in a page, so... UUID.
-    return 'new-comment-form-' + Meteor.uuid();
+    // Lots of different comment forms in a page, and we need them to be unique for autoform
+    // so... contextful UID (we don't want them to be random because it confuses autoform).
+    data = Rise.UI.getParentData();
+
+    if (this.type === "general_note") {
+      var uid = data._id + "-general_note"
+    } else {
+      var uid = data._id + "-timeline_entry-" + data.timeline_entries.indexOf(this);
+    }
+
+    return 'new-comment-form-' + uid;
   }
 });
 
@@ -10,8 +19,7 @@ Template.NewCommentForm.helpers({
 // If it matches, we run the code
 AutoForm.addHooks(null, {
   formToDoc: function(doc, ss, formId) {
-    var UUIDRegEx = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}";
-    var newCommentFormRegEx = new RegExp('new-comment-form-' + UUIDRegEx);
+    var newCommentFormRegEx = new RegExp('new-comment-form');
 
     if (formId.match(newCommentFormRegEx)) {
       // We lookup three contexts to find our current analysis,
@@ -21,25 +29,14 @@ AutoForm.addHooks(null, {
 
       // Just checkin'
       if (analysis && noteOrEntry && Meteor.userId()) {
-        doc.parent_id = analysis._id;
+        doc.analysis_id = analysis._id;
+        doc.parent_id = noteOrEntry._id;
         doc.parent_type = noteOrEntry.type;
         doc.user_id = Meteor.userId();
       }
 
-      return doc;
     }
+
+    return doc;
   },
 }, false);
-
-// Regular hooks
-AutoForm.hooks({
-  'comment-new-form': {
-    onSuccess: function(operation, id, template) {
-      console.log('Comment created !');
-      // TODO: Do something ? Animate maybe ?
-    },
-    onError: function(operation, error, template) {
-      console.error('Trying to create a new comment but there was an error on ' + operation + ':', error);
-    },
-  }
-});

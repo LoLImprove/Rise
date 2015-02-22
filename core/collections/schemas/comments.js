@@ -2,6 +2,7 @@ Rise.Schemas = Rise.Schemas || {};
 
 Rise.Schemas.Comments = new SimpleSchema({
   user_id: { type: String },
+  analysis_id: { type: String },
   parent_id: { type: String },
   parent_type: { type: String },
 
@@ -12,7 +13,7 @@ Rise.Schemas.Comments = new SimpleSchema({
     }
   },
   votes: { type: Number, defaultValue: 0 },
-  reports: { type: Number, optional: true },
+  reports: { type: Number, defaultValue: 0 },
 
   created_at:   { type: Date },
   updated_at:   { type: Date }

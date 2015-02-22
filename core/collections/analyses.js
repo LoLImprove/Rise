@@ -10,9 +10,5 @@ Rise.Analyses.helpers({
   replay: function() {
     return Rise.Replays.findOne({ _id: this.replay_id });
   },
-  /* commentsFor("general_note") || commentsFor("timeline_entries") */
-  commentsFor: function(type) {
-    var reference = this[type];
-    return Rise.Comments.find({ _id: { $in: reference.comments_ids } });
-  },
+   /* commentsFor("general_note") || commentsFor("timeline_entries") */
 });

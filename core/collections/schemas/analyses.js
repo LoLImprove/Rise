@@ -21,7 +21,8 @@
 Rise.Schemas = Rise.Schemas || {};
 
 Rise.Schemas.GeneralNote = new SimpleSchema({
-  type: { type: String, denyUpdate: true ,defaultValue: 'general_note' },
+  _id: { type: String, denyUpdate: true, autoValue: Rise.ObjectID },
+  type: { type: String, denyUpdate: true, defaultValue: 'general_note' },
   content: { type: String, autoform: {
       afFieldInput: {
         type: "textarea"
@@ -29,10 +30,11 @@ Rise.Schemas.GeneralNote = new SimpleSchema({
     }
   },
 
-  comments_ids: { type: [String], denyInsert: true, optional: true }
+  comments_ids: { type: [String], defaultValue: [], optional: true }
 });
 
 Rise.Schemas.TimelineEntry = new SimpleSchema({
+  _id: { type: String, denyUpdate: true, autoValue: Rise.ObjectID },
   type: { type: String, denyUpdate: true , defaultValue: 'timeline_entry' },
   time: { type: String, regEx: /^\d{1,2}:\d{1,2}$/, defaultValue: '00:00' },
   content: { type: String, autoform: {
@@ -42,7 +44,7 @@ Rise.Schemas.TimelineEntry = new SimpleSchema({
     }
   },
 
-  comments_ids: { type: [String], denyInsert: true, optional: true }
+  comments_ids: { type: [String], defaultValue: [], optional: true }
 });
 
 Rise.Schemas.Analyses = new SimpleSchema({

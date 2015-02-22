@@ -1,6 +1,6 @@
 Template.Comments.helpers({
   comments: function() {
-    console.log(this);
+    console.log(this.comments_ids);
     return [];
   }
 });
