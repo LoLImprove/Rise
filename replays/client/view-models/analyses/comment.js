@@ -31,6 +31,13 @@ Template.Comment.events({
     if (_.isEmpty(value) ) {
       $(template.find('.comments-content')).addClass('has-error');
     } else {
+      Meteor.call("rise:edit-comment", this._id, value, function(error) {
+        if (error) {
+          console.error(error);
+        }
+      });
+
+      template.isEditing.set(false);
       $(template.find('.comments-content')).removeClass('has-error');
     }
   }
