@@ -1,27 +1,4 @@
 /* CSS declarations go here */
-
-.shake {
-    -webkit-animation-name: shake;
-    animation-name: shake;
-}
-
-@keyframes shake {
-    0%, 100% {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-
-    10%, 30%, 50%, 70%, 90% {
-        -webkit-transform: translate3d(-10px, 0, 0);
-        transform: translate3d(-10px, 0, 0);
-    }
-
-    20%, 40%, 60%, 80% {
-        -webkit-transform: translate3d(10px, 0, 0);
-        transform: translate3d(10px, 0, 0);
-    }
-}
-
 .custom-error .help-block, .custom-error .control-label, .custom-error .radio, .custom-error .checkbox, .custom-error .radio-inline, .custom-error .checkbox-inline, .custom-error.radio label, .custom-error.checkbox label, .custom-error.radio-inline label, .custom-error.checkbox-inline label {
     color: #a94442;
 }
@@ -32,6 +9,9 @@
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 }
 
+.has-error textarea {
+    border-color: #a94442;
+}
 
 
 /* Move to replay.css or something */

@@ -1,0 +1,29 @@
+<template name="Comment">
+  <li>
+    {{ #with user }}
+      <div class="user-information">
+        <img {{ profile.avatar }}>
+        {{ username }}
+        {{ > userMeta meta_information }}
+      </div>
+    {{ /with }}
+    <div class="comments-content">
+      {{ #if isEditing }}
+        {{ > RiseTextarea content=content class="edit-comment-content form-control" focus=true }}
+        <button class="save-comment-edit">Save</button>
+      {{ else }}
+        {{ content }}
+      {{ /if }}
+
+      {{ #isOwnerOf this }}
+        <button class="toggle-comment-edit">
+          {{ #if isEditing }}
+            Cancel
+          {{ else }}
+            Edit
+          {{ /if }}
+        </button>
+      {{ /isOwnerOf }}
+    </div>
+  </li>
+</template>

@@ -1,6 +1,5 @@
 Template.Comments.helpers({
   comments: function() {
-    console.log(this.comments_ids);
-    return [];
+    return Rise.Comments.find({ _id: { $in: this.comments_ids } })
   }
 });
