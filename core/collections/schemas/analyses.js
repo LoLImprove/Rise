@@ -21,7 +21,7 @@
 Rise.Schemas = Rise.Schemas || {};
 
 Rise.Schemas.GeneralNote = new SimpleSchema({
-  _id: { type: String, denyUpdate: true, autoValue: Rise.ObjectID },
+  _id: { type: String, denyUpdate: true, autoValue: Rise.Schemas.ObjectID },
   type: { type: String, denyUpdate: true, defaultValue: 'general_note' },
   content: { type: String, autoform: {
       afFieldInput: {
@@ -34,8 +34,8 @@ Rise.Schemas.GeneralNote = new SimpleSchema({
 });
 
 Rise.Schemas.TimelineEntry = new SimpleSchema({
-  _id: { type: String, denyUpdate: true, autoValue: Rise.ObjectID },
-  type: { type: String, denyUpdate: true , defaultValue: 'timeline_entry' },
+  _id: { type: String, denyUpdate: true, autoValue: Rise.Schemas.ObjectID },
+  type: { type: String, denyUpdate: true, defaultValue: 'timeline_entry' },
   time: { type: String, regEx: /^\d{1,2}:\d{1,2}$/, defaultValue: '00:00' },
   content: { type: String, autoform: {
       afFieldInput: {

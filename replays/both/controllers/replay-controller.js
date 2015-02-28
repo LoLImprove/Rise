@@ -1,4 +1,4 @@
-Rise.ReplayController = RouteController.extend({
+Rise.Controllers.ReplayShowController = RouteController.extend({
   template: 'ReplayShow',
   data: function () { return Rise.Replays.findOne({ _id: this.params._id }) },
   waitOn: function() {

@@ -34,7 +34,7 @@ Template.UserAuthForm.events({
           $('.modal-content').addClass('shake animated');
           Session.set('user-auth:form:errors', 'Incorrect email or password');
         } else {
-          Rise.Helpers.Modal.dismiss();
+          Rise.Modal.dismiss();
           FlashMessages.sendSuccess("Successfuly logged in");
         }
       })
@@ -63,7 +63,7 @@ AutoForm.hooks({
           console.error(error);
           Session.set('user-auth:form:errors', error.reason);
         } else {
-          Rise.Helpers.Modal.dismiss();
+          Rise.Modal.dismiss();
           $('.modal-content').removeClass('shake animated');
           FlashMessages.sendSuccess("Successfuly logged in");
         }

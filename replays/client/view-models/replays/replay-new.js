@@ -8,7 +8,7 @@ Template.ReplayNew.helpers({
   },
   submitForm: function() {
     return function(e, id) {
-      Rise.Helpers.Modal._defaultOnValidate(e, id);
+      Rise.Modal._defaultOnValidate(e, id);
       return false; // We want validation first
     }
   }

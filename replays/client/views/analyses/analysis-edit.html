@@ -1,0 +1,13 @@
+<template name="EditAnalysis">
+  <div class="rise-edit-analysis-container">
+    <div class="edit-analysis-form-container">
+      {{ #autoForm collection="Rise.Analyses" doc=this id="analysis-edit-form" type="method" meteormethod="rise:submit-analysis-edit"}}
+        <fieldset>
+          {{> afQuickField name='general_note.content' label="General note" }}
+          {{> afArrayField name='timeline_entries' template="TimeLineEntriesFields" }}
+        </fieldset>
+        <input type="submit" class="update-analysis" value="Save">
+      {{ /autoForm }}
+    </div>
+  </div>
+</template>

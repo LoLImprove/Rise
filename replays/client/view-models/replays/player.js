@@ -22,16 +22,18 @@ Template.RisePlayer.helpers({
   }
 });
 
-Template.RiseVideoContainer.rendered = function() {
-  // Sets up the youtube player
-  if ( Rise.UI.doesElementExists('#rise-player') ) {
-    // Custom jQuery plugin
-    $('#rise-player').yannotate({
-      videoId: this.data.id,
-      dimensions: 'relative',
-      onPlayerStarted: function() {
-        console.log('player started');
-      }
-    });
+Template.RiseVideoContainer.hooks({
+  rendered: function() {
+    // Sets up the youtube player
+    if ( Rise.UI.doesElementExists('#rise-player') ) {
+      // Custom jQuery plugin
+      $('#rise-player').yannotate({
+        videoId: this.data.id,
+        dimensions: 'relative',
+        onPlayerStarted: function() {
+          console.log('player started');
+        }
+      });
+    }
   }
-}
+});

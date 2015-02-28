@@ -13,12 +13,16 @@ Rise.Replays.helpers({
   title: function() {
     var metum = this.meta_information.general
     return metum.champion + " vs " + metum.matchup + " - " + metum.lane;
-  },
-  kda: function() {
-    var metum = this.meta_information.specific
-    return metum.kills + "/" + metum.deaths + "/" + metum.assists;
   }
 });
+
+if (Meteor.isServer) {
+  Rise.Replays.after.insert(function(userId, replay) {
+    var uid = replay.user_id;
+    Meteor.users.update({ _id: uid }, { $addToSet: { replays_ids: replay._id } });
+  });
+}
+
 
 /* ======== SCHEMA =======
 {
@@ -32,9 +36,7 @@ Rise.Replays.helpers({
       matchup: "ahri"
     },
     specific: {
-      kills: 9,
-      deaths: 2,
-      assists: 8
+      kda: "5/4/3",
     }
   },
   victory: true,

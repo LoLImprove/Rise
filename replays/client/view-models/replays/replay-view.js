@@ -1,11 +1,13 @@
 Template.ReplayView.hooks({
   created: function() {
-    return Session.set('replay:show-excerpt', true);
+    Session.set('replay:is-analyzing', false);
+    Session.set('replay:show-excerpt', true);
   },
   rendered: function() {
     $('.closed').slideUp();;
   }
 });
+
 Template.ReplayView.helpers({
   victory: function() {
     var victory = Rise.UI.get('victory');
@@ -19,6 +21,13 @@ Template.ReplayView.helpers({
   },
   shortDescription: function() {
     return Session.get('replay:show-excerpt');
+  },
+  isAnalyzing: function() {
+    if (Meteor.userId()) {
+      return Session.get('replay:is-analyzing');
+    } else {
+      return false;
+    }
   }
 });
 
@@ -41,5 +50,11 @@ Template.ReplayView.events({
       description.slideUp('slow');
       description.addClass('closed');
     }
+  },
+  'click .start-analysis': function(event) {
+    event.preventDefault();
+    Session.set('replay:is-analyzing', true);
+    Rise.Player.play();
   }
+
 });

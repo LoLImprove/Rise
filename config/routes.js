@@ -4,10 +4,10 @@ Router.route('/', function () {
 
 Router.route('/replay/new', {
   name: 'replay-new',
-  controller: 'Rise.NewReplayController'
+  controller: 'Rise.Controllers.NewReplayController'
 });
 
 Router.route('/replay/:_id', {
   name: 'replay',
-  controller: 'Rise.ReplayController',
+  controller: 'Rise.Controllers.ReplayController',
 });

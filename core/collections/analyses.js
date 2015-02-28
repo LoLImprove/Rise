@@ -10,5 +10,12 @@ Rise.Analyses.helpers({
   replay: function() {
     return Rise.Replays.findOne({ _id: this.replay_id });
   },
-   /* commentsFor("general_note") || commentsFor("timeline_entries") */
 });
+
+if (Meteor.isServer) {
+  Rise.Analyses.after.insert(function(userId, analysis) {
+    Meteor.users.update({ _id: analysis.user_id }, { $addToSet: { analyses_ids: analysis._id } });
+    Rise.Replays.update({ _id: analysis.replay_id }, { $addToSet: { analyses_ids: analysis._id } });
+  });
+
+}

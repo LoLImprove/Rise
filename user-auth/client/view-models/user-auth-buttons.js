@@ -7,7 +7,7 @@ Template.UserAuthButtons.events = {
 
   'click .sign-in': function (event) {
     //debugger;
-    Rise.Helpers.Modal.create(Template.UserAuthForm, {
+    Rise.Modal.create(Template.UserAuthForm, {
       title: "Login",
       buttons: {
         save: {

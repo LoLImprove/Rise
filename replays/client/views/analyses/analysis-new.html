@@ -1,0 +1,21 @@
+<template name="NewAnalysis">
+  <div class="rise-new-analysis-container">
+    <div class="analysis-user-information">
+      {{ #with currentUser }}
+        <img {{ profile.avatar }}>
+        <h3>{{ username }}</h3>
+        {{ > userMeta profile }}
+      {{ /with }}
+    </div>
+
+    <div class="new-analysis-form-container">
+      {{ #autoForm collection="Rise.Analyses" id="analysis-new-form" type="insert" }}
+        <fieldset>
+          {{> afQuickField name='general_note.content' label="General note" }}
+          {{> afArrayField name='timeline_entries' template="TimeLineEntriesFields" }}
+        </fieldset>
+        <input type="submit" class="publish-analysis" value="Post">
+      {{ /autoForm }}
+    </div>
+  </div>
+</template>

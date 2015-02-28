@@ -1,0 +1,15 @@
+<template name="_isOwner">
+  {{ #if isOwner }}
+    {{> UI.contentBlock}}
+  {{ else }}
+    {{> UI.elseBlock}}
+  {{ /if }}
+</template>
+
+<template name="_isNotOwner">
+  {{ #if isNotOwner }}
+    {{> UI.contentBlock}}
+  {{ else }}
+    {{> UI.elseBlock}}
+  {{ /if }}
+</template>

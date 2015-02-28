@@ -4,33 +4,41 @@
       {{ #with user }}
         <img {{ profile.avatar }}>
         <h3>{{ username }}</h3>
-        {{ > userMeta meta_information }}
+        {{ > userMeta profile }}
       {{ /with }}
     </div>
 
-    <h4>General comment</h4>
-    {{ #with general_note }}
-      {{ content }}
-      <div class="rise-comments">
-         {{ > Comments this }}
-         {{ > NewCommentForm }}
-      </div>
-    {{ /with }}
+    {{ #isOwnerOf this }}
+      {{ #unless isEditing }}
+        <button class="edit-analysis">Edit</button>
+      {{ /unless }}
+    {{ /isOwnerOf}}
 
-    <h4>Timeline entries</h4>
-    {{ #each timeline_entries }}
-      <ul>
-        <li>Time: {{ time }}</li>
-        <li>{{ content }}</li>
-        <li>
-          <div class="rise-comments">
-            {{ > Comments this }}
-            {{ > NewCommentForm }}
-          </div>
-        </li>
-      </ul>
-    {{ /each }}
+    {{ #if isEditing }}
+      {{ > EditAnalysis this }}
+    {{ else }}
+      <h4>General comment</h4>
+      {{ #with general_note }}
+        {{ content }}
+        <div class="rise-comments">
+          {{ > Comments this }}
+          {{ > NewCommentForm }}
+        </div>
+      {{ /with }}
 
+      <h4>Timeline entries</h4>
+      {{ #each timeline_entries }}
+        <ul>
+          <li>Time: {{ time }}</li>
+          <li>{{ content }}</li>
+          <li>
+            <div class="rise-comments">
+              {{ > Comments this }}
+              {{ > NewCommentForm }}
+            </div>
+          </li>
+        </ul>
+      {{ /each }}
+    {{ /if }}
   </div>
-
 </template>

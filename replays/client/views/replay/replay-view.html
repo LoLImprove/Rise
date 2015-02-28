@@ -12,7 +12,7 @@
       <div class="replay-user-information">
         <img {{ profile.avatar }}>
         <h3>{{ username }}</h3>
-        {{ > userMeta meta_information }}
+        {{ > userMeta profile }}
       </div>
     {{ /with }}
 
@@ -36,9 +36,16 @@
     </div>
 
     <div class="replay-toolbar">
-      <button>Add a general comment</button>
-      <button>Add an entry to timeline</button>
-      <button>Analyse !</button>
+      {{ #if currentUser }}
+        {{ #isNotOwnerOf this }}
+          {{ #if isAnalyzing }}
+            <button>Add a general comment</button>
+            <button>Add an entry to timeline</button>
+          {{ else }}
+            <button class="start-analysis">Analyse !</button>
+          {{ /if }}
+        {{ /isNotOwnerOf }}
+      {{ /if }}
 
       <ul>
         {{ #if replay_file }}

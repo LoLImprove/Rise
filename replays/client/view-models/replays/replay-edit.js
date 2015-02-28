@@ -4,7 +4,7 @@ Template.ReplayEdit.helpers({
   },
   submitEdit: function() {
     return function(e, id) {
-      Rise.Helpers.Modal._defaultOnValidate(e, id);
+      Rise.Modal._defaultOnValidate(e, id);
       console.log('submit called');
       return false; // We want validation first
     }

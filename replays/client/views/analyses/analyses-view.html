@@ -1,18 +1,17 @@
 <template name="AnalysesView">
+  {{ #isNotOwnerOf this }}
+    {{ #if currentUserAnalysis }}
+      <h2 id="rise-current-analysis">My analysis</h2>
+      {{ > AnalysisShow currentUserAnalysis }}
+    {{ else }}
+      {{ #if isAnalyzing }}
+        <h2 id="rise-current-analysis">My analysis</h2>
+        {{ > NewAnalysis }}
+      {{ /if }}
+    {{ /if }}
+  {{ /isNotOwnerOf }}
+
   <h2>Latest analyses</h2>
-
-  <div class="rise-new-analysis-container">
-    <div class="analysis-user-information">
-      {{ #with currentUser }}
-        <img {{ profile.avatar }}>
-        <h3>{{ username }}</h3>
-        {{ > userMeta meta_information }}
-      {{ /with }}
-    </div>
-
-    {{ > NewAnalysisForm }}
-  </div>
-
   {{ #each analyses }}
     {{ > AnalysisShow }}
   {{ /each }}

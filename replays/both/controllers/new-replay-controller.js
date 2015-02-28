@@ -1,3 +1,3 @@
-Rise.NewReplayController = RouteController.extend({
+Rise.Controllers.NewReplayController = RouteController.extend({
   template: 'ReplayNew'
 });
