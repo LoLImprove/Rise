@@ -1,5 +1,8 @@
 # Architecure
 
+* [File structure](#file-structure)
+* [Package structure](#package-structure)
+
 ## File structure
 
 ```
@@ -44,4 +47,27 @@
 ├── replays/    -> Replay package
 └── user-auth/  -> User auth package
 
+```
+
+## Package structure
+
+Sample package structure:
+
+```
+package-name/
+│
+├── both/   -> Server and Client files
+│   └── controllers/  -> Package specific controllers
+│
+├── client
+│   ├── helpers/  -> Package specific template helpers and tools
+│   │
+│   ├── view-models/  -> Package specific view-models
+│   └── views/        -> Package specific templates
+│       └── shared/   -> Templates shared with other packages
+│
+├── server/
+│   └── publications.js  -> Package specific publications
+│
+└── vendor/   -> Package specifics libraries
 ```
