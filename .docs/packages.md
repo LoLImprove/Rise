@@ -6,7 +6,7 @@
 * [Collections](#collections)
 * [Collections behaviors](#collections-behaviors)
 * [Fixtures](#fixtures)
-* [Publications & Subscriptions](#pubs--subs)
+* [Publications & Subscriptions](#pubssubs)
 * [File upload](#upload)
 * [UI & View](#ui--view-helpers)
 * [Misc](#misc)
