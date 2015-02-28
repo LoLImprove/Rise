@@ -1,3 +1,5 @@
+Rise.Controllers = Rise.Controllers || {};
+
 Rise.Controllers.ReplayShowController = RouteController.extend({
   template: 'ReplayShow',
   data: function () { return Rise.Replays.findOne({ _id: this.params._id }) },
