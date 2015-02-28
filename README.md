@@ -4,7 +4,7 @@
 
 * [Design](#design)
 * [Helpers](#helpers)
-  * [UI](#rise-ui)
+  * [UI](#riseui)
 * [Useful commands](#useful-commands)
 
 ## Design

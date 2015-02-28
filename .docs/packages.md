@@ -1,14 +1,14 @@
 # Packages
 
-* [Routing & Sessions](#routing-sessions)
-* [Authentification](#authentification)
+* [Routing & Sessions](#routing--sessions)
+* [Authentification](#authentication)
 * [Security](#security)
 * [Collections](#collections)
 * [Collections behaviors](#collections-behaviors)
 * [Fixtures](#fixtures)
-* [Publications & Subscriptions](#pubs-subs)
+* [Publications & Subscriptions](#pubs--subs)
 * [File upload](#upload)
-* [UI & View](#ui-view-helpers)
+* [UI & View](#ui--view-helpers)
 * [Misc](#misc)
 
 ### Routing & Sessions
