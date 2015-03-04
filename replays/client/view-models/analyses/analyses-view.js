@@ -1,7 +1,10 @@
 // Context is the replay, i.e: Rise.UI.get('_id') gets the id of the replay
 Template.AnalysesView.helpers({
   analyses: function() {
-    return Rise.Analyses.find({ replay_id: Rise.UI.get('_id') });
+    return Rise.Analyses.find({ replay_id: Rise.UI.get('_id'), user_id: { $not: Meteor.userId() } });
+  },
+  hasAnalyses: function() {
+    return Rise.Analyses.find({ replay_id: Rise.UI.get('_id'), user_id: { $not: Meteor.userId() } }).count() > 0;
   },
   user: function() {
     return Meteor.users.findOne({ _id: Rise.UI.get('user_id') });

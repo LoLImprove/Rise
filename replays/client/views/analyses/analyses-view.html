@@ -11,8 +11,10 @@
     {{ /if }}
   {{ /isNotOwnerOf }}
 
-  <h2>Latest analyses</h2>
-  {{ #each analyses }}
-    {{ > AnalysisShow }}
-  {{ /each }}
+  {{ #if hasAnalyses }}
+    <h2>Latest analyses</h2>
+    {{ #each analyses }}
+      {{ > AnalysisShow }}
+    {{ /each }}
+  {{ /if }}
 </template>
