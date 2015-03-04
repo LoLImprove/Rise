@@ -2,10 +2,17 @@
 
 ## RTS/MOBA Improvement Platform
 
+* [Setup](#setup)
 * [Design](#design)
 * [Helpers](#helpers)
+  * [UI](#riseenv)
   * [UI](#riseui)
 * [Useful commands](#useful-commands)
+
+## Setup
+
+- Create a `.env` file at the root of the application
+  - The following keys are required: `S3_ACCESS_KEY`, `S3_SECRET`, `S3_BUCKET`. If you don't own any S3 bucket properly configured, please read the [following link](https://github.com/Lepozepo/S3#create-your-amazon-s3) and follow the instructions.
 
 ## Design
 
@@ -20,6 +27,12 @@ TODO: More on that.
 TODO: More on that.
 
 ## Helpers
+
+### Rise.ENV
+
+- `Rise.ENV.isDevelopment()`, true if running in development environment.
+- `Rise.ENV.isProduction()`, true if running in production environment.
+- `Rise.ENV.get(key)`, gets a `key` from the environment variables. Ex: `Rise.ENV.get('S3_BUCKET')`.
 
 ### Rise.UI
 

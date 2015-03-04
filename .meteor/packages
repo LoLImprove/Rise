@@ -33,3 +33,4 @@ lepozepo:s3
 percolate:momentum
 reactive-var
 aldeed:template-extension@3.4.0
+pauldowman:dotenv

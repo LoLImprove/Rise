@@ -40,6 +40,9 @@
 
 - [Browser Policy](https://atmospherejs.com/meteor/browser-policy)
 
+- [.ENV](https://atmospherejs.com/pauldowman/dotenv)
+  - .env file holds environment variables
+
 ### Collections
 
 - [Collection helpers](https://github.com/dburles/meteor-collection-helpers/)

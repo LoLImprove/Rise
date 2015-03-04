@@ -67,6 +67,7 @@ npm-bcrypt@0.7.7
 observe-sequence@1.0.4
 ongoworks:security@1.0.1
 ordered-dict@1.0.2
+pauldowman:dotenv@1.0.1
 percolate:momentum@0.7.2
 percolate:velocityjs@1.1.0
 random@1.0.2

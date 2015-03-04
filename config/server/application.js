@@ -1,7 +1,7 @@
 ConsoleMe.enabled = true;
 
 S3.config = {
-  key: 'AKIAJGTWAHBQ6SDZFVUA',
-  secret: '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',
-  bucket: 'riseuploaddev'
+  key: Rise.ENV.get('S3_ACCESS_KEY'),
+  secret: Rise.ENV.get('S3_SECRET'),
+  bucket: Rise.ENV.get('S3_BUCKET')
 };
