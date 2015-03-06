@@ -26,6 +26,8 @@
  - onValidate, a callback Function, called when the validate button is clicked.
    - If not specified, onValidate will search for a form in the modal and submit it.
  -  onCancel, a callback Function, called when the cancel button is clicked.
+   - If the callback is a Function, it will call a template's helper
+   - If the callback is a string, it will call the method chain on the `window` object (i.e: `window.history.back` will be called if we have `onCancel="history.back"`)
    - If not specified, onCancel will simply close the modal.
 
 ## Context

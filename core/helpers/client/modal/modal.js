@@ -94,7 +94,13 @@ Template._RiseModal.events({
   'click .cancel-btn, click .close-modal': function(event) {
     event.preventDefault();
     var onCancelFunc = this.onCancel || Rise.Modal._defaultOnCancel;
-    var doClose = onCancelFunc(event, this.id);
+    var doClose = true;
+
+    if (_.isString(this.onCancel)) {
+      doClose = Rise.Runtime.chain(window, this.onCancel).call();
+    } else {
+      doClose = onCancelFunc(event, this.id);
+    }
     if (doClose) {
       Rise.Modal.dismiss(this.id);
     }
