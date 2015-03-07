@@ -98,3 +98,4 @@ zimme:collection-softremovable@1.0.2
 zimme:collection-timestampable@1.0.3
 zimme:iron-router-active@1.0.1
 zimme:iron-router-auth@3.0.0
+zimme:underscore-contrib@0.3.0

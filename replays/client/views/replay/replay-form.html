@@ -10,7 +10,10 @@
       {{> afQuickField name='duration' }}
       {{> afQuickField name='patch' }}
       {{> afQuickField name='victory' }}
-      {{> afQuickField name='replay_file' }}
+      {{ #if replay.replay_file }}
+        {{ replay.replay_file }}
+      {{ /if }}
+      {{> afQuickField name='replay_file' value='' }}
     </fieldset>
   {{ /autoForm }}
 </template>

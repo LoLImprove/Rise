@@ -33,9 +33,10 @@ Rise.Schemas.GeneralNote = new SimpleSchema({
   comments_ids: { type: [String], defaultValue: [], optional: true }
 });
 
+// TODO: Maybe protect the _id against updates
 Rise.Schemas.TimelineEntry = new SimpleSchema({
-  _id: { type: String, denyUpdate: true, autoValue: Rise.Schemas.ObjectID },
-  type: { type: String, denyUpdate: true, defaultValue: 'timeline_entry' },
+  _id: { type: String, autoValue: Rise.Schemas.ObjectID },
+  type: { type: String, defaultValue: 'timeline_entry' },
   time: { type: String, regEx: /^\d{1,2}:\d{1,2}$/, defaultValue: '00:00' },
   content: { type: String, autoform: {
       afFieldInput: {

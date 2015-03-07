@@ -4,10 +4,12 @@
       <h2 id="rise-current-analysis">My analysis</h2>
       {{ > AnalysisShow currentUserAnalysis }}
     {{ else }}
-      {{ #if isAnalyzing }}
-        <h2 id="rise-current-analysis">My analysis</h2>
-        {{ > NewAnalysis }}
-      {{ /if }}
+      {{#momentum plugin='slide-height'}}
+        {{ #if isAnalyzing }}
+          <h2 id="rise-current-analysis">My analysis</h2>
+          {{ > NewAnalysis }}
+        {{ /if }}
+      {{/momentum}}
     {{ /if }}
   {{ /isNotOwnerOf }}
 

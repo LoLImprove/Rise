@@ -22,8 +22,10 @@ Yannotate = window._Yannotate = (function(playerElement, opts) {
   YoutubeAPI.setPlayerElement(playerElement[0]);
   YoutubeAPI.player = undefined; // Reset if it was already set by the API onload method;
 
-  // Callback
-  YoutubeAPI.onPlayerStarted = this.opts.onPlayerStarted;
+  // Callbacks through options or default
+  YoutubeAPI.onPlayerReady = this.opts.onPlayerReady || YoutubeAPI.onPlayerReady;
+  YoutubeAPI.onPlayerStarted = this.opts.onPlayerStarted || YoutubeAPI.onPlayerStarted;
+  YoutubeAPI.onPlayerStopped = this.opts.onPlayerStopped || YoutubeAPI.onPlayerStopped;
 
   this.setVideoDimensions();
 

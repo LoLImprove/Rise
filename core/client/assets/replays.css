@@ -1,0 +1,21 @@
+.rise-replay-container {
+    position: relative;
+}
+
+.rise-player-action {
+    position: absolute;
+    top: 5px;
+    padding: 5px;
+    margin: 5px;
+    width: 150px;
+
+    text-align: left;
+    font-weight: bold;
+    border: none;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.rise-player-action.add-timeline-entry {
+    top: 45px;
+}

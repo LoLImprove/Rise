@@ -99,6 +99,8 @@
 
 ### Misc
 
-- [Underscore.js String](https://atmospherejs.com/wizonesolutions/underscore-string)
-- [Console Log Server Side -> Client side](https://github.com/aldeed/meteor-console-me/)
 - [Reactive Var]
+- [Underscore.js String](https://atmospherejs.com/wizonesolutions/underscore-string)
+- [Underscore.js Contrib](https://github.com/zimme/meteor-underscore-contrib)
+  - Frackton of utility in addition to Underscore.js
+- [Console Log Server Side -> Client side](https://github.com/aldeed/meteor-console-me/)

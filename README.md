@@ -5,7 +5,8 @@
 * [Setup](#setup)
 * [Design](#design)
 * [Helpers](#helpers)
-  * [UI](#riseenv)
+  * [ENV](#riseenv)
+  * [Video player](#riseplayer)
   * [UI](#riseui)
 * [Useful commands](#useful-commands)
 
@@ -33,6 +34,17 @@ TODO: More on that.
 - `Rise.ENV.isDevelopment()`, true if running in development environment.
 - `Rise.ENV.isProduction()`, true if running in production environment.
 - `Rise.ENV.get(key)`, gets a `key` from the environment variables. Ex: `Rise.ENV.get('S3_BUCKET')`.
+
+### Rise.Player
+
+`Rise.Player`, represents the video player instance, it is only accessible on pages where the video player is loaded. You can find it's definition in `replays/client/view-models/replays/player.js#hooks.created`
+
+`Rise.Player` is a meteor `Template.instance()`. It has a few properties, set as reactive variables that can be accessed :
+
+- `Rise.Player.playerStatus.get()`: Gets the player status ("started", "stopped", "loaded", "unloaded").
+- `Rise.Player.playerTime.get()`: Gets the player time as an object `{ h: "00", m: "00", s: "00" }`.
+
+Setters are not supposed to be used.
 
 ### Rise.UI
 

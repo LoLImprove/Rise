@@ -34,3 +34,20 @@ Rise.Files.upload = function(files, opts, cb) {
   }
 
 }
+
+/*
+ * Deletes an uploaded file
+ *
+ * record - the recording holding the file
+ * path   - the file, can be http://riseuploaddev.s3.amazonaws.com/replays/pizngifZrafN69B5T.StormReplay or /replays/pizngifZrafN69B5T.StormReplay
+ * cb     - a callback(error, result)
+ *
+ */
+// TODO: Secure, S3 can still be called on the client and needs appropriate rights
+Rise.Files.delete = function(record, path, cb) {
+  domainRegex = new RegExp("(http:\/\/|https:\/\/)(www\.)?([A-z.0-9])*\.com");
+  // If is owner of the file
+  if (record.user_id === Meteor.userId()) {
+    S3.delete(path.replace(domainRegex, ''), cb);
+  }
+}

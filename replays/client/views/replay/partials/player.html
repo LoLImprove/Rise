@@ -1,4 +1,8 @@
 <template name="RisePlayer">
+  {{ #if isRunning }}
+    <button class="rise-player-action edit-general-note">Edit general note</button>
+    <button class="rise-player-action add-timeline-entry">Comment this action</button>
+  {{ /if }}
   {{ videoPlayer }}
 </template>
 

@@ -17,8 +17,11 @@ var YoutubeIframeAPI = window._YoutubeIframeAPI = (function() {
 /*
  * Private: Callback called when the player is ready
  */
-YoutubeIframeAPI.prototype.onPlayerReady = (function(event) {
-});
+YoutubeIframeAPI.prototype.onPlayerReady = (function(event) {});
+
+/* Empty callbacks */
+YoutubeIframeAPI.prototype.onPlayerStarted = (function(event) {});
+YoutubeIframeAPI.prototype.onPlayerStopped = (function(event) {});
 
 /*
  * Private: Callback called when the player's state changes
@@ -26,13 +29,14 @@ YoutubeIframeAPI.prototype.onPlayerReady = (function(event) {
 YoutubeIframeAPI.prototype.onPlayerStateChange = (function(event) {
   switch(event.data) {
   case YT.PlayerState.ENDED:
-    //
+    YoutubeAPI.onPlayerStopped();
     break;
   case YT.PlayerState.PLAYING:
     YoutubeAPI.onPlayerStarted();
     break;
   case YT.PlayerState.PAUSED:
-    //
+    var time = YoutubeAPI.helpers.secondsToTime(YoutubeAPI.player.getCurrentTime());
+    YoutubeAPI.onPlayerStopped(time);
     break;
   case YT.PlayerState.BUFFERING:
     //
@@ -64,6 +68,28 @@ YoutubeIframeAPI.prototype.scale = (function(height, width) {
   this.video.height = height;
   this.video.width = width;
 });
+
+YoutubeIframeAPI.prototype.helpers = {
+  secondsToTime: function(secs) {
+    /*secs = Math.round(secs);
+    var hours = Math.floor(secs / (60 * 60));
+    var divisor_for_minutes = secs % (60 * 60);
+    var minutes = Math.floor(divisor_for_minutes / 60);
+    var divisor_for_seconds = divisor_for_minutes % 60;
+    var seconds = Math.ceil(divisor_for_seconds);*/
+    var seconds = Math.floor(secs),
+    hours = Math.floor(seconds / 3600);
+    seconds -= hours*3600;
+    var minutes = Math.floor(seconds / 60);
+    seconds -= minutes*60;
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+
+    return { "h": hours, "m": minutes, "s": seconds };
+  }
+}
 
 YoutubeIframeAPI.prototype.createPlayer = (function() {
   if (this.video.id) {
