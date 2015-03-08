@@ -49,14 +49,17 @@ Rise.UI.lookup = (function(key, maxLevel, curLevel) {
   var curLevel = curLevel || 0;
   var maxLevel = (maxLevel === 0) ? 0 : (maxLevel || 15); // cuz 0 is falsy
 
-  result = Rise.Runtime.chain(Template.parentData(curLevel), key).get();
+  // Check if we actually have a data context
+  if (_.isNull(Template.parentData(curLevel))) {
+    return undefined;
+  }
+
+  var result = Rise.Runtime.chain(Template.parentData(curLevel), key).get();
 
   if (result) {
     return result;
-  } else if (curLevel < maxLevel && !_.isNull(Template.parentData(curLevel))) {
+  } else if (curLevel < maxLevel) {
     return Rise.UI.lookup(key, maxLevel, curLevel + 1);
-  } else {
-    return undefined; // Not really necessary
   }
 });
 

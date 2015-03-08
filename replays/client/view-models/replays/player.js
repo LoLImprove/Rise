@@ -3,9 +3,10 @@ Template.RisePlayer.hooks({
     // We set Rise.Player to the current template instance
     Rise.Player.init(this);
 
-    this.playerStatus = new ReactiveVar("unloaded");
-    this.playerTime = new ReactiveVar({ h: "00", m: "00", s: "00" });
-  }
+    this.playerTime = { h: "00", m: "00", s: "00" };
+    this.reactivePlayerTime = new ReactiveVar(this.playerTime);
+    this.playerStatus   = new ReactiveVar("unloaded");
+5  }
 });
 
 Template.RisePlayer.helpers({
@@ -65,7 +66,8 @@ Template.RiseVideoContainer.hooks({
         },
         onPlayerStopped: function(time) {
           self.parent().playerStatus.set("paused");
-          self.parent().playerTime.set(time);
+          self.parent().playerTime = time;
+          self.parent().reactivePlayerTime.set(time);
         }
       });
     }

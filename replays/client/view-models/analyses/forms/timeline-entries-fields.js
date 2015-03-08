@@ -1,9 +1,16 @@
 Template.afArrayField_TimeLineEntriesFields.helpers({
   timeValue: function() {
-    // Shitload of nesting
-    //var  = Template.instance().parent(5);
-    Rise.UI.lookup(this.current.time);
-    debugger;
-    //return AutoForm.getFieldValue(this.formId, this.current.time) || Rise.Player.get('playerTime', { formatTime: true } );
+    parentTemplate = Template.instance().parent(1);
+
+    // If the input already has a value, we keep it
+    if (parentTemplate.view._isAttached) {
+      var time = parentTemplate.$('input[name="' + this.current.time + '"]').val();
+      if (time) {
+        return time;
+      }
+    }
+
+    // If the input does not yet have a value we set it
+    return Rise.UI.lookup(this.current.time) || Rise.Player.get('playerTime', { formatTime: true });
   }
 });

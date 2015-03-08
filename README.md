@@ -42,7 +42,7 @@ TODO: More on that.
 - `Rise.Player.play()`: Plays the video,
 - `Rise.Player.player()`: Returns the current instance of the video player,
 - `Rise.Player.template`: Returns the current template instance that holds the video player,
-- `Rise.Player.get('playerStatus')`: Gets the player status ("started", "stopped", "loaded", "unloaded"),
+- `Rise.Player.get('playerStatus')`: Gets the player status ("started", "stopped", "loaded", "unloaded"). **This is a reactive value**.
 - `Rise.Player.get('playerTime'`: Gets the player time as an object `{ h: "00", m: "00", s: "00" }`,
 - `Rise.Player.get('playerTime', { formatTime: true })`: Gets the player time as a string "MM:SS".
 
