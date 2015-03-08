@@ -39,12 +39,12 @@ TODO: More on that.
 
 `Rise.Player`, represents the video player instance, it is only accessible on pages where the video player is loaded. You can find it's definition in `replays/client/view-models/replays/player.js#hooks.created`
 
-`Rise.Player` is a meteor `Template.instance()`. It has a few properties, set as reactive variables that can be accessed :
-
-- `Rise.Player.playerStatus.get()`: Gets the player status ("started", "stopped", "loaded", "unloaded").
-- `Rise.Player.playerTime.get()`: Gets the player time as an object `{ h: "00", m: "00", s: "00" }`.
-
-Setters are not supposed to be used.
+- `Rise.Player.play()`: Plays the video,
+- `Rise.Player.player()`: Returns the current instance of the video player,
+- `Rise.Player.template`: Returns the current template instance that holds the video player,
+- `Rise.Player.get('playerStatus')`: Gets the player status ("started", "stopped", "loaded", "unloaded"),
+- `Rise.Player.get('playerTime'`: Gets the player time as an object `{ h: "00", m: "00", s: "00" }`,
+- `Rise.Player.get('playerTime', { formatTime: true })`: Gets the player time as a string "MM:SS".
 
 ### Rise.UI
 
@@ -68,6 +68,15 @@ Template.AnalysesView.helpers({
 
 Often, we access the data context through the use of `Rise.UI.get()` instead of `this`.
 `Rise.UI.get()` actually looks for the presence of data context in multiple contexts, up to the router, and attempts to find the desired field by performing a lookup until it finds a viable data context.
+
+#### Rise.UI.lookup
+
+Same as Rise.UI.get but looks up the ancestor chain to find the given key if it is not found in the current template's data.
+Also the key can be composed of nested properties.
+
+```javascript
+  Rise.UI.lookup('timeline_entries.0.content')
+```
 
 ## Useful commands
 

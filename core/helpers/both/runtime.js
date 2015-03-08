@@ -1,5 +1,7 @@
 /*
- * De-stringifies a method chain
+ * De-stringifies an object keys chain
+ * 'history.back' becomes `history.back`
+ * 'analyses.0.content' becomes `analyses[0].content`
  *
  * Example:
  *
@@ -9,34 +11,51 @@
  *   {
  *     chain: window.history.back // the method as a Function object
  *     context: window.history // the method's context
- *     call: func() // A Function that calls the method chain
+ *     get: func() // Returns the chain value if it is not a function
+ *     call: func() // A Function that calls the method chain if it's a function
  *   }
  *
  *   You can then do : Rise.Runtime.chain(window, 'history.back').call();
  */
+// TODO: Improve, should not be able to do .call() on non method object, same with get
 Rise.Runtime = {
   chain: function(base, chain) {
-    var chainAry = chain.split('.');
+    var chainAry  = chain.split('.');
     var fullChain = base;
-    var context = base;
+    var context   = base;
+    var missingLink = false;
 
     _.each(chainAry, function(link, index) {
-      if (fullChain[link]) {
+      // Handles numbers in the chain (i.e: analyses.0.time)
+      var isNumericLink = /^\d+$/.test(link);
+      if (isNumericLink) {
+        link = parseFloat(link);
+      }
+
+      if (fullChain[link] && !missingLink) {
         // We set the context to the last evaluated link
         // Example : `window.history.back`, context will be `window.history`
         context = (index === chainAry.length - 1) ? fullChain : context;
         fullChain = fullChain[link];
       } else {
-        throw new Meteor.Error(404, "Could not find method: `." + chain + "`, " + link + " is missing");
+        missingLink = link;
       }
     });
 
-    return {
-      chain: fullChain,
-      context: context,
-      call: function() {
-        return this.chain.call(this.context);
+    if (missingLink !== false) {
+      return {
+        chain: undefined,
+        context: context,
+        get: function() { return this.chain; },
+        call: function() { throw new Meteor.Error(404, "Could not find: `." + chain + "`, " + missingLink + " is missing"); }
+      }
+    } else {
+      return {
+        chain: fullChain,
+        context: context,
+        get: function() { return this.chain; },
+        call: function() { return this.chain.call(this.context); }
       }
     };
-  }
+  },
 }

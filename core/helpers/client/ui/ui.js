@@ -32,6 +32,34 @@ Rise.UI.getParentData = (function(level) {
   }
 });
 
+/* Rise.UI.lookup,
+ *   -  Similar to Rise.get() but look up through the ancestor chain until the value is found in a template's data (or not);
+ *   - You can use composed keys to access nested elements (see examples)
+ *
+ * Examples:
+ *
+ *   Rise.UI.lookup('replay_id')
+ *   Rise.UI.lookup('timeline_entries.0.content')
+ *   Rise.UI.lookup('timeline_entries.0.content', 1) // Second arg is the maximum level of lookup in the ancestor chain. 0 will lookup only in the current template data.
+ *
+ * Returns the value or `undefined`
+ *
+ */
+Rise.UI.lookup = (function(key, maxLevel, curLevel) {
+  var curLevel = curLevel || 0;
+  var maxLevel = (maxLevel === 0) ? 0 : (maxLevel || 15); // cuz 0 is falsy
+
+  result = Rise.Runtime.chain(Template.parentData(curLevel), key).get();
+
+  if (result) {
+    return result;
+  } else if (curLevel < maxLevel && !_.isNull(Template.parentData(curLevel))) {
+    return Rise.UI.lookup(key, maxLevel, curLevel + 1);
+  } else {
+    return undefined; // Not really necessary
+  }
+});
+
 /* Rise.UI.get, get a property from Rise.UI.getData after if the data has been loaded  */
 Rise.UI.get = (function(fieldOrHelperName) {
   var data = Rise.UI.getData();

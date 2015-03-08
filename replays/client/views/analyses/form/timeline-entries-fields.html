@@ -16,8 +16,8 @@
           {{/if}}
 
           <div class="media-body">
-
-            {{> afQuickField name=this.name label=false options="auto" omitFields="timeline_entries.$.type, timeline_entries.$.comments_ids, timeline_entries.$._id" }}
+            {{> afQuickField name=this.current.time value=timeValue }}
+            {{> afQuickField name=this.current.content }}
           </div>
         </div>
       </li>

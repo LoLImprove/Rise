@@ -1,7 +1,7 @@
 Template.RisePlayer.hooks({
   created: function() {
     // We set Rise.Player to the current template instance
-    Rise.Player = this;
+    Rise.Player.init(this);
 
     this.playerStatus = new ReactiveVar("unloaded");
     this.playerTime = new ReactiveVar({ h: "00", m: "00", s: "00" });
