@@ -4,6 +4,8 @@ Rise.Player = {
     this.template = template;
   },
   get: function(key, opts) {
+    var opts = opts || {};
+
     if (this.template) {
       var valueWrapper = this.template[key],
           value = null;
@@ -25,6 +27,9 @@ Rise.Player = {
   },
   play: function() {
     this.player().playVideo();
+  },
+  pause: function() {
+    this.player().pauseVideo();
   },
   player: function() {
     if (YoutubeAPI && YoutubeAPI.player) {

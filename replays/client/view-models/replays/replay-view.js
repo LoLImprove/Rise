@@ -77,18 +77,22 @@ Template.ReplayView.events({
 
   'click .edit-general-note': function(event) {
     event.preventDefault();
-    Rise.UI.Scroll.to('analysis-edit-form');
-    $('#analysis-edit-form textarea').first().focus();
+    Rise.Player.pause();
+
+    Rise.UI.Scroll.to('.analysis-form');
+    $('.analysis-form textarea').first().focus();
   },
   'click .add-timeline-entry': function(event) {
     event.preventDefault();
+    Rise.Player.pause();
+
     // We click on the autoform add item button
-    $('#analysis-edit-form .autoform-add-item').trigger('click');
+    $('.analysis-form .autoform-add-item').trigger('click');
 
     // We wait for the click + redraw, otherwise the new timeline entry fields are not displayed yet
     Meteor.setTimeout(function() {
-      var group = $('#analysis-edit-form .list-group-item:nth-last-child(2)');
-      Rise.UI.Scroll.to(group.attr('id'));
+      var group = $('.analysis-form .list-group-item:nth-last-child(2)');
+      Rise.UI.Scroll.to('#' + group.attr('id'));
       group.find('textarea').first().focus();
     }, 150);
 

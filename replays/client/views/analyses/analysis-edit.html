@@ -1,7 +1,7 @@
 <template name="EditAnalysis">
   <div class="rise-edit-analysis-container">
     <div class="edit-analysis-form-container">
-      {{ #autoForm collection="Rise.Analyses" doc=this id="analysis-edit-form" type="onSubmit" }}
+      {{ #autoForm collection="Rise.Analyses" doc=this id="analysis-edit-form" class="analysis-form" type="onSubmit" resetOnSuccess=false }}
         <fieldset>
           {{> afQuickField name='general_note.content' label="General note" }}
           {{> afArrayField name='timeline_entries' template="TimeLineEntriesFields" }}

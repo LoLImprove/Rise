@@ -9,7 +9,7 @@
     </div>
 
     <div class="new-analysis-form-container">
-      {{ #autoForm collection="Rise.Analyses" id="analysis-new-form" type="insert" }}
+      {{ #autoForm collection="Rise.Analyses" id="analysis-new-form" class="analysis-form" type="insert" resetOnSuccess=false }}
         <fieldset>
           {{> afQuickField name='general_note.content' label="General note" }}
           {{> afArrayField name='timeline_entries' template="TimeLineEntriesFields" }}
