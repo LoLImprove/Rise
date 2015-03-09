@@ -35,6 +35,9 @@ Template.RisePlayer.helpers({
   isRunning: function() {
     var status = Template.instance().playerStatus.get()
     return  (status === "started") || (status === "paused");
+  },
+  isAnalyzingOrEditing: function() {
+    return Session.get('replay:is-analyzing') || Session.get('replay:edit-current-analysis');
   }
 });
 

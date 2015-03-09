@@ -85,6 +85,9 @@
 - [Template extension](https://github.com/aldeed/meteor-template-extension)
   - Template.parent(), template inheritance, hooks...
 
+- [Template Helpers](https://atmospherejs.com/raix/handlebar-helpers)
+  - $or, $and, $.console.log
+
 - [Flash Messages](https://github.com/camilosw/flash-messages)
   - JS Flash messages + view helper
 

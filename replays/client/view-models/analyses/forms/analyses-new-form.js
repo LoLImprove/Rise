@@ -8,6 +8,7 @@ AutoForm.hooks({
       return doc;
     },
     onSuccess: function(operation, id, template) {
+      Session.set('replay:is-analyzing', false);
       // TODO: Do something ? Animate maybe ?
     },
     onError: function(operation, error, template) {

@@ -38,11 +38,15 @@
     <div class="replay-toolbar">
       {{ #if currentUser }}
         {{ #isNotOwnerOf this }}
-          {{ #if isAnalyzing }}
-            <button>Add a general comment</button>
-            <button>Add an entry to timeline</button>
+          {{ #if $or isAnalyzing isEditing }}
+            <button class="edit-general-note">Add a general note</button>
+            <button class="add-timeline-entry">Add an entry to timeline</button>
           {{ else }}
-            <button class="start-analysis">Analyse !</button>
+            {{ #if currentUserAnalysis }}
+              <button class="edit-analysis">Improve your analysis !</button>
+            {{ else }}
+              <button class="start-analysis">Analyse !</button>
+            {{ /if }}
           {{ /if }}
         {{ /isNotOwnerOf }}
       {{ /if }}

@@ -16,6 +16,7 @@ Template.AnalysesView.helpers({
       return false;
     }
   },
+  // TODO: Refactor, duplicated in replay-view.js
   currentUserAnalysis: function() {
     return Rise.Analyses.findOne({ replay_id: Rise.UI.get('_id'), user_id: Meteor.userId() });
   }

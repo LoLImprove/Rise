@@ -22,7 +22,6 @@ AutoForm.hooks({
 
     onSuccess: function(operation, id, template) {
       Session.set('replay:edit-current-analysis', false);
-      console.log('Analysis updated');
       // TODO: Do something ? Animate maybe ?
     },
 

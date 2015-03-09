@@ -35,3 +35,4 @@ reactive-var
 aldeed:template-extension@3.4.0
 pauldowman:dotenv
 zimme:underscore-contrib
+raix:handlebar-helpers
