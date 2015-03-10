@@ -49,7 +49,7 @@ TODO: More on that.
 ### Rise.UI
 
 #### Rise.UI.lookup
-You'll see man instances of `Rise.UI.lookup` around here. This methods looks up through the a template's ancestors chain for a specific property or key.
+You'll see many instances of `Rise.UI.lookup` around here. This methods looks up through the a template's ancestors chain for a specific property or key.
 
 ```javascript
   // Looks up in the current template's ancestors chain for the `timeline_entries.0.content` key in the `data` property.

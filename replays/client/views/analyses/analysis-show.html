@@ -20,12 +20,14 @@
       <h4>General comment</h4>
       {{ #with general_note }}
         {{ content }}
+        {{ #momentum plugin="slide-height" }}
         {{ #if expanded }}
           <div class="rise-comments">
             {{ > Comments this }}
             {{ > NewCommentForm }}
           </div>
         {{ /if }}
+        {{ /momentum }}
       {{ /with }}
 
       {{ #momentum plugin="slide-height" }}
