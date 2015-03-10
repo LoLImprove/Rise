@@ -20,25 +20,34 @@
       <h4>General comment</h4>
       {{ #with general_note }}
         {{ content }}
-        <div class="rise-comments">
-          {{ > Comments this }}
-          {{ > NewCommentForm }}
-        </div>
+        {{ #if expanded }}
+          <div class="rise-comments">
+            {{ > Comments this }}
+            {{ > NewCommentForm }}
+          </div>
+        {{ /if }}
       {{ /with }}
 
-      <h4>Timeline entries</h4>
-      {{ #each timeline_entries }}
-        <ul>
-          <li>Time: {{ time }}</li>
-          <li>{{ content }}</li>
-          <li>
-            <div class="rise-comments">
-              {{ > Comments this }}
-              {{ > NewCommentForm }}
-            </div>
-          </li>
-        </ul>
-      {{ /each }}
+      {{ #momentum plugin="slide-height" }}
+      {{ #if expanded }}
+        <h4>Timeline entries</h4>
+        {{ #each timeline_entries }}
+          <ul>
+            <li>Time: {{ time }}</li>
+            <li>{{ content }}</li>
+            <li>
+              <div class="rise-comments">
+                {{ > Comments this }}
+                {{ > NewCommentForm }}
+              </div>
+            </li>
+          </ul>
+        {{ /each }}
+      {{ /if }}
+      {{/momentum}}
+      <div class="expand-collapse-button">
+        <button class="toggle-expansion">{{ toggleExpansionText }}</button>
+      </div>
     {{ /if }}
   </div>
 </template>

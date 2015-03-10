@@ -11,6 +11,6 @@ Template.afArrayField_TimeLineEntriesFields.helpers({
     }
 
     // If the input does not yet have a value we set it
-    return Rise.UI.lookup(this.current.time) || Rise.Player.get('playerTime', { formatTime: true });
+    return Rise.UI.lookup(this.current.time, { in: 'data' }) || Rise.Player.get('playerTime', { formatTime: true });
   }
 });

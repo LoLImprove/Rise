@@ -33,37 +33,63 @@ Rise.UI.getParentData = (function(level) {
 });
 
 /* Rise.UI.lookup,
- *   -  Similar to Rise.get() but look up through the ancestor chain until the value is found in a template's data (or not);
+ *   -  Looks up through the ancestor chain until the desired key is found in a template's properties;
  *   - You can use composed keys to access nested elements (see examples)
+ *   - If you are looking for a key located in a data's template use { in: data }
+ *
+ * Arguments:
+ *
+ *   - key: The key to search for as a String. Can be composed. (i.e: 'timeline_entries.0.content')
+ *   - opts: Options in an Object.
+ *           - in: A specific property of the template in which you want to search for the key
+ *           - maxLevel: Number of parents template to lookIn. 0 will only lookup in the current template.
+ *
  *
  * Examples:
  *
- *   Rise.UI.lookup('replay_id')
- *   Rise.UI.lookup('timeline_entries.0.content')
- *   Rise.UI.lookup('timeline_entries.0.content', 1) // Second arg is the maximum level of lookup in the ancestor chain. 0 will lookup only in the current template data.
+ *   Rise.UI.lookup('expanded') // Retrieves the first 'expanded' property found on a template object.
+ *
+ *   Rise.UI.lookup('replay_id', { in: 'data' })
+ *   Rise.UI.lookup('timeline_entries.0.content', { in: 'data' })
+ *   Rise.UI.lookup('timeline_entries.0.content', { maxLvel: 1 }) // Second arg is the maximum level of lookup in the ancestor chain. 0 will lookup only in the current template data.
  *
  * Returns the value or `undefined`
  *
  */
-Rise.UI.lookup = (function(key, maxLevel, curLevel) {
+Rise.UI.lookup = (function(key, opts, curLevel) {
+  var opts     = opts || {};
   var curLevel = curLevel || 0;
-  var maxLevel = (maxLevel === 0) ? 0 : (maxLevel || 15); // cuz 0 is falsy
+  var lookUpon = Template.instance().parent(curLevel);
 
-  // Check if we actually have a data context
-  if (_.isNull(Template.parentData(curLevel))) {
+  opts.maxLevel = (opts.maxLevel === 0) ? 0 : (opts.maxLevel || 15); // cuz 0 is falsy
+
+  // If no template could be found
+  if (_.isNull(lookUpon)) {
     return undefined;
   }
 
-  var result = Rise.Runtime.chain(Template.parentData(curLevel), key).get();
+  if (opts.in) {
+    lookUpon = lookUpon[opts.in];
+    if (_.isNull(lookUpon) || _.isEmpty(lookUpon) || _.isUndefined(lookUpon)) {
+      return undefined;
+    }
+  }
 
-  if (result) {
+  var result = Rise.Runtime.chain(lookUpon, key).get();
+
+  if (_.isUndefined(result) && curLevel < opts.maxLevel ) {
+    return Rise.UI.lookup(key, opts, curLevel + 1);
+  } else if (curLevel < opts.maxLevel) {
     return result;
-  } else if (curLevel < maxLevel) {
-    return Rise.UI.lookup(key, maxLevel, curLevel + 1);
   }
 });
 
-/* Rise.UI.get, get a property from Rise.UI.getData after if the data has been loaded  */
+/* Rise.UI.get, get a property from Rise.UI.getData after if the data has been loaded
+ *
+ * Similar to `Rise.UI.lookup(simpleKey, { in: 'data', maxLevel: 0 })` only if the key is a method, it will be called.
+ * Also it does not handle composed keys.
+ *
+ * Returns the value or null; */
 Rise.UI.get = (function(fieldOrHelperName) {
   var data = Rise.UI.getData();
   if (data) {
