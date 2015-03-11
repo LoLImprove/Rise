@@ -14,6 +14,9 @@ Template.AnalysisShow.events({
   'click .edit-analysis': function() {
     Session.set('replay:edit-current-analysis', true);
   },
+  'click .toggle-analysis-vote': function() {
+    Meteor.call('rise:toggleVoteFor', 'analysis', Rise.UI.get('_id'));
+  },
   'click .toggle-expansion': function(e) {
     e.preventDefault();
     var expanded = Rise.UI.lookup('expanded');

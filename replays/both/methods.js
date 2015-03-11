@@ -1,4 +1,7 @@
 Meteor.methods({
+  'rise:toggleVoteFor': function(resourceType, resourceId) {
+    Meteor.user().toggleVoteFor(resourceType, resourceId);
+  },
   'rise:edit-comment': function(commentId, newValue) {
     Rise.Comments.update({ _id: commentId }, { $set: { content: newValue } });
   },

@@ -1,3 +1,3 @@
-Rise.publish("rise:users", function () {
-  return Meteor.users.find();
+Rise.publish("rise:currentUser", function(id) {
+  return Meteor.users.find({ _id: id }, { fields: { services: 0 }});
 });

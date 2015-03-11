@@ -6,6 +6,7 @@
     {{ #autoForm schema="Rise.Schemas.Form.Register" id="user-auth-form" }}
       <fieldset>
         {{> afQuickField name='username' }}
+        {{> afQuickField name='IGN' label='IGN (in game name)' }}
         {{> afQuickField name='level_of_play' label='League' }}
         {{> afQuickField name='email' label='Email' }}
         {{> afQuickField name='password' }}

@@ -24,6 +24,14 @@
           {{ /if }}
         </button>
       {{ /isOwnerOf }}
+
+      <div class="comment-votes">
+        {{ votes }}
+        {{ #isNotOwnerOf this }}
+          <button class="toggle-comment-vote">Vote</button>
+        {{ /isNotOwnerOf }}
+      </div>
+
     </div>
   </li>
 </template>

@@ -6,30 +6,36 @@ Template.RisePlayer.hooks({
     this.playerTime = { h: "00", m: "00", s: "00" };
     this.reactivePlayerTime = new ReactiveVar(this.playerTime);
     this.playerStatus   = new ReactiveVar("unloaded");
-5  }
+    this.replayContainerRendered = new ReactiveVar(false);
+  },
+  rendered: function() {
+    this.replayContainerRendered.set(true);
+  }
 });
 
 Template.RisePlayer.helpers({
   // Is triggered each time the video_id is changd
   videoPlayer: function() {
-    var el = $('.rise-replay-container')[0];
-    var videoContainer = Rise.UI.Buffer.get('rise:player:container');
+    if (Template.instance().replayContainerRendered.get()) {
+      var el = $('.rise-replay-container')[0];
+      var self = this;
+      var videoContainer = Rise.UI.Buffer.get('rise:player:container');
 
-    // Remove the video player element if it exists
-    if (videoContainer) {
-      // Seems not to work properly and not removing the DOM object
-      Blaze.remove(videoContainer);
-      // Thus we use jQuerty to ensure it.
-      $('#rise-player').remove();
+      // Remove the video player element if it exists
+      if (videoContainer) {
+        // Seems not to work properly and not removing the DOM object
+        Blaze.remove(videoContainer);
+        // Thus we use jQuerty to ensure it.
+        $('#rise-player').remove();
+      }
+
+      // If the container exists, render the player inside the container
+      if (el) {
+        var instance = Blaze.renderWithData(Template.RiseVideoContainer, { id: self.valueOf() }, el);
+          // We keep track of the current player container so we can remove it later on
+        Rise.UI.Buffer.set('rise:player:container', instance);
+      }
     }
-
-    // If the container exists, render the player inside the container
-    if (el) {
-      var instance = Blaze.renderWithData(Template.RiseVideoContainer, { id: this.valueOf() }, el);
-      // We keep track of the current player container so we can remove it later on
-      Rise.UI.Buffer.set('rise:player:container', instance);
-    }
-
   },
   // Player is running if paused or started
   isRunning: function() {

@@ -21,7 +21,13 @@ Rise.Schemas = Rise.Schemas || {};
 
 Rise.Schemas.UserProfile = new SimpleSchema({
   level_of_play: { type: String },
+  IGN: { type: String, optional: true },
   avatar: { type: String, optional: true }
+});
+
+Rise.Schemas.VotedFor = new SimpleSchema({
+  analyses_ids: { type: [String], defaultValue: [] },
+  comments_ids: { type: [String], defaultValue: [] }
 });
 
 Rise.Schemas.Users = new SimpleSchema({
@@ -38,6 +44,7 @@ Rise.Schemas.Users = new SimpleSchema({
   profile:  { type: Rise.Schemas.UserProfile },
   services: { type: Object, optional: true, blackbox: true },
 
+  voted_for: { type: Rise.Schemas.VotedFor, defaultValue: { analyses_ids: [], comments_ids: []} },
   created_at: { type: Date, optional: true },
   updated_at: { type: Date, optional: true }, // TODO: Remove optional
   last_request_at: { type: Date, optional: true } // TODO: Remove optional

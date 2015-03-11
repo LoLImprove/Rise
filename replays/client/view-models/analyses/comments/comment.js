@@ -17,6 +17,9 @@ Template.Comment.helpers({
 
 // Toggle edit mode
 Template.Comment.events({
+  'click .toggle-comment-vote': function() {
+    Meteor.call('rise:toggleVoteFor', 'comment', Rise.UI.get('_id'));
+  },
   'click .toggle-comment-edit': function(event, template) {
     event.preventDefault();
 

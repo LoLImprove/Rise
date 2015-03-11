@@ -8,6 +8,13 @@
       {{ /with }}
     </div>
 
+    <div class="analysis-votes">
+      {{ votes }}
+      {{ #isNotOwnerOf this }}
+        <button class="toggle-analysis-vote">Vote</button>
+      {{ /isNotOwnerOf }}
+    </div>
+
     {{ #isOwnerOf this }}
       {{ #unless isEditing }}
         <button class="edit-analysis">Edit</button>

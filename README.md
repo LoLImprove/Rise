@@ -120,6 +120,20 @@ Also the key can be composed of nested properties.
   Rise.UI.lookup('timeline_entries.0.content')
 ```
 
+### Rise.Router
+
+#### checkAuthentication
+
+Router onBeforeAction helper, if the user is not logged in, redirects to `/` or the desired path.
+
+```javascript
+SomeRouteOrController = RouteController.extend({
+  template: SomeTemplate',
+  onBeforeAction: Rise.Router.checkAuthentication({ redirectTo: 'back' })
+});
+```
+
+
 ## Useful commands
 
 ### Mongo

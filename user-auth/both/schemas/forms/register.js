@@ -9,6 +9,7 @@ Rise.Schemas.Form.Register = new SimpleSchema({
   },
 
   level_of_play: { type: String },
+  IGN: { type: String, optional: true },
 
   email: {
     type: String,

@@ -55,7 +55,7 @@ AutoForm.hooks({
         username: user.username,
         email: user.email,
         password: user.password,
-        profile: { level_of_play: user.level_of_play }
+        profile: { level_of_play: user.level_of_play, IGN: user.IGN }
       }, function(error) {
         if (error) {
           // Bit of animation

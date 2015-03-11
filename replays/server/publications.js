@@ -25,21 +25,21 @@ Rise.publishComposite("rise:replay", function(replayId) {
             children: [
               { // Comment's user
                 find: function(comment, analysis, replay) {
-                  return Meteor.users.find({ _id: comment.user_id });
+                  return Meteor.users.find({ _id: comment.user_id }, { fields: { services: 0 }});
                 }
               }
             ]
           },
           { // Analysis' user
             find: function(analysis, replay) {
-              return Meteor.users.find({ _id: analysis.user_id });
+              return Meteor.users.find({ _id: analysis.user_id }, { fields: { services: 0 }});
             }
           }
         ]
       },
       { // Replay's user
         find: function(replay) {
-          return Meteor.users.find({ _id: replay.user_id });
+          return Meteor.users.find({ _id: replay.user_id }, { fields: { services: 0 }});
         }
       }
     ]
