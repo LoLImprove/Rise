@@ -14,6 +14,7 @@
 
 - Create a `.env` file at the root of the application
   - The following keys are required: `S3_ACCESS_KEY`, `S3_SECRET`, `S3_BUCKET`. If you don't own any S3 bucket properly configured, please read the [following link](https://github.com/Lepozepo/S3#create-your-amazon-s3) and follow the instructions.
+  - If you need mailing add the following keys: `SMTP_USERNAME`, `SMTP_PASSWORD`, `SMTP_SERVER`, `SMTP_PORT` (default: 25)
 
 ## Design
 

@@ -8,6 +8,7 @@
 * [Fixtures](#fixtures)
 * [Publications & Subscriptions](#pubssubs)
 * [File upload](#upload)
+* [Mailing](#mailing)
 * [UI & View](#ui--view-helpers)
 * [Misc](#misc)
 
@@ -79,6 +80,9 @@
 ### Upload
 - [S3](https://github.com/Lepozepo/S3)
   - S3 uploader
+
+### Mailing
+- [Meteor email](https://github.com/ideaq/meteor-email)
 
 ### UI & View Helpers
 

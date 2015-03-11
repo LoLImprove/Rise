@@ -27,6 +27,14 @@ Rise.Modal = {
     Blaze.render(template, $('.bootbox-content')[0], null, UI.body);
   },
 
+  currentModal: function() {
+    if (_.isEmpty(this.__currentModalsIds)) {
+      return $('.bootbox-content').parents('.modal-dialog');
+    } else {
+      return $('#' + this.__currentModalsIds.slice(-1)[0]);
+    }
+  },
+
   dismiss: function(id) {
     if (id) {
       $('#' + id).modal('hide');

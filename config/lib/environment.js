@@ -9,6 +9,10 @@ if (Meteor.isServer) {
     },
     get: function(key) {
       return this._env[key];
+    },
+    set: function(key, value) {
+      this._env[key] = value;
+      return this._env;
     }
   }
 }

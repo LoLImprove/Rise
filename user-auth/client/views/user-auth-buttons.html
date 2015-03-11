@@ -4,4 +4,7 @@
   {{ else }}
     <button class="sign-in toggle-modal">Sign In</button>
   {{ /if }}
+  {{ #if showResetPassword }}
+    {{ > UserAuthResetPasswordModal }}
+  {{ /if }}
 </template>

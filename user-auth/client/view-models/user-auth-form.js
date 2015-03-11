@@ -1,5 +1,6 @@
 Template.UserAuthForm.created = function() {
   Session.set('user-auth:form:register', false);
+  Session.set('user-auth:form:forgot-password', false);
   Session.set('user-auth:form:errors', '');
 };
 
@@ -9,6 +10,9 @@ Template.UserAuthForm.helpers({
   },
   errors: function() {
     return Session.get('user-auth:form:errors');
+  },
+  forgotPassword: function() {
+    return Session.get('user-auth:form:forgot-password');
   }
 });
 
@@ -17,6 +21,11 @@ Template.UserAuthForm.events({
     // We reset the errors when switching from register to login and vice versa
     Session.set('user-auth:form:errors', '');
     Session.set('user-auth:form:register', !Session.get('user-auth:form:register'));
+  },
+  'click .toggle-forgot-password': function(e) {
+    // We reset the errors when switching from register to login and vice versa
+    Session.set('user-auth:form:errors', '');
+    Session.set('user-auth:form:forgot-password', !Session.get('user-auth:form:forgot-password'));
   },
   'submit #user-auth-form.login-form': function(event) {
     event.preventDefault();
