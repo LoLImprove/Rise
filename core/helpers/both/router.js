@@ -8,6 +8,7 @@ Rise.Router.checkAuthentication = (function(opts) {
     if (Meteor.userId()) {
       this.next();
     } else {
+      FlashMessages.sendError("You need to log in first.");
       if (opts.redirectTo === 'back') {
         history.back();
       } else {
