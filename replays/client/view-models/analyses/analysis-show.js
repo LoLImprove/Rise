@@ -5,22 +5,10 @@ Template.AnalysisShow.hooks({
   },
   rendered: function() {
     isNotOwner = Rise.UI.get('user_id') !== Meteor.userId()
-    if (isNotOwner) {
+    isPermalink = !_.isUndefined(Router.current().params.analysis_id);
+    if (isNotOwner && !isPermalink) {
       this.expanded.set(false);
     }
-  }
-});
-Template.AnalysisShow.events({
-  'click .edit-analysis': function() {
-    Session.set('replay:edit-current-analysis', true);
-  },
-  'click .toggle-analysis-vote': function() {
-    Meteor.call('rise:toggleVoteFor', 'analysis', Rise.UI.get('_id'));
-  },
-  'click .toggle-expansion': function(e) {
-    e.preventDefault();
-    var expanded = Rise.UI.lookup('expanded');
-    expanded.set(!expanded.get());
   }
 });
 
@@ -41,5 +29,22 @@ Template.AnalysisShow.helpers({
   },
   toggleExpansionText: function() {
     return Rise.UI.lookup('expanded').get() ? 'Collapse' : 'Expand';
+  },
+  permalinkData: function() {
+    return { _id: Rise.UI.get('replay_id'), analysis_id: Rise.UI.get('_id') }
+  }
+});
+
+Template.AnalysisShow.events({
+  'click .edit-analysis': function() {
+    Session.set('replay:edit-current-analysis', true);
+  },
+  'click .toggle-analysis-vote': function() {
+    Meteor.call('rise:toggleVoteFor', 'analysis', Rise.UI.get('_id'));
+  },
+  'click .toggle-expansion': function(e) {
+    e.preventDefault();
+    var expanded = Rise.UI.lookup('expanded');
+    expanded.set(!expanded.get());
   }
 });

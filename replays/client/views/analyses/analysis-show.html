@@ -15,6 +15,12 @@
       {{ /isNotOwnerOf }}
     </div>
 
+    <div class="permalink">
+      {{ #linkTo route="analysis-show" data=permalinkData }}
+        Permalink
+      {{ /linkTo}}
+    </div>
+
     {{ #isOwnerOf this }}
       {{ #unless isEditing }}
         <button class="edit-analysis">Edit</button>

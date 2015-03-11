@@ -6,6 +6,12 @@ Template.AnalysesView.helpers({
   hasAnalyses: function() {
     return Rise.Analyses.find({ replay_id: Rise.UI.get('_id'), user_id: { $not: Meteor.userId() } }).count() > 0;
   },
+  hasAnalysisPermalink: function() {
+    return !_.isUndefined(Router.current().params.analysis_id);
+  },
+  linkedAnalysis: function() {
+    return Rise.Analyses.findOne({ _id: Router.current().params.analysis_id });
+  },
   user: function() {
     return Meteor.users.findOne({ _id: Rise.UI.get('user_id') });
   },
