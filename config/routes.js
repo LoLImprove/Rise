@@ -17,3 +17,8 @@ Router.route('/replay/:_id/analysis/:analysis_id', {
   // Also the ReplayShowController, we only show ONE analysis in the template AnalysesView
   controller: 'Rise.Controllers.ReplayShowController',
 });
+
+Router.route('/profile/:username', {
+  name: 'profile',
+  controller: 'Rise.Controllers.UserProfileController',
+});

@@ -10,6 +10,7 @@
 * [File upload](#upload)
 * [Mailing](#mailing)
 * [UI & View](#ui--view-helpers)
+* [Style](#style)
 * [Misc](#misc)
 
 ### Routing & Sessions
@@ -103,6 +104,14 @@
 
 - [Momentum](https://github.com/percolatestudio/meteor-momentum)
   - Animations
+
+### Style
+
+- [LESS](https://atmospherejs.com/meteor/less)
+  - CSS Preprocessing
+
+- [Font-awesome](https://atmospherejs.com/natestrauser/font-awesome)
+  - Icons
 
 ### Misc
 
