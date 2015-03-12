@@ -39,3 +39,5 @@ raix:handlebar-helpers
 email
 less
 natestrauser:font-awesome
+hillmark:meteor-identicon
+msavin:mongol

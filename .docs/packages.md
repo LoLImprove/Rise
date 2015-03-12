@@ -87,6 +87,9 @@
 
 ### UI & View Helpers
 
+- [Identicon](https://github.com/hillmark/meteor-identicon)
+  - Identicons for avatars
+
 - [Template extension](https://github.com/aldeed/meteor-template-extension)
   - Template.parent(), template inheritance, hooks...
 
@@ -119,4 +122,6 @@
 - [Underscore.js String](https://atmospherejs.com/wizonesolutions/underscore-string)
 - [Underscore.js Contrib](https://github.com/zimme/meteor-underscore-contrib)
   - Frackton of utility in addition to Underscore.js
+- [Mongol](https://atmospherejs.com/msavin/mongol)
+  - Ctrl-M triggers it, allows to inspect the db in dev environment
 - [Console Log Server Side -> Client side](https://github.com/aldeed/meteor-console-me/)

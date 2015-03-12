@@ -1,0 +1,67 @@
+#user-profile-container .user-profile-content .user-dashboard {
+    color: #3E3E3E;
+
+    .user-info {
+        height: 138px;
+        background: #E2E2E2;
+        padding: 20px 20px;
+
+        .user-header-info {
+            float: left;
+        }
+
+        .username {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 15px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .level-of-play {
+            margin: 0 0 0 16px;
+            font-size: 1.4em;
+        }
+    }
+    .avatar {
+        float: left;
+        width: 98px;
+        height: 98px;
+    }
+
+    .user-rise-progression {
+        margin: 20px 25px 0px 25px;
+        padding: 15px 20px;
+
+        .exp-points {
+            margin-left: 25px;
+            margin-bottom: 5px;
+            font-size: 2em;
+        }
+        .exp-progress-bar {
+            background-color: #FFFFFF;
+            height: 25px;
+            padding: 4px 5px;
+            width: 100%;
+            margin: 0 0;
+            border-radius: 5px;
+            //box-shadow: 0 1px 5px #CCC inset, 0 1px 0 #BBB;
+
+            transform: skew(-39deg, 0deg) ;
+            -webkit-transform: skew(-39deg, 0deg) ;
+            -moz-transform: skew(-39deg, 0deg) ;
+            -o-transform: skew(-39deg, 0deg) ;
+            -ms-transform: skew(-39deg, 0deg) ;
+
+            span {
+                display: inline-block;
+                height: 100%;
+                border-radius: 3px;
+                box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+                background-color: #a5df41;
+                background-image: linear-gradient(top, #a5df41, #4ca916);
+                transition: width .4s ease-in-out;
+            }
+        }
+    }
+}

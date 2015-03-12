@@ -1,0 +1,28 @@
+<template name="UserDashboard">
+  <div class="user-dashboard">
+    <div class="user-info">
+      <img class="avatar" src="{{identicon _id}}">
+      <div class="user-header-info">
+        <h2 class="username">{{ username }}</h2>
+        <h3 class="level-of-play"><em>{{ profile.level_of_play }}</em></h3>
+      </div>
+    </div>
+
+    <div class="panel user-rise-progression">
+      <div class="exp-points">
+        <strong> {{ life_points }} </strong> XP
+      </div>
+      <div class="exp-progress-bar">
+        <span style="width: 40%"></span>
+      </div>
+    </div>
+
+    <div class="panel left">
+      <h3>Recent replays</h3>
+    </div>
+
+    <div class="panel right">
+      <h3>Recent analyses</h3>
+    </div>
+  </div>
+</template>

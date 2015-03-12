@@ -1,3 +1,7 @@
+.modal-content {
+    border-radius: 0;
+}
+
 /* CSS declarations go here */
 .custom-error .help-block, .custom-error .control-label, .custom-error .radio, .custom-error .checkbox, .custom-error .radio-inline, .custom-error .checkbox-inline, .custom-error.radio label, .custom-error.checkbox label, .custom-error.radio-inline label, .custom-error.checkbox-inline label {
     color: #a94442;
