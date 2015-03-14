@@ -87,6 +87,9 @@
 
 ### UI & View Helpers
 
+- [MomentJS](https://github.com/acreeger/meteor-moment)
+  - Date formatting
+
 - [Identicon](https://github.com/hillmark/meteor-identicon)
   - Identicons for avatars
 

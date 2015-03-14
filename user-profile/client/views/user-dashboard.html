@@ -9,16 +9,26 @@
     </div>
 
     <div class="panel user-rise-progression">
-      <div class="exp-points">
-        <strong> {{ life_points }} </strong> XP
+      <div class="progression-data">
+        <div class="rank">Rank <strong>0</strong></div>
+        <span class="life-points"><strong> {{ life_points }} </strong> Points</span>
       </div>
-      <div class="exp-progress-bar">
+      <div class="points-progress-bar">
         <span style="width: 40%"></span>
       </div>
     </div>
 
     <div class="panel left">
       <h3>Recent replays</h3>
+      {{ #each replays }}
+        <ul class="user-profile-replay-list">
+          <li>
+            {{ > UserDashboardReplayMeta meta_information.general }}
+            {{ getLength analyses_ids }}
+            {{ TimeAgoInWords this }}
+          </li>
+        </ul>
+      {{ /each }}
     </div>
 
     <div class="panel right">

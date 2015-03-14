@@ -1,6 +1,6 @@
 <template name="ReplayView">
   <div class="rise-replay-header">
-    <h2>{{ > generalMeta meta_information.general }}</h2>
+    <h2>{{ > ReplayGeneralMeta meta_information.general }}</h2>
     <strong class="replay-match-result">{{ upcase victory }}</strong>
   </div>
 
@@ -29,7 +29,7 @@
 
     <div class="replay-information">
       <ul>
-        {{ > specificMeta meta_information.specific }}
+        {{ > ReplaySpecificMeta meta_information.specific }}
         <li>{{duration}}</li>
         <li>{{patch}}</li>
       </ul>

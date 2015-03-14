@@ -18,7 +18,7 @@ Rise.Schemas.ReplaysMetum = new SimpleSchema({
 Rise.Schemas.Replays = new SimpleSchema({
   user_id:      { type: String },
   video_id:     { type: String, label: "Video ID" },
-  analyses_ids: { type: [String], optional: true },
+  analyses_ids: { type: [String], optional: true, defaultValue: [] },
 
   meta_information: { type: Rise.Schemas.ReplaysMetum },
 
