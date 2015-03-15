@@ -20,6 +20,17 @@
 
 - Rise is a Meteor package providing routes, views, models for developing subsequents RTS/MOBA Improvement Platforms.
 
+### Packages
+
+In the `packages/` directory are game-specific packages such as `LeagueOfLegends` or `HeroesOfTheStorm`
+
+Run `meteor add <package-name>` to enable a specific game package to be loaded ! (`<package-name>` must be in lowercase, with dash separated words, i.e: `meteor add league-of-legends`)
+Please make sure you are only loading one of the packages as they could conflict. Check your `.meteor/packages` file beforehand.
+
+TODO: More on that + Architecture
+
+### Customization
+
 It's data model is composed of schemas. Some bits of the schemas are editable to fit the needs of children applications.
 
 TODO: More on that.

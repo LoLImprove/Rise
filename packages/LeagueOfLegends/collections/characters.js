@@ -1,6 +1,4 @@
-Rise = Rise || {};
-Rise.PlatformSpecifics = Rise.PlatformSpecifics || {};
-Rise.PlatformSpecifics.CharactersList = [
+Rise.Game.Characters = [
   "Aatrox",
   "Ahri",
   "Akali",
@@ -23,7 +21,6 @@ Rise.PlatformSpecifics.CharactersList = [
   "Darius",
   "Diana",
   "Draven",
-  "DrMundo",
   "Elise",
   "Evelynn",
   "Ezreal",
@@ -51,7 +48,6 @@ Rise.PlatformSpecifics.CharactersList = [
   "Katarina",
   "Kayle",
   "Kennen",
-  "Khazix",
   "KhaZix",
   "KogMaw",
   "LeBlanc",
@@ -131,6 +127,4 @@ Rise.PlatformSpecifics.CharactersList = [
   "Ziggs",
   "Zilean",
   "Zyra"
-]
-
-exports Rise.PlatformSpecifics.CharactersList;
+];

@@ -9,12 +9,27 @@ Rise.publishComposite("rise:user", function(username) {
       // analyses
       {
         find: function(user) {
-          return Rise.Analyses.find({ _id: { $in: user.analyses_ids } });
-        }
+          return Rise.Analyses.find({ _id: { $in: user.analyses_ids } }, { sort: { created_at: -1 }, limit: 6 });
+        },
+
+        children: [
+          // replays
+          {
+            find: function(analysis) {
+              return Rise.Replays.find({ _id: analysis.replay_id });
+            }
+          },
+          // comments
+          {
+            find: function(analysis) {
+              return Rise.Comments.find({ analysis_id: analysis._id });
+            }
+          }
+        ]
       },
       { // replays
         find: function(user) {
-          return Rise.Replays.find({ _id: { $in: user.replays_ids } });
+          return Rise.Replays.find({ _id: { $in: user.replays_ids } }, { sort: { created_at: -1 }, limit: 6 });
         }
       }
     ]

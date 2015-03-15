@@ -87,6 +87,9 @@
 
 ### UI & View Helpers
 
+- [Typeahead](https://atmospherejs.com/comerc/bs-typeahead)
+  - Autocompletion
+
 - [MomentJS](https://github.com/acreeger/meteor-moment)
   - Date formatting
 
@@ -104,6 +107,8 @@
 
 - [Autoform](https://github.com/aldeed/meteor-autoform/)
   - UI Helpers for forms and validations
+
+- [Autoform typeahead](https://atmospherejs.com/comerc/autoform-typeahead)
 
 - [Bootbox](https://atmospherejs.com/mizzao/bootboxjs)
   - Modal and prompts

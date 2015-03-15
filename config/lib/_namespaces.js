@@ -1,1 +1,1 @@
-Rise = {};
+Rise = Rise || {};

@@ -10,6 +10,9 @@ Rise.Analyses.helpers({
   replay: function() {
     return Rise.Replays.findOne({ _id: this.replay_id });
   },
+  comments: function() {
+    return Rise.Comments.find({ analysis_id: this._id });
+  }
 });
 
 if (Meteor.isServer) {

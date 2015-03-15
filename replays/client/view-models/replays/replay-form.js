@@ -11,5 +11,13 @@ Template.ReplayForm.helpers({
   },
   type: function() {
     return this.type;
+  },
+  gameCharacters: function() {
+    return _.map(Rise.Game.Characters, function(character) {
+      return {
+        "label": "<strong>" + character + "</strong>",
+        "value": character
+      }
+    });
   }
 });

@@ -70,4 +70,49 @@
             }
         }
     }
+
+    .user-dashboard-list {
+        margin-top: 15px;
+        padding: 0;
+
+        li {
+            list-style: none;
+            background-color: #EEE;
+            margin-bottom: 10px;
+
+            a {
+                display: block;
+                color: inherit;
+
+                &:hover, &:visited, &:focus, &:active {
+                    text-decoration: none;
+                    background-color: white;
+                }
+            }
+        }
+
+        img {
+            width: 50px;
+        }
+
+        .replay-stats, .analysis-stats {
+            margin-left: 8px;
+
+            .glyphicon {
+                vertical-align: middle;
+                color: #6EB026;
+                margin-right: 5px;
+            }
+        }
+
+        .time-ago {
+            text-align: right;
+            float: right;
+            font-size: 0.8em;
+            font-style: italic;
+            color: #888;
+            margin-top: 17px;
+            margin-right: 8px;
+        }
+    }
 }

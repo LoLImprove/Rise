@@ -20,19 +20,48 @@
 
     <div class="panel left">
       <h3>Recent replays</h3>
-      {{ #each replays }}
-        <ul class="user-profile-replay-list">
+      <ul class="user-dashboard-list replay-list">
+        {{ #each replays }}
           <li>
-            {{ > UserDashboardReplayMeta meta_information.general }}
-            {{ getLength analyses_ids }}
-            {{ TimeAgoInWords this }}
+            <a href={{pathFor route="replay"}}>
+              <span class="meta-info">
+                {{ > UserDashboardReplayMeta meta_information.general }}
+              </span>
+              <span class="replay-stats">
+                <span class="glyphicon glyphicon-comment"></span>
+                <strong>{{ getLength analyses_ids }}</strong> analyses
+              </span>
+              <span class="time-ago">
+                {{ TimeAgoInWords this }}
+              </span>
+            </a>
           </li>
-        </ul>
-      {{ /each }}
+        {{ /each }}
+      </ul>
     </div>
 
     <div class="panel right">
       <h3>Recent analyses</h3>
+      <ul class="user-dashboard-list analyses-list">
+        {{ #each analyses }}
+          <li>
+            <a href={{pathFor route="analysis-show" data=permalinkData}}>
+              {{ #with replay }}
+                <span class="meta-info">
+                  {{ > UserDashboardReplayMeta meta_information.general }}
+                </span>
+               {{ /with }}
+              <span class="analysis-stats">
+                <span class="glyphicon glyphicon-comment"></span>
+                <strong>{{ commentsCountFor this }}</strong> comments
+              </span>
+              <span class="time-ago">
+                {{ TimeAgoInWords this }}
+              </span>
+            </a>
+          </li>
+        {{ /each }}
+      </ul>
     </div>
   </div>
 </template>

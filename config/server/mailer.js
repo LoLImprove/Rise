@@ -6,5 +6,5 @@ Meteor.startup(function () {
     port: Rise.ENV.get('SMTP_PORT') || 25
   }
   Rise.ENV.set('MAIL_URL', 'smtp://' + encodeURIComponent(SMTP.username) + ':' + encodeURIComponent(SMTP.password) + '@' + encodeURIComponent(SMTP.server) + ':' + SMTP.port);
-  console.log(process.env.MAIL_URL);
+  //console.log(process.env.MAIL_URL);
 });
