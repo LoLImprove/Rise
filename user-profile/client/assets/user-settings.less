@@ -1,0 +1,33 @@
+@import "mixins/variables.import.less";
+
+#user-profile-container .user-profile-content .user-settings {
+    .settings-header {
+        height: 71px;
+        background: @profile-grey;
+        padding: 20px 20px;
+
+        .title {
+            margin: 0;
+            color: @devils-color;
+        }
+    }
+
+    #user-settings-form {
+        padding: 25px 35px;
+
+        .settings-form-info {
+            width: 60%;
+
+            display: inline-block;
+            padding: 0 5px 8px 0;
+            margin: 5px 0 10px 0;
+            border-bottom: 1px solid #DBDBDB;
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        input[type=submit] {
+            margin-top: 10px;
+        }
+    }
+}

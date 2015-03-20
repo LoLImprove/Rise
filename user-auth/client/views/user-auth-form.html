@@ -6,7 +6,7 @@
     {{ > UserAuthForgotPasswordForm }}
   {{ else }}
     {{ #if registration }}
-      {{ #autoForm schema="Rise.Schemas.Form.Register" id="user-auth-form" }}
+      {{ #autoForm schema="Rise.Schemas.Forms.Register" id="user-auth-form" }}
         <fieldset>
           {{> afQuickField name='username' }}
           {{> afQuickField name='IGN' label='IGN (in game name)' }}

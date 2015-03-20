@@ -1,3 +1,5 @@
+@import "mixins/variables.import.less";
+
 // GENERAL
 #user-profile-container {
     .modal-backdrop.in {
@@ -43,7 +45,7 @@
     width: 20%;
     display: inline-block;
 
-    background: #E2E2E2;
+    background: @profile-grey;
 
     .profile-navbar-header {
         background: rgb(150, 189, 29);
@@ -104,11 +106,22 @@
     }
 
     .panel {
-        &.left { float: left; margin-right: 0; width: 45.5%; min-height: 450px; }
-        &.right { float: right; margin-right: 25px; width: 45.5%; min-height: 450px; }
+        &.left {
+            float: left;
+            margin-right: 0;
+            width: 45.5%;
+            min-height: 450px;
+        }
+        &.right {
+            float: right;
+            margin-right: 25px;
+            margin-left: 0;
+            width: 45.5%;
+            min-height: 450px;
+        }
 
         height: 100%;
-        background: rgb(247, 247, 247);
+        background: #F6F6F6;
         margin: 25px 25px;
         padding: 15px;
 

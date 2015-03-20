@@ -1,7 +1,7 @@
 Rise.Schemas = Rise.Schemas || {}
 Rise.Schemas.Forms = Rise.Schemas.Forms || {}
 
-Rise.Schemas.Forms.Register = new SimpleSchema({
+Rise.Schemas.Forms.UserSettings = new SimpleSchema({
   username: {
     type: String,
     regEx: /^[a-z0-9A-Z_]{3,15}$/,
@@ -15,10 +15,21 @@ Rise.Schemas.Forms.Register = new SimpleSchema({
     type: String,
     regEx: SimpleSchema.RegEx.Email
   },
+  currentPassword: {
+    type: String,
+    label: "Current password",
+    min: 6,
+    autoform: {
+      afFieldInput: {
+        type: "password"
+      }
+    }
+  },
   password: {
     type: String,
     label: "Password",
     min: 6,
+    optional: true,
     autoform: {
       afFieldInput: {
         type: "password"
@@ -29,6 +40,7 @@ Rise.Schemas.Forms.Register = new SimpleSchema({
     type: String,
     label: "Password confirmation",
     min: 6,
+    optional: true,
     autoform: {
       afFieldInput: {
         type: "password"

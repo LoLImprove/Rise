@@ -9,7 +9,6 @@ iron:router
 dburles:collection-helpers
 matb33:collection-hooks
 reywood:publish-composite
-aldeed:autoform
 meteorhacks:subs-manager
 zimme:collection-softremovable
 zimme:collection-timestampable
@@ -45,3 +44,4 @@ msavin:mongol
 league-of-legends
 comerc:bs-typeahead
 comerc:autoform-typeahead
+aldeed:autoform

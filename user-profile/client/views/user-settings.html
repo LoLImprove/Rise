@@ -1,3 +1,23 @@
 <template name="UserSettings">
-  Settings
+  <div class="user-settings">
+    <div class="settings-header">
+      <h2 class="title">Edit your settings</h2>
+    </div>
+    {{ #autoForm schema="Rise.Schemas.Forms.UserSettings" doc=Meteor.user id="user-settings-form" type="onSubmit" resetOnSuccess=false class="panel"}}
+      <fieldset>
+        {{> afQuickField name='username' value=username }}
+        {{> afQuickField name='IGN' label='IGN (in game name)' value=profile.IGN }}
+        {{> afQuickField name='level_of_play' label='League' value=profile.level_of_play }}
+        {{> afQuickField name='email' label='Email' value=emails.[0].address }}
+
+        <em class="settings-form-info">Fill those fields if you want to change your password</em>
+        {{> afQuickField name='password' class="password-field" }}
+        {{> afQuickField name='passwordConfirmation' class="password-field" }}
+
+        <em class="settings-form-info">Your password is required to make any change</em>
+        {{> afQuickField name='currentPassword' class="password-field" }}
+      </fieldset>
+      <input type="submit" class="btn btn-lg btn-success" value="Update">
+    {{ /autoForm }}
+  </div>
 </template>

@@ -1,6 +1,18 @@
 Rise.UI = Rise.UI || {};
 
 Rise.UI.Form = {
+  ShowError: function(template, error, opts) {
+    if (opts.on) {
+      var form = template.$('form');
+      var input = form.find('input[name="' + opts.on + '"]');
+      var inputContainer = input.parent();
+
+      inputContainer.addClass('custom-error');
+      input.siblings('.help-block').html(error.reason);
+    } else {
+      console.error("Rise.UI.Form.ShowError: input name missing, use Rise.UI.Form.ShowError(template, error, { on: 'someInputName' }); ");
+    }
+  },
   ShowErrors: function(template, errors){
     var form = template.$('form'),
         falsyFields = parseValidation(errors);

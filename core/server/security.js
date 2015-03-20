@@ -1,8 +1,17 @@
+Security.defineMethod("ifIsCurrentUser", {
+  fetch: [],
+  deny: function (type, arg, userId, doc) {
+    return userId !== doc._id;
+  }
+});
+
 Security.defineMethod("ifCurrentUserOwnsRessource", {
   deny: function (type, arg, userId, object) {
     return userId !== object.user_id;
   }
 });
+
+Meteor.users.permit(['update']).ifLoggedIn().ifIsCurrentUser().onlyProps(['username', 'emails', 'profile']).apply();
 
 // Only loggedin user can create replays
 Rise.Replays.permit(['insert']).ifLoggedIn().apply();
