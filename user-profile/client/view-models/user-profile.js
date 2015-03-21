@@ -4,6 +4,9 @@ Template.UserProfile.hooks({
   },
   rendered: function() {
     this.$('#user-profile-container').modal({ backdrop: 'static' });
+  },
+  destroyed: function() {
+    this.$('#user-profile-container').modal('hide');
   }
 });
 

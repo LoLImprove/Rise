@@ -1,14 +1,20 @@
 Template.notificationsDropdown.hooks({
   created: function() {
-    this.isDropdownVisible = new ReactiveVar(false);
+    Session.set('notifications:show', false);
     this.subscribe("notifications");
   }
 });
 
 Template.notificationsDropdown.helpers({
   notificationClass: notificationClass,
+  notificationFrom: function() {
+    return Meteor.users.findOne(this.from);
+  },
+  profileLinkData: function() {
+    return { username: Meteor.users.findOne(this.from).username };
+  },
   dropdownVisible: function() {
-    return Template.instance().isDropdownVisible.get();
+    return Session.get('notifications:show');
   },
   dropdownIcon: function() {
     if (this.icon) {
@@ -31,9 +37,7 @@ Template.notificationsDropdown.helpers({
 
 Template.notificationsDropdown.events({
   'click .notification-toggle': function(e, template) {
-    console.log(template.isDropdownVisible.get());
-    template.isDropdownVisible.set(!template.isDropdownVisible.get());
-
+    Session.set('notifications:show', !Session.get('notifications:show'));
   },
   'click .notification': Notifications.read(this._id)
 });

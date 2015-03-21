@@ -43,6 +43,7 @@ if (Meteor.isServer) {
    */
   Rise.Comments.after.insert(function(userId, comment) {
     var analysisId = comment.analysis_id,
+        analysis   = Rise.Analyses.findOne(analysisId);
         parentType = comment.parent_type,
         parentId   = comment.parent_id,
         id         = this._id;
@@ -56,6 +57,26 @@ if (Meteor.isServer) {
         { $addToSet: { 'timeline_entries.$.comments_ids': id } }
       );
     }
+
+    // Notify
+    var from = userId,
+        to   = analysis.user_id;
+
+    // We don't want a notification when a user is commenting his own analysis
+    if (from !== to) {
+      Notifications.new({
+        title: 'has commented your analysis.',
+        link: Rise.Router.getPath('analysis-show', { _id: analysis.replay_id, analysis_id: analysis._id, anchor: 'comment-' + comment._id }),
+        from: from,
+        owner: to,
+        data: {
+          analysisId: analysis._id
+        },
+        icon: 'comment',
+        class: 'default',
+      });
+    }
+
 
   });
 

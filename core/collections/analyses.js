@@ -22,11 +22,11 @@ if (Meteor.isServer) {
 
     // Notify
     Notifications.new({
-      title: 'has analyzed one of your replays',
+      title: 'has analyzed one of your replays.',
       link: Rise.Router.getPath('analysis-show', { _id: analysis.replay_id, analysis_id: analysis._id }),
       owner: Rise.Replays.findOne(analysis.replay_id).user_id,
+      from: userId,
       data: {
-        from: userId,
         replayId: analysis.replay_id
       },
       icon: 'comment-o',

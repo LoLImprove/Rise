@@ -1,5 +1,3 @@
-console.log('hey');
-
 Notifications = new Meteor.Collection('notifications');
 
 Notifications["new"] = function(doc) {
@@ -27,6 +25,10 @@ var NotificationsSchema = new SimpleSchema({
   owner: {
     type: String,
     regEx: SimpleSchema.RegEx.Id
+  },
+  from: {
+    type: String,
+    optional: true
   },
   link: {
     type: String,

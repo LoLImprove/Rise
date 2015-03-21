@@ -1,7 +1,16 @@
 Rise.Router = {};
 
+// Should find a way to get the route list server side
 Rise.Router.getPath = (function(name, data) {
-  Router.routes[name].path(data);
+  var route = "/";
+
+  if (name === 'analysis-show') {
+    route = "/replay/" + data._id +"/analysis/" + data.analysis_id
+    if (data.anchor) {
+      route = route + '#' + data.anchor;
+    }
+  }
+  return route;
 });
 
 Rise.Router.checkAuthentication = (function(opts) {

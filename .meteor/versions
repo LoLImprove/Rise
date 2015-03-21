@@ -33,6 +33,7 @@ email@1.0.6
 fastclick@1.0.3
 fortawesome:fontawesome@4.2.0_2
 geojson-utils@1.0.3
+gwendall:body-events@0.1.6
 gwendall:session-json@0.1.7
 hillmark:meteor-identicon@1.0.0
 html-tools@1.0.4

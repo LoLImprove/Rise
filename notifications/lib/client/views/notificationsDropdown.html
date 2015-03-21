@@ -22,6 +22,11 @@
               <li class="notification {{notificationClass}}">
                 <a href="{{link}}">
                   <i class="fa fa-{{icon}} fa-fw text-{{class}}"></i>&nbsp;
+                  {{ #if notificationFrom }}
+                    {{ #linkTo route="profile" data=profileLinkData }}
+                      <span class="notification-from">{{notificationFrom.username}}</span>
+                    {{ /linkTo }}
+                  {{ /if }}
                   {{title}}
                 </a>
               </li>

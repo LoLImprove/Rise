@@ -87,6 +87,9 @@
 
 ### UI & View Helpers
 
+- [Body events](https://github.com/gwendall/meteor-body-events)
+  - `Template.body.events`
+
 - [Typeahead](https://atmospherejs.com/comerc/bs-typeahead)
   - Autocompletion
 
