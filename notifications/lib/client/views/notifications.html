@@ -1,0 +1,22 @@
+<template name="notifications">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Notifications</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        {{#if Template.subscriptionsReady}}
+          {{#each Notifications}}
+            <li class="list-group-item notification {{notificationClass}}">
+              <i class="fa fa-{{icon}} text-{{class}}"></i>
+              <a href="{{link}}">{{title}}</a>
+              <span class="pull-right">{{ago}}</span>
+            </li>
+          {{/each}}
+          {{ else }}
+            {{ > Spinner }}
+          {{ /if }}
+      </ul>
+    </div>
+  </div>
+</template>

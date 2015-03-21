@@ -1,0 +1,39 @@
+<template name="notificationsDropdown">
+  <li class="dropdown notificationsDropdown">
+    <a href="#" class="notification-toggle">
+      {{#if Template.subscriptionsReady}}
+        {{#if notificationCount}}
+          <i class="fa fa-{{dropdownIcon}}"></i>
+          <span class="badge bg-success">{{notificationCount}}</span>
+        {{else}}
+          <i class="fa fa-{{dropdownIconEmpty}}"></i>
+        {{/if}}
+      {{else}}
+        <i class="fa fa-{{dropdownIconEmpty}}"></i>
+      {{/if}}
+      Notifications
+    </a>
+
+    {{ #if dropdownVisible }}
+      <ul class="dropdown-menu" role="menu">
+        {{#if Template.subscriptionsReady}}
+          {{#if hasNotifications}}
+            {{#each Notifications limit=10 unreadFirst=true}}
+              <li class="notification {{notificationClass}}">
+                <a href="{{link}}">
+                  <i class="fa fa-{{icon}} fa-fw text-{{class}}"></i>&nbsp;
+                  {{title}}
+                </a>
+              </li>
+            {{/each}}
+            <li class="text-center"><a href="/notifications">See all</a></li>
+          {{else}}
+            <li><div class="well-sm">You have not been notified</div></li>
+          {{/if}}
+        {{ else }}
+          {{ > Spinner }}
+        {{/if}}
+      </ul>
+    {{ /if }}
+  </li>
+</template>

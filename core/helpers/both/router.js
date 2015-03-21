@@ -1,5 +1,9 @@
 Rise.Router = {};
 
+Rise.Router.getPath = (function(name, data) {
+  Router.routes[name].path(data);
+});
+
 Rise.Router.checkAuthentication = (function(opts) {
   var opts = opts || {};
   opts.redirectTo = opts.redirectTo || '/';
