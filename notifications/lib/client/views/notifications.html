@@ -8,9 +8,16 @@
         {{#if Template.subscriptionsReady}}
           {{#each Notifications}}
             <li class="list-group-item notification {{notificationClass}}">
-              <i class="fa fa-{{icon}} text-{{class}}"></i>
-              <a href="{{link}}">{{title}}</a>
-              <span class="pull-right">{{ago}}</span>
+              <a href="{{link}}">
+                <i class="fa fa-{{icon}} fa-fw text-{{class}}"></i>&nbsp;
+                {{ #if notificationFrom }}
+                  {{ #linkTo route="profile" data=profileLinkData }}
+                    <strong class="notification-from">{{notificationFrom.username}}</strong>
+                  {{ /linkTo }}
+                {{ /if }}
+                {{title}}
+                <span class="pull-right">{{ago}}</span>
+                </a>
             </li>
           {{/each}}
           {{ else }}

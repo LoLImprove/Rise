@@ -11,6 +11,7 @@
 * [Mailing](#mailing)
 * [UI & View](#ui--view-helpers)
 * [Style](#style)
+* [Config](#config)
 * [Misc](#misc)
 
 ### Routing & Sessions
@@ -87,6 +88,9 @@
 
 ### UI & View Helpers
 
+- [Loader](https://atmospherejs.com/pcel/loading)
+  - Page load display
+
 - [Body events](https://github.com/gwendall/meteor-body-events)
   - `Template.body.events`
 
@@ -126,6 +130,11 @@
 
 - [Font-awesome](https://atmospherejs.com/natestrauser/font-awesome)
   - Icons
+
+### Config
+
+- [YAML Parser](https://atmospherejs.com/udondan/yml)
+  - Yaml Parser
 
 ### Misc
 

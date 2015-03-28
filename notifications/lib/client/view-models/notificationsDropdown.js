@@ -7,6 +7,9 @@ Template.notificationsDropdown.hooks({
 
 Template.notificationsDropdown.helpers({
   notificationClass: notificationClass,
+  ago: function() {
+    return moment(this.date).fromNow();
+  },
   notificationFrom: function() {
     return Meteor.users.findOne(this.from);
   },
@@ -39,7 +42,7 @@ Template.notificationsDropdown.events({
   'click .notification-toggle': function(e, template) {
     Session.set('notifications:show', !Session.get('notifications:show'));
   },
-  'click .notification': Notifications.read(this._id)
+  'click .notification': function() { Notifications.read(this._id) }
 });
 
 var notificationClass = function() {

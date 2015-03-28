@@ -51,6 +51,9 @@ Rise.Modal = {
       }
     }
 
+    // In some cases the modal-backgrop does not remove itself, so we remove it by hand
+    $('.modal-backdrop').remove();
+    // Same for the body modal-open class
     $('body').removeClass('modal-open');
   },
 

@@ -16,7 +16,10 @@ Rise.Controllers.ReplayShowController = RouteController.extend({
   action : function () {
     // Waits for the data to be loaded
     if (this.ready()) {
-      this.render();
+      var self = this;
+      setTimeout(function(){
+        self.render();
+      }, 3000);
     } else {
       console.log('not ready')
     }

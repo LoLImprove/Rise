@@ -3,18 +3,32 @@
 ## RTS/MOBA Improvement Platform
 
 * [Setup](#setup)
+  * [ENV](#env)
+  * [Config files](#config)
 * [Design](#design)
 * [Helpers](#helpers)
+  * [Config](#riseconfig)
   * [ENV](#riseenv)
+  * [Notifications](#notifications)
   * [Video player](#riseplayer)
   * [UI](#riseui)
 * [Useful commands](#useful-commands)
 
 ## Setup
 
+### ENV
+
 - Create a `.env` file at the root of the application
   - The following keys are required: `S3_ACCESS_KEY`, `S3_SECRET`, `S3_BUCKET`. If you don't own any S3 bucket properly configured, please read the [following link](https://github.com/Lepozepo/S3#create-your-amazon-s3) and follow the instructions.
   - If you need mailing add the following keys: `SMTP_USERNAME`, `SMTP_PASSWORD`, `SMTP_SERVER`, `SMTP_PORT` (default: 25)
+
+### Config
+
+- `config/`
+  - Holds the routes, configuration files and initializers for both client and server
+
+- `private/`
+  - Holds the server static files such as `notifications.yml`
 
 ## Design
 
@@ -46,6 +60,24 @@ TODO: More on that.
 - `Rise.ENV.isDevelopment()`, true if running in development environment.
 - `Rise.ENV.isProduction()`, true if running in production environment.
 - `Rise.ENV.get(key)`, gets a `key` from the environment variables. Ex: `Rise.ENV.get('S3_BUCKET')`.
+
+### Rise.Config
+
+- `Rise.Config.load(fileName)`, loads a named yaml file living in `config/server/private`
+
+### Notifications
+
+- `Notify(type, opts)`, server side helper to send notification from a user to another one
+  - The `type` argument must be one of the keys in `private/notifications.yml`
+
+```javascript
+// Server side
+Notify("analysis:insert", {
+  link: Rise.Router.getPath('analysis-show', { _id: analysis.replay_id, analysis_id: analysis._id }),
+  from: userId,
+  to: Rise.Replays.findOne(analysis.replay_id).user_id
+});
+```
 
 ### Rise.Player
 

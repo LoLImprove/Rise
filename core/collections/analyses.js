@@ -15,22 +15,18 @@ Rise.Analyses.helpers({
   }
 });
 
+// Only runs on the server otherwise it would be run twice on the client AND the server
+// It could prove to be useful but it is not really needed and adds a lot of overhead
 if (Meteor.isServer) {
+  // After Analysis insert update the user's replay list and the analysis' replays list
   Rise.Analyses.after.insert(function(userId, analysis) {
     Meteor.users.update({ _id: analysis.user_id }, { $addToSet: { analyses_ids: analysis._id } });
     Rise.Replays.update({ _id: analysis.replay_id }, { $addToSet: { analyses_ids: analysis._id } });
 
-    // Notify
-    Notifications.new({
-      title: 'has analyzed one of your replays.',
+    Notify("analysis:insert", {
       link: Rise.Router.getPath('analysis-show', { _id: analysis.replay_id, analysis_id: analysis._id }),
-      owner: Rise.Replays.findOne(analysis.replay_id).user_id,
       from: userId,
-      data: {
-        replayId: analysis.replay_id
-      },
-      icon: 'comment-o',
-      class: 'default',
+      to: Rise.Replays.findOne(analysis.replay_id).user_id
     });
 
   });

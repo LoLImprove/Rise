@@ -1,0 +1,5 @@
+notifications:
+  comment:insert:
+    title: "has commented your analysis."
+  analysis:insert:
+    title: "has analyzed one of your replays."

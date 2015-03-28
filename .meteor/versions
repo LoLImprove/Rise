@@ -78,6 +78,7 @@ observe-sequence@1.0.5
 ongoworks:security@1.0.1
 ordered-dict@1.0.3
 pauldowman:dotenv@1.0.1
+pcel:loading@1.0.3
 percolate:momentum@0.7.2
 percolate:velocityjs@1.1.0
 raix:handlebar-helpers@0.2.4
@@ -98,6 +99,7 @@ templating@1.1.0
 tracker@1.0.6
 twbs:bootstrap@3.3.4
 u2622:persistent-session@0.3.1
+udondan:yml@3.2.2_1
 ui@1.0.6
 underscore@1.0.3
 url@1.0.4

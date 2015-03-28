@@ -1,10 +1,8 @@
 Notifications = new Meteor.Collection('notifications');
 
 Notifications["new"] = function(doc) {
-  if (typeof doc.owner === 'undefined') {
-    doc.owner = Meteor.userId();
-  } else {
-    console.error(Meteor.Error("CantNotify", "Can't notify a logged-out user"));
+  if (_.isUndefined(doc.owner)) {
+    console.error(Meteor.Error("CantNotify", "Can't notify, missing owner"));
   }
   return Notifications.insert(doc);
 };

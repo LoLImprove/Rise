@@ -16,7 +16,7 @@ Rise.Comments.helpers({
 });
 
 // Only runs on the server otherwise it would be run twice on the client AND the server
-// It could provide to be useful but it is not really needed and add a lot of overhead
+// It could prove to be useful but it is not really needed and adds a lot of overhead
 if (Meteor.isServer) {
   /*
    * After we insert a comment, we update the analysis record corresponding fields with
@@ -58,26 +58,11 @@ if (Meteor.isServer) {
       );
     }
 
-    // Notify
-    var from = userId,
-        to   = analysis.user_id;
-
-    // We don't want a notification when a user is commenting his own analysis
-    if (from !== to) {
-      Notifications.new({
-        title: 'has commented your analysis.',
-        link: Rise.Router.getPath('analysis-show', { _id: analysis.replay_id, analysis_id: analysis._id, anchor: 'comment-' + comment._id }),
-        from: from,
-        owner: to,
-        data: {
-          analysisId: analysis._id
-        },
-        icon: 'comment',
-        class: 'default',
-      });
-    }
-
-
+    Notify("comment:insert", {
+      link: Rise.Router.getPath('analysis-show', { _id: analysis.replay_id, analysis_id: analysis._id, anchor: 'comment-' + comment._id }),
+      from: userId,
+      to: analysis.user_id
+    });
   });
 
 } // if Meteor.isServer
