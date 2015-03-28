@@ -10,13 +10,11 @@ Rise.Controllers.ReplayShowController = RouteController.extend({
     // Waits for the data to be loaded
     if (this.ready()) {
       var self = this;
-      setTimeout(function(){
-        if (self.data()) {
-          self.render();
-        } else {
-          self.render('404');
-        }
-      }, 3000);
+      if (self.data()) {
+        self.render();
+      } else {
+        self.render('404');
+      }
     }
   }
 });
