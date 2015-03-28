@@ -26,6 +26,6 @@ Template.UserProfile.helpers({
 Template.UserProfile.events({
   'click .close-modal': function(e) {
     e.preventDefault();
-    history.back();
+    Router.back();
   }
 });

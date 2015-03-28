@@ -23,7 +23,7 @@ Rise.Router.checkAuthentication = (function(opts) {
     } else {
       FlashMessages.sendError("You need to log in first.");
       if (opts.redirectTo === 'back') {
-        history.back();
+        Router.back();
       } else {
         this.redirect(opts.redirectTo);
       }

@@ -88,6 +88,7 @@
 
 ### UI & View Helpers
 
+- [Progress bar](https://github.com/Multiply/iron-router-progress)
 - [Loader](https://atmospherejs.com/pcel/loading)
   - Page load display
 

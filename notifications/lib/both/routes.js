@@ -5,8 +5,4 @@ Router.map(function() {
       return [Meteor.subscribe('notifications')];
     }
   });
-  return this.route('messages', {
-    path: '/messages/:_id',
-    layout: 'notifications'
-  });
 });

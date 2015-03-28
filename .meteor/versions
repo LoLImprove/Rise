@@ -72,6 +72,7 @@ mongo-livedata@1.0.8
 mrt:flash-messages@1.0.0
 mrt:moment@2.8.1
 msavin:mongol@1.0.2
+multiply:iron-router-progress@1.0.1
 natestrauser:font-awesome@4.3.0
 npm-bcrypt@0.7.8_1
 observe-sequence@1.0.5
