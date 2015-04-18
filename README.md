@@ -9,6 +9,7 @@
 * [Helpers](#helpers)
   * [Config](#riseconfig)
   * [ENV](#riseenv)
+  * [Router](#router)
   * [Notifications](#notifications)
   * [Video player](#riseplayer)
   * [UI](#riseui)
@@ -34,7 +35,7 @@
 
 - Rise is a Meteor package providing routes, views, models for developing subsequents RTS/MOBA Improvement Platforms.
 
-### Packages
+### Platforms packages
 
 In the `packages/` directory are game-specific packages such as `LeagueOfLegends` or `HeroesOfTheStorm`
 
@@ -64,6 +65,13 @@ TODO: More on that.
 ### Rise.Config
 
 - `Rise.Config.load(fileName)`, loads a named yaml file living in `config/server/private`
+
+### Router
+
+**/!\ ALL ROUTES MUST HAVE A NAME /!\**
+
+See `rise/config/lib/initializers/router.js`
+- `Router.history.back()` tells the router to go the previous page inside the application
 
 ### Notifications
 
