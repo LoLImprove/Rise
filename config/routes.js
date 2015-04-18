@@ -1,5 +1,6 @@
-Router.route('/', function () {
-  this.render('Home');
+Router.route('/', {
+  name: 'root',
+  template: 'Home'
 });
 
 Router.route('/replay/new', {
