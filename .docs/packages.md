@@ -48,6 +48,9 @@
 
 ### Collections
 
+- [Collection Instances](https://github.com/dburles/mongo-collection-instances/)
+  - Get collection instance by name
+
 - [Collection helpers](https://github.com/dburles/meteor-collection-helpers/)
   - Used mainly to setup relations in a NoSQL environment
 

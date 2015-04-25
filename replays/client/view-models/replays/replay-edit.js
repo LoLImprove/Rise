@@ -64,7 +64,6 @@ AutoForm.hooks({
 
     onSuccess: function(operation, id, template) {
       Session.set('replay:edit-mode', false);
-      //Router.go('replay', { _id: id });
     },
     onError: function(operation, error, template) {
       console.error('Trying to ' + operation + ' update the replay but there was an error on :', error);

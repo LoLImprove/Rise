@@ -1,0 +1,10 @@
+<template name="ReplaysIndex">
+  <ul class="replays-list">
+    {{ #each paginatedReplays.getItems }}
+      <li class="replay-tile">
+        {{ > ReplayTile }}
+      </li>
+    {{ /each }}
+  </ul>
+  {{ > InfinitePagination }}
+</template>

@@ -1,6 +1,8 @@
-Rise.publish("rise:replays", function () {
-  // TODO: Publish only the ones we need
-  return Rise.Replays.find({});
+Meteor.publish("rise:replays", function(filterSelector, options) {
+  filterSelector = filterSelector || {};
+  options = options || {};
+
+  return Rise.Replays.find(filterSelector, options)
 });
 
 // Publishes everything a replay's needs : the replay, it's analyses, analyses comments and  users related to the replay, an analysis or any comment

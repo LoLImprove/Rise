@@ -23,13 +23,13 @@
       <ul class="user-dashboard-list replay-list">
         {{ #each replays }}
           <li>
-            <a href={{pathFor route="replay"}}>
+            <a href={{pathFor route="replay-show"}}>
               <span class="meta-info">
                 {{ > UserDashboardReplayMeta meta_information.general }}
               </span>
               <span class="replay-stats">
                 <span class="glyphicon glyphicon-comment"></span>
-                <strong>{{ getLength analyses_ids }}</strong> analyses
+                <strong>{{ analysesCount }}</strong> analyses
               </span>
               <span class="time-ago">
                 {{ TimeAgoInWords this }}

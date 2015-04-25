@@ -75,7 +75,7 @@ AutoForm.hooks({
       },
     },
     onSuccess: function(operation, id, template) {
-      Router.go('replay', { _id: id });
+      Router.go('replay-show', { _id: id });
     },
     onError: function(operation, error, template) {
       console.error('Trying to create a new replay but there was an error on ' + operation + ':', error);

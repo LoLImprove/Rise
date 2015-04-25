@@ -10,6 +10,13 @@ Rise.Replays.helpers({
   analyses: function() {
     return Rise.Analyses.find({ _id: { $in: this.analyses_ids } });
   },
+  analysesCount: function() {
+    return this.analyses_ids ? this.analyses_ids.length : 0;
+  },
+  // TODO: I18n
+  result: function() {
+    return this.victory ? 'Victory' : 'Loss';
+  },
   title: function() {
     var metum = this.meta_information.general
     return metum.champion + " vs " + metum.matchup + " - " + metum.lane;
