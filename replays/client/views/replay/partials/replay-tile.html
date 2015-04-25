@@ -1,7 +1,9 @@
 <template name="ReplayTile">
   <a class="replay-tile" href={{pathFor route="replay-show"}}>
     <div class="tile-title">
-      <img src="{{ characterPicture champion }}" title="{{ champion }}" alt="{{ champion }}"> x <img src="{{ characterPicture matchup }}" title="{{ matchup }}" alt="{{ matchup }}">
+      {{ #with meta_information.general }}
+        <img src="{{ characterPicture champion }}" title="{{ champion }}" alt="{{ champion }}"> x <img src="{{ characterPicture matchup }}" title="{{ matchup }}" alt="{{ matchup }}">
+      {{ /with}}
       <span class="result">{{ result }}</span>
     </div>
     <div class="tile-info">

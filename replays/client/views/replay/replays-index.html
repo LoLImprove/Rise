@@ -1,4 +1,5 @@
 <template name="ReplaysIndex">
+  {{ > ReplaysFilters }}
   <ul class="replays-list">
     {{ #each paginatedReplays.getItems }}
       <li class="replay-tile">
