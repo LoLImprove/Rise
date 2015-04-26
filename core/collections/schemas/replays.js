@@ -5,15 +5,18 @@ Rise.Schemas.ReplaysGeneralMetum = new SimpleSchema({
   matchup:  { type: String, label: "Matchup" },
   lane:     { type: String, label: "Lane" }
 });
+Superseder.Schema.override(Rise.Schemas, 'ReplaysGeneralMetum');
 
 Rise.Schemas.ReplaysSpecificMetum = new SimpleSchema({
   kda:   { type: String, label: "KDA" },
 });
+Superseder.Schema.override(Rise.Schemas, 'ReplaysSpecificMetum');
 
 Rise.Schemas.ReplaysMetum = new SimpleSchema({
   general:  { type: Rise.Schemas.ReplaysGeneralMetum },
   specific: { type: Rise.Schemas.ReplaysSpecificMetum }
 });
+Superseder.Schema.override(Rise.Schemas, 'ReplaysMetum');
 
 Rise.Schemas.Replays = new SimpleSchema({
   user_id:      { type: String },

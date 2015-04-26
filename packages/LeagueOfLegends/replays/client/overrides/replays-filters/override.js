@@ -1,1 +1,1 @@
-Superseder.override("ReplaysFilters", { with: "LoLReplaysFilters" });
+Superseder.Template.override("ReplaysFilters", { with: "LoLReplaysFilters" });

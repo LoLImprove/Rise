@@ -6,8 +6,7 @@ Package.describe({
 
 /* This defines your actual package */
 Package.onUse(function (api) {
-  api.use(['templating']);
-  api.imply(['rise-superseder']);
+  api.use(['templating', 'aldeed:simple-schema', 'rise-superseder']);
   api.versionsFrom('METEOR@1.0');
 
   api.addFiles(['lib/game.js'], ['client', 'server']);

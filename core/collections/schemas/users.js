@@ -24,6 +24,7 @@ Rise.Schemas.UserProfile = new SimpleSchema({
   IGN: { type: String, optional: true },
   avatar: { type: String, optional: true }
 });
+Superseder.Schema.override(Rise.Schemas, 'UserProfile');
 
 Rise.Schemas.VotedFor = new SimpleSchema({
   analyses_ids: { type: [String], defaultValue: [] },

@@ -70,12 +70,19 @@ packages/
 └── ...
 ```
 
+#### Package specific schemas
+
+Any schema (outside of the ones declared in game-specific packages) can be overriden.
+To do so we use the `Superseder` package. See `packages/Superseder/readme.md` for examples.
+
+Alternatively you can declare **new schemas** as you want, as long as you include them through an overriden schema or within a new feature.
+
 #### Package specific templates
 
 Any template (outside of the ones declared in game-specific packages) can be overriden.
 To do so we use the `Superseder` package. See `packages/Superseder/readme.md` for examples.
 
-Alternatively you can declare **new templates** as you want, as long as you include them through an overriden template.
+Alternatively you can declare **new templates** as you want, as long as you include them through an overriden template or within a new feature.
 
 ### Customization
 

@@ -1,8 +1,47 @@
 # Superseder
 
-Meteor template override mechanism
+Meteor Template & Schemas override mechanisms
 
-## How it works
+* [Setup](#templates)
+* [Design](#schemas)
+
+## Schemas
+
+You can override any schema from inside another package.
+The idea is that packages are loaded first thus we register an override in the package and then call the `override` method where the original schema is defined.
+
+### Original schema
+
+The original schema must add the line `Superseder.Schema.override(object, schemaKeyName)`
+**`Superseder.Schema.override()` keeps the default schema if no override has been registered.**
+
+```javascript
+Rise.Schemas = Rise.Schemas || {};
+
+Rise.Schemas.UserProfile = new SimpleSchema({
+  level_of_play: { type: String },
+  IGN: { type: String, optional: true },
+  avatar: { type: String, optional: true }
+});
+Superseder.Schema.override(Rise.Schemas, 'UserProfile');
+```
+
+### Override
+
+This file is in a local package or something, and declares a new override.
+
+```javascript
+
+Superseder.Schema.registerOverride('UserProfile', new SimpleSchema({
+  league: { type: String },
+  IGN: { type: String, optional: true },
+  avatar: { type: String, optional: true }
+}));
+```
+
+## Templates
+
+You can override any template from inside another package.
 
 ### Original files
 ```html
