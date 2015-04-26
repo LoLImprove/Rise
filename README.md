@@ -11,7 +11,7 @@
   * [ENV](#riseenv)
   * [Router](#router)
   * [Notifications](#notifications)
-  * [User Scoring](#userscoring)
+  * [User Scoring](#user-scoring)
 * [Video player](#riseplayer)
   * [UI](#riseui)
 * [Useful commands](#useful-commands)
@@ -137,7 +137,7 @@ Notify("analysis:insert", {
 ```javascript
 if (Meteor.isServer) {
   Rise.Replays.after.insert(function(userId, replay) {
-    Rise.Scoring.addPoints({ to: uid, for: "replay:insert" });
+    Rise.Scoring.addPoints({ to: userId, for: "replay:insert" });
   });
 }
 ```
