@@ -16,7 +16,6 @@ Rise.Schemas.ReplaysMetum = new SimpleSchema({
   general:  { type: Rise.Schemas.ReplaysGeneralMetum },
   specific: { type: Rise.Schemas.ReplaysSpecificMetum }
 });
-Superseder.Schema.override(Rise.Schemas, 'ReplaysMetum');
 
 Rise.Schemas.Replays = new SimpleSchema({
   user_id:      { type: String },

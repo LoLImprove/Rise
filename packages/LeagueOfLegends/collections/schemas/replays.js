@@ -7,8 +7,3 @@ Superseder.Schema.registerOverride('ReplaysGeneralMetum', new SimpleSchema({
 Superseder.Schema.registerOverride('ReplaysSpecificMetum', new SimpleSchema({
   kda:   { type: String, label: "KDA" },
 }));
-
-Superseder.Schema.registerOverride('ReplaysMetum', new SimpleSchema({
-  general:  { type: Rise.Schemas.ReplaysGeneralMetum },
-  specific: { type: Rise.Schemas.ReplaysSpecificMetum }
-}));
