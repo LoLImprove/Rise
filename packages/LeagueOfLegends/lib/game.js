@@ -1,4 +1,4 @@
-Rise = {};
+Rise = Rise || {};
 Rise.Game = {
   name: 'League Of Legends',
   pkgName: 'league-of-legends',

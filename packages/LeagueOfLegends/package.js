@@ -6,12 +6,14 @@ Package.describe({
 
 /* This defines your actual package */
 Package.onUse(function (api) {
+  api.use(['templating']);
+  api.imply(['rise-superseder']);
   api.versionsFrom('METEOR@1.0');
 
   api.addFiles(['lib/game.js'], ['client', 'server']);
   api.addFiles(filesInFolder("LeagueOfLegends","collections"), ['client', 'server']);
-
   api.addFiles(filesInFolder("LeagueOfLegends","assets"), 'client');
+  api.addFiles(filesInFolder("LeagueOfLegends","replays","client"), 'client');
 
   api.export('Rise');
 });

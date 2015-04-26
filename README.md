@@ -19,7 +19,7 @@
 
 ### ENV
 
-- Create a `.env` file at the root of the application
+- Create a `.env` file at the root of the application (see: `.env.example` too)
   - The following keys are required: `S3_ACCESS_KEY`, `S3_SECRET`, `S3_BUCKET`. If you don't own any S3 bucket properly configured, please read the [following link](https://github.com/Lepozepo/S3#create-your-amazon-s3) and follow the instructions.
   - If you need mailing add the following keys: `SMTP_USERNAME`, `SMTP_PASSWORD`, `SMTP_SERVER`, `SMTP_PORT` (default: 25)
 
@@ -29,7 +29,7 @@
   - Holds the routes, configuration files and initializers for both client and server
 
 - `private/`
-  - Holds the server static files such as `notifications.yml`
+  - Holds the server static files such as `notifications.yml` and translation files.
 
 ## Design
 
@@ -37,12 +37,45 @@
 
 ### Platforms packages
 
+__** FOR GAME SPECIFIC FEATURES, PLEASE DO NEVER MODIFY ORIGINAL TEMPLATES BUT INSTEAD CREATE OVERRIDES IN THE GAME'S OWN PACKAGE **__
+
 In the `packages/` directory are game-specific packages such as `LeagueOfLegends` or `HeroesOfTheStorm`
 
 Run `meteor add <package-name>` to enable a specific game package to be loaded ! (`<package-name>` must be in lowercase, with dash separated words, i.e: `meteor add league-of-legends`)
 Please make sure you are only loading one of the packages as they could conflict. Check your `.meteor/packages` file beforehand.
+To remove an existing package, just use `meteor remove <package-name>`;
 
-TODO: More on that + Architecture
+#### Package Achitecture
+```
+packages/
+├── league-of-legends/
+│   │
+│   ├── lib/      -> Package files that must be loaded beforehand
+│   ├── assets/   -> Package specific assets
+│   ├── *feature-name*/  -> Some feature (ex: replays)
+│   │   └── client/
+│   │       └── overrides/
+│   │           └── *template-name*/  -> Overriden template, (ex: replay-tile)
+│   │               ├── *[package-prefix]template-name.js*/   -> (ex: lol-replay-tile.js)
+│   │               ├── *[package-prefix]template-name.html*/ -> (ex: lol-replay-tile.html)
+│   │               └── override.js  -> Contains the override call
+│   │
+│   ├── collections/  -> Package specific collections
+│   └── package.js    -> Package configuration where files are required
+│
+├── hearthstone/
+│   │
+│   └── ... <- Same
+│
+└── ...
+```
+
+#### Package specific templates
+
+Any template (outside of the ones declared in game-specific packages) can be overriden.
+To do so we use the `Superseder` package. See `packages/Superseder/readme.md` for examples.
+
+Alternatively you can declare **new templates** as you want, as long as you include them through an overriden template.
 
 ### Customization
 

@@ -1,0 +1,39 @@
+<template name="LoLReplaysFilters">
+  <form class="replays-filters">
+    <div class="form-group">
+      <label>Victorious ?</label>
+      <select data-filter="victory" data-convert="true">
+        {{ #each gameResult }}
+          <option value="{{ value }}">{{ label }}</option>
+        {{ /each }}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Champion ?</label>
+      <select data-filter="meta_information.general.champion">
+        {{ #each champions }}
+          <option value="{{ this }}">{{ this }}</option>
+        {{ /each }}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Matchup ?</label>
+      <select data-filter="meta_information.general.matchup">
+        {{ #each champions }}
+          <option value="{{ this }}">{{ this }}</option>
+        {{ /each }}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Lane ?</label>
+      <select data-filter="meta_information.general">
+        {{ #each lanes }}
+          <option value="{{ this }}">{{ this }}</option>
+        {{ /each }}
+      </select>
+    </div>
+  </form>
+</template>
