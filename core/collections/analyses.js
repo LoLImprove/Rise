@@ -29,6 +29,8 @@ if (Meteor.isServer) {
       to: Rise.Replays.findOne(analysis.replay_id).user_id
     });
 
+    Rise.Scoring.addPoints({ to: userId, for: "analysis:insert" });
+
   });
 
 }

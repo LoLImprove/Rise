@@ -63,6 +63,8 @@ if (Meteor.isServer) {
       from: userId,
       to: analysis.user_id
     });
+
+    Rise.Scoring.addPoints({ to: userId, for: "comment:insert" });
   });
 
 } // if Meteor.isServer

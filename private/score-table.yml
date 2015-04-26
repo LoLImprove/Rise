@@ -1,0 +1,7 @@
+score-table:
+  user:registration: 50
+  analysis:insert: 10
+  replay:insert: 2
+  comment:insert: 1
+  vote:up: 1
+  vote:down: -1

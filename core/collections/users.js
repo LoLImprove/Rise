@@ -16,10 +16,20 @@ Meteor.users.helpers({
       updateQuery = { $pull: {} }
       updateQuery.$pull['voted_for.' + resourceKey] = resourceId;
       modelClass.update({ _id: resourceId }, { $inc: { votes: -1 } });
+
+      if (Meteor.isServer) {
+        Rise.Scoring.addPoints({ to: Meteor.userId(), for: "vote:down" });
+      }
+
     } else {
       updateQuery = { $push: {} }
       updateQuery.$push['voted_for.' + resourceKey] = resourceId;
       modelClass.update({ _id: resourceId }, { $inc: { votes: 1 } });
+
+      if (Meteor.isServer) {
+        Rise.Scoring.addPoints({ to: Meteor.userId(), for: "vote:up" });
+      }
+
     }
 
     Meteor.users.update({ _id: Meteor.userId() }, updateQuery);
@@ -34,3 +44,10 @@ Meteor.users.helpers({
 
 Meteor.users.attachSchema(Rise.Schemas.Users);
 Meteor.users.attachBehaviour('timestampable', Rise.Base.TimestampableOptions);
+
+if (Meteor.isServer) {
+  // After Analysis insert update the user's replay list and the analysis' replays list
+  Meteor.users.after.insert(function(userId, user) {
+    Rise.Scoring.addPoints({ to: user._id, for: "user:registration" });
+  })
+}

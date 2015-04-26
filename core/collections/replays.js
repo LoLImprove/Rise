@@ -27,6 +27,7 @@ if (Meteor.isServer) {
   Rise.Replays.after.insert(function(userId, replay) {
     var uid = replay.user_id;
     Meteor.users.update({ _id: uid }, { $addToSet: { replays_ids: replay._id } });
+    Rise.Scoring.addPoints({ to: uid, for: "replay:insert" });
   });
 }
 

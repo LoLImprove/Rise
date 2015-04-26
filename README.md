@@ -11,7 +11,8 @@
   * [ENV](#riseenv)
   * [Router](#router)
   * [Notifications](#notifications)
-  * [Video player](#riseplayer)
+  * [User Scoring](#userscoring)
+* [Video player](#riseplayer)
   * [UI](#riseui)
 * [Useful commands](#useful-commands)
 
@@ -125,6 +126,20 @@ Notify("analysis:insert", {
   from: userId,
   to: Rise.Replays.findOne(analysis.replay_id).user_id
 });
+```
+
+### User Scoring
+
+- `Rise.Scoring.addPoints({ to: userId, for: keyInScoringTable });`, server side helper to reward an user with points. For instance after an analysis.
+  - The `to` argument must be a user object or an user id.
+  - The `for` argument must be a key present in the `private/score-table.yml` file. You can add some of course.
+
+```javascript
+if (Meteor.isServer) {
+  Rise.Replays.after.insert(function(userId, replay) {
+    Rise.Scoring.addPoints({ to: uid, for: "replay:insert" });
+  });
+}
 ```
 
 ### Rise.Player
