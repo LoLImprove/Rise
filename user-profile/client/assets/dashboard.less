@@ -32,42 +32,43 @@
     }
 
     .user-rise-progression {
-        margin: 20px 25px 0px 25px;
+        //margin: 20px 25px 0px 25px;
         padding: 15px 20px;
 
         .progression-data {
             margin-left: 25px;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-size: 2em;
 
             .rank {
                 margin-left: -18px;
                 margin-bottom: 30px;
                 font-size: 1.2em;
+                display: inline;
+            }
+            .life-points {
+                color: rgb(62, 144, 216);
+                float: right;
             }
         }
         .points-progress-bar {
-            background-color: #FFFFFF;
+            background-color: #FAFAFA;
             height: 25px;
-            padding: 4px 5px;
+            padding: 5px 4px;
             width: 100%;
             margin: 0 0;
-            border-radius: 5px;
-            //box-shadow: 0 1px 5px #CCC inset, 0 1px 0 #BBB;
-
-            transform: skew(-39deg, 0deg) ;
-            -webkit-transform: skew(-39deg, 0deg) ;
-            -moz-transform: skew(-39deg, 0deg) ;
-            -o-transform: skew(-39deg, 0deg) ;
-            -ms-transform: skew(-39deg, 0deg) ;
+            box-shadow: inset -2px 2px 7px 1px #D0D0D0;
 
             span {
                 display: inline-block;
                 height: 100%;
-                border-radius: 3px;
+                //border-radius: 3px;
+                border-radius: 0;
                 box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
                 background-color: #a5df41;
                 background-image: linear-gradient(top, #a5df41, #4ca916);
+                box-shadow: inset 2px 2px 5px 1px #94C83B;
+
                 transition: width .4s ease-in-out;
             }
         }
