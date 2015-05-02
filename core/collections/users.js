@@ -11,6 +11,7 @@ Meteor.users.helpers({
     var resourceKey = (resourceType === "analysis") ? "analyses_ids" : "comments_ids";
     var hasVotedFor = this.hasVotedFor(resourceType, resourceId);
     var updateQuery = {};
+    var userVotedUpon = modelClass.findOne({_id: resourceId }).user_id;
 
     if (hasVotedFor) {
       updateQuery = { $pull: {} }
@@ -19,6 +20,7 @@ Meteor.users.helpers({
 
       if (Meteor.isServer) {
         Rise.Scoring.addPoints({ to: Meteor.userId(), for: "vote:down" });
+        Rise.Scoring.addPoints({ to: userVotedUpon, for: "voted:down" });
       }
 
     } else {
@@ -28,6 +30,7 @@ Meteor.users.helpers({
 
       if (Meteor.isServer) {
         Rise.Scoring.addPoints({ to: Meteor.userId(), for: "vote:up" });
+        Rise.Scoring.addPoints({ to: userVotedUpon, for: "voted:upon" });
       }
 
     }

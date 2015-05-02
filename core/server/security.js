@@ -11,7 +11,7 @@ Security.defineMethod("ifCurrentUserOwnsRessource", {
   }
 });
 
-Meteor.users.permit(['update']).ifLoggedIn().ifIsCurrentUser().onlyProps(['username', 'emails', 'profile', 'life_points', 'rank']).apply();
+Meteor.users.permit(['update']).ifLoggedIn().ifIsCurrentUser().onlyProps(['username', 'emails', 'profile']).apply();
 
 // Only loggedin user can create replays
 Rise.Replays.permit(['insert']).ifLoggedIn().apply();
