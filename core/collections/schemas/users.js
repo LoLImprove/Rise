@@ -38,6 +38,7 @@ Rise.Schemas.Users = new SimpleSchema({
 
   verified: { type: Boolean, defaultValue: false }, // TODO: Remove optional
   life_points: { type: Number, defaultValue: 0 },
+  rank: { type: Number, defaultValue: 1 },
 
   replays_ids: { type: [String], defaultValue: [] },
   analyses_ids: { type: [String], defaultValue: [] },

@@ -130,6 +130,10 @@ Notify("analysis:insert", {
 
 ### User Scoring
 
+Currently an user can lose points and ranks undercertain conditions as some trigger exists that make the user lose points. See `private/score-table.yml` for more information.
+
+#### Server
+
 - `Rise.Scoring.addPoints({ to: userId, for: keyInScoringTable });`, server side helper to reward an user with points. For instance after an analysis.
   - The `to` argument must be a user object or an user id.
   - The `for` argument must be a key present in the `private/score-table.yml` file. You can add some of course.
@@ -141,6 +145,11 @@ if (Meteor.isServer) {
   });
 }
 ```
+
+#### Client & Server
+
+- `Rise.Scoring.pointsNeededForRank(number);`, returns the number of total points needed for a given rank.
+- `Rise.Scrogin.howMuchLeftUntillNextRank(user);`, returns the number of needed points for an user to achieve next rank.
 
 ### Rise.Player
 

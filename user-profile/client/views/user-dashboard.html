@@ -10,11 +10,11 @@
 
     <div class="panel user-rise-progression">
       <div class="progression-data">
-        <div class="rank">Rank <strong>0</strong></div>
-        <span class="life-points"><strong> {{ life_points }} </strong> Points</span>
+        <div class="rank">Rank <strong>{{ rank }}</strong></div>
+        <span class="life-points"><strong> {{ life_points }} </strong> exp</span>
       </div>
       <div class="points-progress-bar">
-        <span style="width: 40%"></span>
+        <span style="width: {{ percentTillNextRank }}%"></span>
       </div>
     </div>
 
