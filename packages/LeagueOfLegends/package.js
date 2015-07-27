@@ -9,6 +9,7 @@ Package.onUse(function (api) {
   api.use(['templating', 'aldeed:simple-schema', 'rise-superseder']);
   api.versionsFrom('METEOR@1.0');
 
+  api.addFiles(['lib/platform.js'], ['client', 'server']);
   api.addFiles(['lib/game.js'], ['client', 'server']);
   api.addFiles(filesInFolder("LeagueOfLegends","collections"), ['client', 'server']);
   api.addFiles(filesInFolder("LeagueOfLegends","assets"), 'client');

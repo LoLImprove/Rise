@@ -1,0 +1,104 @@
+<template name="AnalysisShow">
+  <section class="analysis">
+    <div class="analysis-info">
+      <div class="user">
+        {{ #with user }}
+          <img class="user-picture" src="/assets/images/misc/mockup/spazie1.jpg">
+          <!--img class="user-picture" src="{{ profile.avatar }}"-->
+          <div class="user-info">
+            <span class="name">{{ username }}</span>
+            {{ > userMeta profile }}
+          </div>
+        {{ /with }}
+      </div>
+        <div class="analysis-votes">
+          {{ #isNotOwnerOf this }}
+            <strong class="icon-text">{{ votes }}</strong><i class="icon icon-big-thumb  toggle-analysis-vote"></i>
+          {{ else }}
+            <strong class="icon-text">{{ votes }}</strong><i class="icon icon-big-thumb"></i>
+          {{ /isNotOwnerOf }}
+        </div>
+
+      {{ #if expanded }}
+        <div class="permalink">
+          {{ #linkTo route="analysis-show" data=permalinkData }}
+            Permalink
+          {{ /linkTo}}
+        </div>
+
+        {{ #isOwnerOf this }}
+          {{ #unless isEditing }}
+            <button class="edit-analysis">Edit</button>
+          {{ /unless }}
+        {{ /isOwnerOf}}
+
+        <div class="analysis-tools">
+          <span class="analysis-time">
+            2 hours ago
+          </span>
+
+          <a href="#" class="analysis-report">
+            <i class="icon icon-report"></i><span class="icon-text">Report</span>
+          </a>
+        </div>
+      {{ /if }}
+
+      <div class="analysis-collapse toggle-expansion">
+        <i class="icon icon-double-arrow up"></i>
+        <span class="icon-text">{{ toggleExpansionText }}</span>
+        <i class="icon icon-double-arrow up right"></i>
+      </div>
+    </div> <!-- Div#AnalysisInfo -->
+
+    <div class="analysis-content {{#if expanded }}expanded{{/if}} ">
+      {{ #if isEditing }}
+        {{ > EditAnalysis this }}
+      {{ else }}
+        {{ #with general_note }}
+          <div class="general-notes">
+            <div class="general-notes-content">
+              <h4 class="analysis-title">General Notes</h4>
+              <div class="general-notes-text">
+                {{ content }}
+              </div>
+            </div>
+
+            {{ #momentum plugin="slide-height" }}
+              {{ #if expanded }}
+                <ul class="analysis-comments">
+                  {{ > Comments this }}
+                  {{ > NewCommentForm }}
+                </ul> <!-- .analysis-comments -->
+              {{ /if }}
+              {{ /momentum }}
+          </div> <!-- .general-notes -->
+        {{ /with }}
+
+        {{ #momentum plugin="slide-height" }}
+          {{ #if expanded }}
+            <div class="timeline-entries">
+              {{ #each timeline_entries }}
+                <div class="timeline-entry">
+                  <div class="time-block">
+                    <strong class="time-text">at</strong><strong class="time">{{ time }}</strong>
+                  </div>
+
+                  <div class="entry-container">
+                    <div class="entry-content">
+                      {{ content }}
+                    </div>
+
+                    <ul class="analysis-comments">
+                      {{ > Comments this }}
+                      {{ > NewCommentForm }}
+                    </ul> <!-- .analysis-comments -->
+                  </div> <!-- .entry-container -->
+                </div> <!-- .timeline-entry -->
+              {{ /each }}
+            </div> <!-- .timelines-entries -->
+          {{ /if }}
+        {{/momentum}}
+      {{ /if }}
+    </div> <!-- .analysis-content -->
+  </section> <!-- .analysis -->
+</template>

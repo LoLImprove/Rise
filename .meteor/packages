@@ -22,7 +22,7 @@ accounts-base
 accounts-password
 aldeed:collection2
 browser-policy
-twbs:bootstrap
+#twbs:bootstrap
 fortawesome:fontawesome
 mizzao:bootboxjs
 aldeed:console-me
@@ -37,6 +37,9 @@ zimme:underscore-contrib
 raix:handlebar-helpers
 email
 less
+fourseven:scss
+wolves:bourbon
+wolves:neat
 natestrauser:font-awesome
 hillmark:meteor-identicon
 mrt:moment

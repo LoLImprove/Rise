@@ -1,0 +1,16 @@
+.wrapper {
+    background-image: url(base-path("images/textures/light-texture.png"));
+    background-repeat: repeat;
+}
+
+.container {
+    @include outer-container;
+    margin-top: 3em;
+}
+.content {
+    @include span-columns(12);
+    background-image: url(base-path("images/textures/dark-texture-collapsed.png"));
+    background-repeat: repeat;
+
+    padding: 1em;
+}

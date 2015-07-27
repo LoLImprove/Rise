@@ -1,0 +1,18 @@
+body {
+    @include default-font;
+}
+
+.container {
+    @include outer-container;
+}
+
+.align-middle {
+    vertical-align: middle;
+}
+.always-show {
+    display: block !important;
+}
+
+a:hover {
+    text-decoration: none;
+}

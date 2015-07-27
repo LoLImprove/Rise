@@ -1,0 +1,369 @@
+@import "core/base";
+@import "rise/base";
+
+/* # SUMMARY (Use search ;))
+
+   = HEADER
+     = TITLE
+     = RESULT
+
+   = REPLAY
+     = IFRAME
+     = INFO
+       = USER
+       = DESCRIPTION
+         = EXPAND/COLLAPSE
+       = DATA
+     = TOOLS
+       = MENU
+       = CALL TO ACTION
+
+   = ANALYSES
+     = TITLE
+
+   = ANALYSIS
+     = TITLE
+     = INFO
+       = USER
+       = VOTES
+       = TOOLS
+       = COLLAPSE/EXPAND
+     ---------
+     = CONTENT
+       = GENERAL NOTES
+         = CONTENT
+       = TIMELINE ENTRIES
+         = TIME
+         = CONTENT
+     ----------
+     = COMMENTS
+*/
+
+// = HEADER
+.replay-header {
+    // = TITLE
+    .replay-title {
+        @include span-columns(8 of 12);
+        @include default-font(2em, semi-bold);
+        @include text-border($almost-white, 2px);
+        color: $dark-grey;
+
+        strong {
+            @include default-font(1em, bold);
+        }
+
+        margin: 0 0 6px 1px;
+    }
+
+    // = RESULT
+    .replay-result {
+        @include span-columns(4 of 12);
+        @include align-right;
+        @include header-font(2em, normal);
+        @include text-border($light-grey);
+
+        color: white;
+        text-transform: uppercase;
+
+        margin: 0;
+    }
+}
+
+// = REPLAY
+.replay {
+    @include outer-container();
+
+    // = IFRAME
+    .replay-player iframe {
+        @include span-columns(12 of 12);
+        @include omega();
+
+        height: 600px; // TODO: Remove, temporary
+    }
+
+    // = INFO
+    .replay-info {
+        @include span-columns(12 of 12);
+        color: $grey-green;
+
+        margin: 1em 0 2px 0;
+        padding: 0.85em 0.9em;
+
+        background-color: white;
+
+        // = USER
+        .user {
+            @include span-columns(2.2 of 12);
+            @include user-block;
+        }
+
+        // = DESCRIPTION
+        .replay-description {
+            @include span-columns(8.3 of 12);
+
+            position: relative;
+            min-height: 80px;
+
+            border-right: 2px solid $border-grey;
+            border-left: 2px solid $border-grey;
+
+            padding: 5px 1.1em;
+
+            // = EXPAND/COLLAPSE
+            .more, .less {
+                cursor: pointer;
+                position: absolute;
+                bottom: 0;
+                left: 49%;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+
+        // = DATA
+        .game-data {
+            @include span-columns(1.5 of 12);
+            padding: 0 0 0 5px;
+
+            .icon {
+                width: 25px;
+            }
+        }
+    }
+
+    // = TOOLS
+    .replay-tools {
+        @include span-columns(12 of 12);
+        background-color: white;
+
+        // = MENU
+        .replay-menu {
+            @include list-inline();
+            float: left;
+            margin: 0;
+
+            a { color: $green; }
+            a:hover { color: darken($green, 15%); }
+
+            & > li {
+                border-right: 2px solid $border-grey;
+                margin: 0.4em 0;
+                padding: 0.3em 0.83em;
+            }
+
+            & > li:last-child {
+                border-right: none;
+            }
+
+            .icon {
+                margin-right: 6px;
+            }
+        }
+
+        // = CALL TO ACTION
+        .call-to-action {
+            @include align-right();
+            @include button($light-green, darken($light-green, 5%));
+            padding: 0.45em;
+            margin-right: 5px;
+            margin-top: 5px;
+            font-size: 1.1em;
+        }
+    }
+}
+
+
+// = ANALYSES
+
+.analyses {
+    @include outer-container();
+    margin-top: 2.2em;
+
+    // = TITLE
+    .analyses-title {
+        @include default-font(2.2em, bold);
+        color: $light-grey;
+        font-style: italic;
+        margin-bottom: 0.4em;
+    }
+
+    // = ANALYSIS
+    .analysis {
+        @include span-columns(12);
+        margin-bottom: 3.6em;
+
+        // = TITLE
+        .analysis-title {
+            @include default-font(1.8em, bold);
+            color: $light-grey;
+            font-style: italic;
+            margin-bottom: 0.5em;
+        }
+
+        // = INFO
+        .analysis-info {
+            @include span-columns(2.4 of 12);
+
+            border-top: 1px solid $border-darker-grey;
+
+            // = USER
+            .user {
+                @include user-block;
+                @include span-columns(2.4 of 2.4);
+
+                margin-right: 0;
+                padding: 0.6em;
+                border-bottom: 1px solid $border-light;
+
+                .user-picture {
+                    width: 65px;
+                    border: 3px solid white;
+                    border-radius: 2px;
+                }
+
+                .user-info {
+                    width: 60%;
+                    .name { margin: 0 auto; }
+                    .level-of-play { margin: 0 auto; }
+                }
+
+            }
+
+            // = VOTES
+            .analysis-votes {
+                @include span-columns(2.4 of 2.4);
+                text-align: center;
+                border-bottom: 1px solid $border-light;
+
+                cursor: pointer;
+                padding: 0.5em 0 0.2em 0;
+                color: $light-green;
+                font-size: 2em;
+                font-family: $base-font-family;
+
+                .icon {
+                    vertical-align: top;
+                    margin-top: -4px;
+                    margin-left: 4px;
+                }
+
+            }
+
+            // = TOOLS
+            .analysis-tools {
+                @include span-columns(2.4 of 2.4);
+                border-bottom: 1px solid $border-darker-grey;
+                margin-bottom: 0.6em;
+                padding-top: 2px 0 4px 0;
+            }
+
+
+            .analysis-time {
+                @include span-columns(1.2 of 2.4);
+                @include omega();
+                font-size: 0.8em;
+                font-style: italic;
+                padding-top: 3px;
+            }
+
+            .analysis-report {
+                @include span-columns(1.2 of 2.4);
+                @include align-right;
+                @include omega();
+                font-size: 0.8em;
+            }
+
+            // = COLLAPSE/EXPAND
+            .analysis-collapse {
+                @include span-columns(2.4 of 2.4);
+                cursor: pointer;
+
+                font-size: 0.8em;
+                font-weight: 800;
+                background-color: rgba(0, 0, 0, 0.04);
+                padding: 3px 0;
+                text-align: center;
+            }
+        }
+
+        // = CONTENT
+        .analysis-content {
+            @include span-columns(9.6);
+            color: $grey-green;
+
+            // = GENERAL NOTES
+            &.expanded .general-notes {
+                min-height: 251px;
+            }
+
+            .general-notes {
+                @include bubble-block();
+                min-height: 155px;
+
+                // = CONTENT
+                .general-notes-content {
+                    padding: 0.80em;
+
+                    .general-notes-text {
+                        padding-left: 6px;
+
+                        p:last-child {
+                            margin-bottom: 0;
+                        }
+
+                    }
+                }
+            }
+
+            // = TIMELINE ENTRIES
+            .timeline-entries {
+                .timeline-entry {
+                    @include bubble-block(13px);
+                    margin-top: 0.5em;
+
+                    // = CONTENT
+                    .entry-content {
+                        padding: 0 1em;
+                        margin-top: -29px;
+                    }
+                }
+
+                // = TIME
+                .time-block {
+                    margin-left: -150px;
+                    display: inline-block;
+                    border: 1px solid $border-light;
+                    padding: 0em 0.8em;
+                    background: rgba(249, 249, 249, 0.8);
+                    text-align: center;
+                    width: 15%;
+
+                    .time-text {
+                        font-size: 1em;
+                        font-weight: 800;
+                        font-style: italic;
+                        padding-right: 0.73em;
+                        display: inline-block;
+                        vertical-align: middle;
+                        margin-top: -8px;
+                    }
+
+                    .time {
+                        font-family: "Ubuntu", "Calibri", "Roboto", "Helvetica", "Arial", "Verdana";
+                        color: $light-green;
+                        font-size: 1.6em;
+                        line-height: 1.5em;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            // = COMMENTS
+            .analysis-comments {
+                @include comment-block();
+            }
+        }
+    }
+}

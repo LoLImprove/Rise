@@ -1,0 +1,119 @@
+@mixin header-font($size: "normal", $weight: normal) {
+    font-family: $header-font;
+    font-weight: $weight;
+
+    @if $size == "xxsmall" {
+        font-size: $base-font-size - 0.2;
+    } @else if $size == "xsmall" {
+        font-size: $base-font-size - 0.15;
+    } @else if $size == "small" {
+        font-size: $base-font-size - 0.10;
+    } @else if $size == "normal" {
+        font-size: $base-font-size;
+    } @else if $size == "medium" {
+        font-size: $base-font-size + 0.15;
+    } @else if $size == "big" {
+        font-size: $base-font-size + 0.2;
+    } @else if $size == "huge" {
+        font-size: $base-font-size + 0.4;
+    } @else {
+        font-size: $size;
+    }
+}
+
+@mixin default-font($size: "normal", $weight: normal) {
+    font-family: $text-font;
+    @if $weight == bold {
+        font-weight: 800;
+    } @else if $weight == semi-bold {
+        font-weight: bold;
+    } @else {
+        font-weight: $weight;
+    }
+
+    @if $size == "xxsmall" {
+        font-size: $base-font-size - 0.2;
+    } @else if $size == "xsmall" {
+        font-size: $base-font-size - 0.15;
+    } @else if $size == "small" {
+        font-size: $base-font-size - 0.10;
+    } @else if $size == "normal" {
+        font-size: $base-font-size;
+    } @else if $size == "medium" {
+        font-size: $base-font-size + 0.15;
+    } @else if $size == "big" {
+        font-size: $base-font-size + 0.2;
+    } @else if $size == "huge" {
+        font-size: $base-font-size + 0.4;
+    } @else {
+        font-size: $size;
+    }
+}
+
+// # MONTSERRAT
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/montserrat-regular-webfont.eot');
+    src: url('/fonts/montserrat-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/montserrat-regular-webfont.woff2') format('woff2'),
+    url('/fonts/montserrat-regular-webfont.woff') format('woff'),
+    url('/fonts/montserrat-regular-webfont.ttf') format('truetype'),
+    url('/fonts/montserrat-regular-webfont.svg#montserratregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Monsterrat';
+    src: url('/fonts/montserrat-bold-webfont.eot');
+    src: url('/fonts/montserrat-bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/montserrat-bold-webfont.woff2') format('woff2'),
+    url('/fonts/montserrat-bold-webfont.woff') format('woff'),
+    url('/fonts/montserrat-bold-webfont.ttf') format('truetype'),
+    url('/fonts/montserrat-bold-webfont.svg#montserratbold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+// # RALEWAY
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/raleway-bold-webfont.eot');
+    src: url('/fonts/raleway-bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/raleway-bold-webfont.woff2') format('woff2'),
+    url('/fonts/raleway-bold-webfont.woff') format('woff'),
+    url('/fonts/raleway-bold-webfont.ttf') format('truetype'),
+    url('/fonts/raleway-bold-webfont.svg#ralewaybold') format('svg');
+    font-weight: 800;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/raleway-medium-webfont.eot');
+    src: url('/fonts/raleway-medium-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/raleway-medium-webfont.woff2') format('woff2'),
+    url('/fonts/raleway-medium-webfont.woff') format('woff'),
+    url('/fonts/raleway-medium-webfont.ttf') format('truetype'),
+    url('/fonts/raleway-medium-webfont.svg#ralewaymedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/raleway-semibold-webfont.eot');
+    src: url('/fonts/raleway-semibold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/raleway-semibold-webfont.woff2') format('woff2'),
+    url('/fonts/raleway-semibold-webfont.woff') format('woff'),
+    url('/fonts/raleway-semibold-webfont.ttf') format('truetype'),
+    url('/fonts/raleway-semibold-webfont.svg#ralewaysemibold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+
+}

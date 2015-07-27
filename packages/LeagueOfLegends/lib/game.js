@@ -2,6 +2,7 @@ Rise = Rise || {};
 Rise.Game = {
   name: 'League Of Legends',
   pkgName: 'league-of-legends',
+  platformName: 'LoLImprove',
   assetsPathFor: function(img){
     return '/packages/' + this.pkgName + '/assets/images/' + img;
   },

@@ -1,0 +1,9 @@
+<template name="ReplayShow">
+  {{ #if isEditMode }}
+    {{ #isOwnerOf replay }}
+      {{ > ReplayEdit }}
+    {{ /isOwnerOf }}
+  {{ /if }}
+
+  {{ > ReplayView replay }}
+</template>

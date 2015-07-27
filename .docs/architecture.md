@@ -17,25 +17,31 @@
 │   └── routes.js  -> All routes
 │
 │
-├── core   -> Core package, core and common stuff used in other packages
+├── app/
 │   │
-│   ├── client/
-│   │   ├── assets/        -> Stylesheets
-│   │   ├── view-helpers/  -> Common template helpers
-│   │   └── views/         -> Client layouts and common views (404 page, ...)
-│   │       └── layouts/
+│   ├── core/   -> <Core> Module, core and common stuff used in other modules/packages
+│   │   │
+│   │   ├── client/
+│   │   │   ├── assets/        -> Stylesheets
+│   │   │   ├── library/       -> Common helpers and tools
+│   │   │   │    ├── modal/    -> Rise.Modal helpers (manage modals)
+│   │   │   │    ├── ui/       -> Rise.UI helpers (manage view context, form validation, ...)
+│   │   │   │    └── ...
+│   │   │   │
+│   │   │   ├── view-helpers/  -> Common template helpers
+│   │   │   └── views/         -> Client layouts and common views (404 page, ...)
+│   │   │       └── layouts/
+│   │   │
+│   │   ├── collections/       -> Mongo collections
+│   │   │   └── schemas/       -> Collections schemas
+│   │   │
+│   │   └── server/
+│   │          ├── library/         -> Common helpers and tools
+│   │          ├── publications.js  -> Common publications
+│   │          └── security.js      -> Global collections Allow/Deny
 │   │
-│   ├── collections/       -> Mongo collections
-│   │   └── schemas/       -> Collections schemas
-│   │
-│   ├── helpers/           -> Common helpers and tools
-│   │   └── client/
-│   │       ├── modal/     -> Rise.Modal helpers (manage modals)
-│   │       └── ui/        -> Rise.UI helpers (manage view context, form validation, ...)
-│   │
-│   └── server/
-│          ├── publications.js  -> Common publications
-│          └── security.js      -> Global collections Allow/Deny
+│   ├── replays/    -> <Replay> Module
+│   └── user-auth/  -> <User auth> Module
 │
 │
 ├── lib/   -> Loaded before everything else
@@ -43,9 +49,6 @@
 │   ├── vendor/
 │   └── _namespaces.js  -> Rise namespace
 │
-│
-├── replays/    -> Replay package
-└── user-auth/  -> User auth package
 
 ```
 

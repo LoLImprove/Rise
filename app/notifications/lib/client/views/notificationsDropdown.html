@@ -1,0 +1,52 @@
+<template name="notificationsDropdown">
+  <li class="notifications dropdown notificationsDropdown">
+    <a href="#" class="notification-toggle">
+      <span class="icon-stack dropdown-button">
+        <i class="icon icon-notification"></i>
+        {{#if Template.subscriptionsReady}}
+          {{#if notificationCount}}
+            <span class="notification-count">{{notificationCount}}</span>
+          {{else}}
+            <span class="notification-count">0</span>
+          {{/if}}
+        {{else}}
+          <span class="notification-count">0</span>
+        {{/if}}
+      </span>
+    </a>
+
+    {{ #if dropdownVisible }}
+      <ul class="dropdown-menu always-show" role="menu">
+        {{#if Template.subscriptionsReady}}
+          {{#if hasNotifications}}
+            {{#each Notifications limit=10 unreadFirst=true}}
+              <li class="notification {{notificationClass}} {{icon}} {{class}}">
+                <a href="{{link}}">
+                  <!--i class="fa fa-{{icon}} fa-fw text-{{class}}"></i>&nbsp;-->
+                  {{ #if notificationFrom }}
+                    {{ #linkTo route="profile" data=profileLinkData class="notification-from"}}
+                      <img class="user-picture" src="/images/misc/mockup/ascensionfull.jpg">
+                      <strong class="username">{{notificationFrom.username}}</strong>
+                    {{ /linkTo }}
+                  {{ else }}
+                      <span class="notification-from">
+                        <i class="icon icon-notification-black small"></i><strong class="username platform">{{Platform.name}}</strong>
+                      </span>
+                  {{ /if }}
+                  <div class="title">{{title}}</div>
+                  <span class="date">{{ago}}</span>
+                </a>
+              </li>
+            {{/each}}
+            <li class="text-center"><a href="/notifications">See all</a></li>
+          {{else}}
+            <li><div class="well-sm">You have not been notified</div></li>
+          {{/if}}
+        {{ else }}
+          {{ > Spinner }}
+        {{/if}}
+      </ul>
+    {{ /if }}
+
+  </li>
+</template>

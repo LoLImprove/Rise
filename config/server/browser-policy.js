@@ -1,5 +1,6 @@
 Meteor.startup(function () {
   /* Needed for youtube iframes */
+  BrowserPolicy.content.allowOriginForAll('https://*.githubusercontent.com');
   BrowserPolicy.content.allowOriginForAll('http://*.googleapis.com');
   BrowserPolicy.content.allowOriginForAll('http://*.gstatic.com');
   BrowserPolicy.content.allowOriginForAll('https://www.youtube.com/');
