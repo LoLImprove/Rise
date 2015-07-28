@@ -1,19 +1,41 @@
 <template name="ReplayForm">
   {{ #autoForm collection="Rise.Replays" id=formId doc=replay type=type}}
-    <fieldset>
-      {{> afQuickField name='video_id' }}
-      {{> afFormGroup name='meta_information.general.champion' type='typeahead' options=gameCharacters }}
-      {{> afFormGroup name='meta_information.general.matchup' type='typeahead' options=gameCharacters }}
-      {{> afFormGroup name='meta_information.general.lane' }}
+    {{> afQuickField name='video_id' }}
+
+    <div class="form-line with-separators">
+      <div class="player">
+        {{> afFormGroup name='meta_information.general.champion' type='typeahead' options=gameCharacters }}
+      </div>
+      <span class="separator">VS</span>
+      <div class="matchup">
+        {{> afFormGroup name='meta_information.general.matchup' type='typeahead' options=gameCharacters }}
+      </div>
+      <span class="separator">-</span>
+      <div class="lane">
+        {{> afFormGroup name='meta_information.general.lane' }}
+      </div>
+    </div>
+
+    <div class="form-line">
       {{> afFormGroup name='meta_information.specific.kda' }}
-      {{> afQuickField name='description' }}
       {{> afQuickField name='duration' }}
       {{> afQuickField name='patch' }}
+    </div>
+
+    <div class="description">
+      {{> afQuickField name='description' }}
+    </div>
+
+    <div class="outcome">
+      <span class="label">Game outcome</span>
       {{> afQuickField name='victory' }}
+    </div>
+
+    <div class="replay-upload">
       {{ #if replay.replay_file }}
         {{ replay.replay_file }}
       {{ /if }}
       {{> afQuickField name='replay_file' value='' }}
-    </fieldset>
+    </div>
   {{ /autoForm }}
 </template>

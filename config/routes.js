@@ -8,14 +8,14 @@ Router.route('/replays/', {
   controller: 'Rise.Controllers.ReplaysIndexController'
 });
 
-Router.route('/replay/:_id', {
-  name: 'replay-show',
-  controller: 'Rise.Controllers.ReplayShowController',
-});
-
 Router.route('/replay/new', {
   name: 'replay-new',
   controller: 'Rise.Controllers.ReplayNewController'
+});
+
+Router.route('/replay/:_id', {
+  name: 'replay-show',
+  controller: 'Rise.Controllers.ReplayShowController',
 });
 
 Router.route('/replay/:_id/analysis/:analysis_id', {

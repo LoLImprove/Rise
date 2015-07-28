@@ -44,7 +44,8 @@ Template.UserAuthForm.events({
           Session.set('user-auth:form:errors', 'Incorrect email or password');
         } else {
           Rise.Modal.dismiss();
-          FlashMessages.sendSuccess("Successfuly logged in");
+          FlashMessages.sendSuccess("Successfuly logged in", { clear: true });
+          Router.back();
         }
       })
 
@@ -74,7 +75,8 @@ AutoForm.hooks({
         } else {
           Rise.Modal.dismiss();
           $('.modal-content').removeClass('shake animated');
-          FlashMessages.sendSuccess("Successfuly logged in");
+          FlashMessages.sendSuccess("Successfuly logged in", { clear: true });
+          Router.back();
         }
       });
 

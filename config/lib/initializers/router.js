@@ -11,6 +11,7 @@ Router.configure({
     return Meteor.subscribe('rise:currentUser', Meteor.userId());
   },
   onRun: function() {
+    console.debug('Dispatching to route', this.route.getName());
     Router.history.push(this.route.getName(), this.params);
     this.next();
   }

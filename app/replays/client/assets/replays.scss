@@ -1,6 +1,8 @@
 @import "core/base";
 @import "rise/base";
 
+@import "replay-forms";
+
 /* # SUMMARY (Use search ;))
 
    = HEADER
@@ -108,6 +110,11 @@
             border-left: 2px solid $border-grey;
 
             padding: 5px 1.1em;
+
+            .description {
+                min-height: 30px;
+                overflow: hidden;
+            }
 
             // = EXPAND/COLLAPSE
             .more, .less {
@@ -313,6 +320,18 @@
                             margin-bottom: 0;
                         }
 
+                        .analysis-expand {
+                            cursor: pointer;
+                            margin-top: 1em;
+                            font-style: italic;
+                            color: $dark-grey;
+                            opacity: 0.8;
+
+                            &:hover {
+                                color: darken($green, 15%);
+                            }
+                        }
+
                     }
                 }
             }
@@ -341,6 +360,7 @@
                     width: 15%;
 
                     .time-text {
+                        font-family: inherit !important;
                         font-size: 1em;
                         font-weight: 800;
                         font-style: italic;
@@ -351,7 +371,7 @@
                     }
 
                     .time {
-                        font-family: "Ubuntu", "Calibri", "Roboto", "Helvetica", "Arial", "Verdana";
+                        font-family: "Ubuntu", "Calibri", "Roboto", "Helvetica", "Arial", "Verdana" !important; // Thank you Mongol.
                         color: $light-green;
                         font-size: 1.6em;
                         line-height: 1.5em;

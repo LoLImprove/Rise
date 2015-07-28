@@ -1,5 +1,5 @@
-@import "core/base";
-@import "rise/base";
+@import "core/all";
+@import "rise/all";
 
 @import "global";
 
@@ -26,11 +26,6 @@
 
 
 /* Move to replay.css or something */
-
-.description {
-    min-height: 30px;
-    overflow: hidden;
-}
 
 .closed {
     height: 30px;

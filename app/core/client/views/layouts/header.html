@@ -25,7 +25,7 @@
             <li class="info">
               <a href="{{pathFor route='profile' username=currentUser.username}}">
                 <img class="user-picture" src="/images/misc/mockup/ascensionfull.jpg">
-                <span class="user-name">Diacred</span>
+                <span class="user-name">{{ currentUser.username }}</span>
               </a>
             </li>
           {{ / if }}

@@ -1,0 +1,54 @@
+#replay-new-form {
+    @include outer-container;
+
+    .form-line, .form-group {
+        @include span-columns(12);
+        margin-bottom: 0;
+    }
+
+    .form-line {
+        .form-group {
+            @include span-columns(4 of 12);
+        }
+
+        &.with-separators {
+            .form-group {
+                @include span-columns(3.5 of 12);
+            }
+
+            .separator {
+                @include span-columns(1 of 12);
+                padding-top: 35px;
+            }
+        }
+
+        .player, .matchup {
+            input {
+                width: 75%;
+            }
+        }
+
+    }
+
+    .description .form-group {
+        margin: 8px 0 12px 0;
+    }
+
+    .outcome {
+        @include span-columns(12);
+        margin-bottom: 12px;
+
+        .label {
+            font-weight: bold;
+            @include span-columns(3 of 12);
+        }
+        .form-group {
+            @include span-columns(9 of 12);
+
+            .checkbox {
+                margin: 1px 0 0 0;
+            }
+        }
+    }
+
+}

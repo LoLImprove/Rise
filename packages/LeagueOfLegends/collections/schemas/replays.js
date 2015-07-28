@@ -1,5 +1,5 @@
 Superseder.Schema.registerOverride('ReplaysGeneralMetum', new SimpleSchema({
-  poney: { type: String, label: "Champion" },
+  champion: { type: String, label: "Champion" },
   matchup:  { type: String, label: "Matchup" },
   lane:     { type: String, label: "Lane" }
 }));

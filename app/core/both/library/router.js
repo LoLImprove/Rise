@@ -21,12 +21,13 @@ Rise.Router.checkAuthentication = (function(opts) {
     if (Meteor.userId()) {
       this.next();
     } else {
-      FlashMessages.sendError("You need to log in first.");
+      FlashMessages.sendError("You need to log in first.", { clear: true });
       if (opts.redirectTo === 'back') {
         Router.back();
       } else {
         this.redirect(opts.redirectTo);
       }
+      Rise.UserAuth.displayLogin();
     }
   };
 });

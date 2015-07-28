@@ -5,12 +5,20 @@
     color: white;
     line-height: 1em;
     display: inline-block;
-    -webkit-border-radius: 7px;
+    /*-webkit-border-radius: 7px;
     -moz-border-radius: 7px;
-    border-radius: 7px;
+    border-radius: 7px;*/
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+
     padding: 0.70em 1em;
 
     background-color: $color;
+
+    &:focus {
+        text-decoration: none;
+    }
 
     &:hover {
         @if $hovercolor {
@@ -59,6 +67,8 @@
     }
 
     & > li:last-child {
+        padding-right: 0;
+
         @if $separator {
             background-image: none;
         }

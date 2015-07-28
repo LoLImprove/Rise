@@ -20,6 +20,9 @@ Template.AnalysisShow.helpers({
   user: function() {
     return Meteor.users.findOne({ _id: Rise.UI.get('user_id') });
   },
+  hasComments: function() {
+    return this.comments_ids.length > 0;
+  },
   isEditing: function() {
     if (Meteor.userId() && (Rise.UI.get('user_id') === Meteor.userId())) {
       return Session.get('replay:edit-current-analysis');

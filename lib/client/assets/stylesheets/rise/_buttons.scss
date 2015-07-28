@@ -1,0 +1,19 @@
+.btn {
+    background: none;
+
+    &.btn-success, &.btn-primary {
+        @include button($light-green, darken($light-green, 6%));
+    }
+
+    &.btn-info {
+        @include button($light-blue, darken($light-blue, 10%));
+    }
+
+    &.btn-warning {
+        @include button($pale-orange, darken($pale-orange, 10%));
+    }
+
+    &.btn-danger, &.btn-default {
+        @include button($fushia, darken($fushia, 10%));
+    }
+}

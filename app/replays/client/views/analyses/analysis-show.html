@@ -11,38 +11,39 @@
           </div>
         {{ /with }}
       </div>
-        <div class="analysis-votes">
-          {{ #isNotOwnerOf this }}
-            <strong class="icon-text">{{ votes }}</strong><i class="icon icon-big-thumb  toggle-analysis-vote"></i>
-          {{ else }}
-            <strong class="icon-text">{{ votes }}</strong><i class="icon icon-big-thumb"></i>
-          {{ /isNotOwnerOf }}
-        </div>
+      <div class="analysis-votes">
+        {{ #isNotOwnerOf this }}
+          <strong class="icon-text">{{ votes }}</strong><i class="icon icon-big-thumb  toggle-analysis-vote"></i>
+        {{ else }}
+          <strong class="icon-text">{{ votes }}</strong><i class="icon icon-big-thumb"></i>
+        {{ /isNotOwnerOf }}
+      </div>
 
-      {{ #if expanded }}
-        <div class="permalink">
-          {{ #linkTo route="analysis-show" data=permalinkData }}
-            Permalink
-          {{ /linkTo}}
-        </div>
+      {{ #momentum plugin="slide-height" }}
+        {{ #if expanded }}
+          <div class="permalink">
+            {{ #linkTo route="analysis-show" data=permalinkData }}
+              Permalink
+            {{ /linkTo}}
+          </div>
 
-        {{ #isOwnerOf this }}
-          {{ #unless isEditing }}
-            <button class="edit-analysis">Edit</button>
-          {{ /unless }}
-        {{ /isOwnerOf}}
+          {{ #isOwnerOf this }}
+            {{ #unless isEditing }}
+              <button class="edit-analysis">Edit</button>
+            {{ /unless }}
+          {{ /isOwnerOf}}
 
-        <div class="analysis-tools">
-          <span class="analysis-time">
-            2 hours ago
-          </span>
+          <div class="analysis-tools">
+            <span class="analysis-time">
+              2 hours ago
+            </span>
 
-          <a href="#" class="analysis-report">
-            <i class="icon icon-report"></i><span class="icon-text">Report</span>
-          </a>
-        </div>
-      {{ /if }}
-
+            <a href="#" class="analysis-report">
+              <i class="icon icon-report"></i><span class="icon-text">Report</span>
+            </a>
+          </div>
+        {{ /if }}
+      {{ /momentum }}
       <div class="analysis-collapse toggle-expansion">
         <i class="icon icon-double-arrow up"></i>
         <span class="icon-text">{{ toggleExpansionText }}</span>
@@ -60,11 +61,15 @@
               <h4 class="analysis-title">General Notes</h4>
               <div class="general-notes-text">
                 {{ content }}
+
+                {{ #if $not expanded }}
+                  <div class="analysis-expand toggle-expansion">See more...</div>
+                {{ /if }}
               </div>
             </div>
 
             {{ #momentum plugin="slide-height" }}
-              {{ #if expanded }}
+              {{ #if $and expanded hasComments }}
                 <ul class="analysis-comments">
                   {{ > Comments this }}
                   {{ > NewCommentForm }}
@@ -88,10 +93,12 @@
                       {{ content }}
                     </div>
 
-                    <ul class="analysis-comments">
-                      {{ > Comments this }}
-                      {{ > NewCommentForm }}
-                    </ul> <!-- .analysis-comments -->
+                    {{ #if hasComments }}
+                      <ul class="analysis-comments">
+                        {{ > Comments this }}
+                        {{ > NewCommentForm }}
+                      </ul> <!-- .analysis-comments -->
+                    {{ /if }}
                   </div> <!-- .entry-container -->
                 </div> <!-- .timeline-entry -->
               {{ /each }}

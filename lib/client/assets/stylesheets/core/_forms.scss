@@ -1,6 +1,8 @@
 fieldset {
-  background-color: lighten($base-border-color, 10%);
-  border: $base-border;
+  //background-color: lighten($base-border-color, 10%);
+  background: none;
+  //border: $base-border;
+  border: none;
   margin: 0 0 $small-spacing;
   padding: $base-spacing;
 }
@@ -9,7 +11,8 @@ input,
 label,
 select {
   display: block;
-  font-family: $base-font-family;
+  //font-family: $base-font-family;
+  font-family: inherit;
   font-size: $base-font-size;
 }
 
