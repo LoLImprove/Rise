@@ -1,3 +1,22 @@
+/* # SUMMARY (Use search ;))
+
+    = MODAL
+    = FORM
+*/
+
+/* = MODAL */
+
+#new-replay-modal {
+    .modal-body {
+        padding-bottom: 0;
+    }
+    .modal-footer {
+        border: none;
+        padding-top: 0;
+    }
+}
+
+/* = FORM */
 #replay-new-form {
     @include outer-container;
 

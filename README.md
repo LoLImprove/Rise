@@ -16,6 +16,12 @@
   * [UI](#riseui)
 * [Useful commands](#useful-commands)
 
+## TODO
+
+- Document the use of `FlowComponent`;
+- Update package list;
+- Update `aldeed:autoform` to `> 5`;
+
 ## Setup
 
 ### ENV
