@@ -38,7 +38,8 @@ Template.NewCommentForm.events({
 // Instead we add a that runs on all forms and performs a match against a Regexp
 // If it matches, we run the code
 AutoForm.addHooks(null, {
-  formToDoc: function(doc, ss, formId) {
+  formToDoc: function(doc) {
+    var formId = this.formId;
     var newCommentFormRegEx = new RegExp('new-comment-form');
 
     if (formId.match(newCommentFormRegEx)) {

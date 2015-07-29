@@ -31,7 +31,7 @@ wizonesolutions:underscore-string
 lepozepo:s3
 percolate:momentum
 reactive-var
-aldeed:template-extension@3.4.0
+aldeed:template-extension@3.4.3
 pauldowman:dotenv
 zimme:underscore-contrib
 raix:handlebar-helpers
@@ -46,7 +46,6 @@ mrt:moment
 meteortoys:allthings
 comerc:bs-typeahead
 comerc:autoform-typeahead
-aldeed:autoform
 gwendall:body-events
 pcel:loading
 league-of-legends
@@ -55,3 +54,4 @@ multiply:iron-router-progress
 dburles:mongo-collection-instances
 rise-superseder
 meteorhacks:flow-components
+aldeed:autoform@5.3.2

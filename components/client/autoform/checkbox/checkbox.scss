@@ -1,0 +1,72 @@
+@import 'core/base';
+@import 'rise/base';
+
+.squared-checkbox {
+    width: 20px;
+    position: relative;
+}
+
+.squared-checkbox input[type="checkbox"] {
+    visibility: hidden;
+}
+
+.squared-checkbox label {
+    cursor: pointer;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 0;
+    border-radius: 4px;
+
+    -webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+    -moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+
+
+    background: -webkit-linear-gradient(top, #DCDCDC 0%, #C4C5C7 100%);
+    background: -moz-linear-gradient(top, #DCDCDC 0%, #C4C5C7 100%);
+    background: -o-linear-gradient(top, #DCDCDC 0%, #C4C5C7 100%);
+    background: -ms-linear-gradient(top, #DCDCDC 0%, #C4C5C7 100%);
+    background: linear-gradient(top, #DCDCDC 0%, #C4C5C7 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DCDCDC', endColorstr='#C4C5C7',GradientType=0 );
+
+    .label-text {
+        padding-left: 35px;
+        margin-top: -1px;
+        display: block;
+    }
+}
+
+.squared-checkbox label:after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 8px;
+    background: transparent;
+    top: 4px;
+    left: 4px;
+    border: 3px solid $almost-black;
+    border-top: none;
+    border-right: none;
+
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+.squared-checkbox label:hover::after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+}
+
+.squared-checkbox input[type=checkbox]:checked + label:after {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+    opacity: 1;
+}

@@ -1,6 +1,14 @@
 <template name="ReplayForm">
   {{ #autoForm collection="Rise.Replays" id=formId doc=replay type=type}}
-    {{> afQuickField name='video_id' }}
+    <div class="form-line full">
+      <div class="video">
+        {{> afQuickField name='video_id' }}
+      </div>
+      <div class="outcome">
+        <span class="label">Game outcome</span>
+        {{> afQuickField name='victory' }}
+      </div>
+    </div>
 
     <div class="form-line with-separators">
       <div class="player">
@@ -16,26 +24,22 @@
       </div>
     </div>
 
-    <div class="form-line">
+    <div class="form-line with-separators">
       {{> afFormGroup name='meta_information.specific.kda' }}
+      <span class="separator">-</span>
       {{> afQuickField name='duration' }}
+      <span class="separator">-</span>
       {{> afQuickField name='patch' }}
     </div>
 
     <div class="description">
-      {{> afQuickField name='description' }}
+      {{> afQuickField name='description' full=true theme='green' }}
     </div>
 
-    <div class="outcome">
-      <span class="label">Game outcome</span>
-      {{> afQuickField name='victory' }}
-    </div>
-
-    <div class="replay-upload">
+    <div class="replay-upload large-input">
       {{ #if replay.replay_file }}
         {{ replay.replay_file }}
       {{ /if }}
-      {{> afQuickField name='replay_file' value='' template="uploader" }}
       {{> afQuickField name='replay_file' value='' }}
     </div>
   {{ /autoForm }}

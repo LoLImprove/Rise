@@ -1,0 +1,10 @@
+<template name="afNiceCheckbox">
+  <div class="squared-checkbox">
+    <input type="checkbox" value="true" {{atts}}>
+    <label for="{{ atts.id }}">
+      <span class="label-text">
+        {{afFieldLabelText name=this.name}}
+      </span>
+    </label>
+  </div>
+</template>

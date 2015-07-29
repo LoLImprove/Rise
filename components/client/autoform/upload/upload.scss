@@ -1,0 +1,57 @@
+@import 'core/base';
+@import 'rise/base';
+
+.large-input .NFI-wrapper {
+    max-width: 100%;
+
+    .NFI-button {
+        width: 20%;
+    }
+    .NFI-filename {
+        width: 80%;
+    }
+}
+
+.NFI-wrapper {
+    border: solid $light-green 1px;
+    background: #fff;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    //box-shadow: 0 0 0 2px #fff;
+
+    &:hover {
+        border: solid #069 1px;
+    }
+
+    .NFI-button {
+        height: 40px;
+        line-height: 40px;
+        background: $light-green;
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+        color: #fff;
+        width: 30%;
+        font-weight: 700;
+
+        &:hover {
+            background: $green;
+        }
+    }
+
+    .NFI-filename {
+        width: 70%;
+        height: 40px;
+        margin: 0;
+        padding: 0 5px 0 14px !important;
+        display: block;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        border: none;
+    }
+}

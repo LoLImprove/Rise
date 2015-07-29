@@ -1,0 +1,24 @@
+<template name="AfSmartarea">
+  <div class="smart-area {{ active }} {{ theme }} {{ full }}">
+    <div class="area-field">
+      <textarea></textarea>
+      <span class="comment-submit feather">
+        <i class="icon icon-big-feather"></i>
+      </span>
+    </div>
+
+    {{ #if active }}
+      <ul class="help">
+        <li>
+          <span class="icon-text help-title">Help :</span><i class="icon icon-shift-enter-{{ theme }}"></i><span class="icon-text">New line</span>
+        </li>
+        <li>
+          <i class="icon icon-enter-{{ theme }}"></i><span class="icon-text">Submit</span>
+        </li>
+        <li>
+          <i class="icon icon-info-{{ theme }}"></i><span class="icon-text">Formatting help</span>
+        </li>
+      </ul>
+    {{ /if }}
+  </div> <!-- Div#Smartarea -->
+</template>

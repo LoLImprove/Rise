@@ -22,7 +22,8 @@ Template.ReplayNew.events({
 
 AutoForm.hooks({
   'replay-new-form': {
-    formToDoc: function(doc, ss, formId) {
+    formToDoc: function(doc, ss) {
+      var formId = this.formId;
       doc.user_id = Meteor.userId();
 
       return doc;
@@ -31,7 +32,8 @@ AutoForm.hooks({
     // Messiest method on earth
     before: {
       // Before insert we upload files to AWS if the document is valid
-      insert: function(doc, template) {
+      insert: function(doc) {
+        var template = this.template;
         var input = template.$('input[name="replay_file"]');
 
         // For validation to pass

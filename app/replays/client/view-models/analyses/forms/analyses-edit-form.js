@@ -13,19 +13,19 @@ AutoForm.hooks({
       return false;
     },
 
-    formToDoc: function(doc, ss, formId) {
+    formToDoc: function(doc) {
       doc.user_id = Meteor.userId();
       doc.replay_id = Session.get('replay:current-instance')._id;
 
       return doc;
     },
 
-    onSuccess: function(operation, id, template) {
+    onSuccess: function(operation, id) {
       Session.set('replay:edit-current-analysis', false);
       // TODO: Do something ? Animate maybe ?
     },
 
-    onError: function(operation, error, template) {
+    onError: function(operation, error) {
       console.error('Trying to create a new analysis but there was an error on ' + operation + ':', error);
     },
   }

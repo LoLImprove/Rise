@@ -33,19 +33,25 @@
 .icon-report { @include icon("report"); }
 .icon-thumb { @include icon("thumb"); }
 .icon-big-feather { @include icon("big-feather"); width: 30px; height: 30px; }
+
 .icon-double-arrow { @include icon("double-arrow"); }
 .icon-double-arrow.up { @include transform(scale(0.9) rotate(-180deg)); }
 .icon-double-arrow.right { float: right; }
-.icon-enter { @include icon("enter"); }
+
+.icon-enter-blue { @include icon("enter"); }
+.icon-enter-green { @include icon("enter-green"); }
+.icon-shift-enter-blue { @include icon("shift-enter"); width: 66px; height: 22px; }
+.icon-shift-enter-green { @include icon("shift-enter-green"); width: 66px; height: 22px; }
+.icon-info { @include icon("info"); }
 .icon-info-blue { @include icon("info-blue"); }
+.icon-info-green { @include icon("info-green"); }
+
 .icon-pin { @include icon("pin"); }
-.icon-shift-enter { @include icon("shift-enter"); width: 66px; height: 22px; }
 .icon-time { @include icon("time"); }
 .icon-big-thumb { @include icon("big-thumb"); width: 36px; height: 43px; }
 .icon-big-thumb:hover, icon-big-thumb.active { @include icon("big-thumb-active"); width: 36px; height: 43px; }
 .icon-download { @include icon("download-green"); }
 .icon-feather { @include icon("feather"); }
-.icon-info { @include icon("info"); }
 .icon-more { @include icon("more"); width: 42px; height: 18px; }
 .icon-report-green { @include icon("report-green"); }
 .icon-thumb-green { @include icon("thumb-green"); }

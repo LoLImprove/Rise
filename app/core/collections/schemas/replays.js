@@ -30,7 +30,7 @@ Rise.Schemas.Replays = new SimpleSchema({
     label: "Description",
     autoform: {
       afFieldInput: {
-        type: "textarea"
+        type: "smartarea"
       }
     }
   },

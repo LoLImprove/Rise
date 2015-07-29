@@ -28,8 +28,11 @@ Template.ReplayEdit.events({
 AutoForm.hooks({
   'replay-edit-form': {
     before: {
-      update: function(docId, modifier, template) {
+      update: function(modifier) {
+        var docId = this.docId;
+        var template = this.template;
         var input = template.$('input[name="replay_file"]');
+
         input.parent('.form-group').removeClass('has-error');
         input.siblings('.help-block').html('');
 
