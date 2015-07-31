@@ -1,39 +1,40 @@
 <template name="ReplayForm">
   {{ #autoForm collection="Rise.Replays" id=formId doc=replay type=type}}
-    <div class="form-line full">
+    <div class="form-line two with-separators">
       <div class="video">
         {{> afQuickField name='video_id' }}
       </div>
+      <span class="separator"></span>
       <div class="outcome">
         <span class="label">Game outcome</span>
         {{> afQuickField name='victory' }}
       </div>
     </div>
 
-    <div class="form-line with-separators">
+    <div class="form-line two with-separators">
       <div class="player">
-        {{> afFormGroup name='meta_information.general.champion' type='typeahead' options=gameCharacters }}
+        {{> afAutocomplete name='meta_information.general.champion' options=gameCharacters }}
       </div>
       <span class="separator">VS</span>
       <div class="matchup">
-        {{> afFormGroup name='meta_information.general.matchup' type='typeahead' options=gameCharacters }}
-      </div>
-      <span class="separator">-</span>
-      <div class="lane">
-        {{> afFormGroup name='meta_information.general.lane' }}
+        {{> afAutocomplete name='meta_information.general.matchup' options=gameCharacters }}
       </div>
     </div>
 
-    <div class="form-line with-separators">
+    <div class="form-line four with-separators">
+      <div class="lane">
+        {{> afAutocomplete name='meta_information.general.lane' options=gameLanes }}
+      </div>
+      <span class="separator"></span>
       {{> afFormGroup name='meta_information.specific.kda' }}
-      <span class="separator">-</span>
+      <span class="separator"></span>
       {{> afQuickField name='duration' }}
-      <span class="separator">-</span>
+      <span class="separator"></span>
       {{> afQuickField name='patch' }}
     </div>
 
     <div class="description">
-      {{> afQuickField name='description' full=true theme='green' }}
+      {{> afQuickField name='description' full=true theme='green' submit=false }}
     </div>
 
     <div class="replay-upload large-input">

@@ -1,0 +1,11 @@
+<template name="tooltip">
+  {{ #if state$show }}
+    <div class="component-tooltip">
+      <div class="component-tooltip-container">
+        <div class="component-tooltip-content">
+          {{> flowContentBlock }}
+        </div>
+      </div>
+    </div>
+  {{ /if }}
+</template>

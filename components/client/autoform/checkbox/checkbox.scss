@@ -23,12 +23,20 @@
     box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
 
 
+    background: -webkit-linear-gradient(top, #FFFFFF 0%, #F4F4F4 100%);
+    background: -moz-linear-gradient(top, #FFFFFF 0%, #F4F4F4 100%);
+    background: -o-linear-gradient(top, #FFFFFF 0%, #F4F4F4 100%);
+    background: -ms-linear-gradient(top, #FFFFFF 0%, #F4F4F4 100%);
+    background: linear-gradient(top, #FFFFFF 0%, #F4F4F4 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#F4F4F4',GradientType=0 );
+    /* -- Grey --
     background: -webkit-linear-gradient(top, #DCDCDC 0%, #C4C5C7 100%);
     background: -moz-linear-gradient(top, #DCDCDC 0%, #C4C5C7 100%);
     background: -o-linear-gradient(top, #DCDCDC 0%, #C4C5C7 100%);
     background: -ms-linear-gradient(top, #DCDCDC 0%, #C4C5C7 100%);
     background: linear-gradient(top, #DCDCDC 0%, #C4C5C7 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#DCDCDC', endColorstr='#C4C5C7',GradientType=0 );
+    */
 
     .label-text {
         padding-left: 35px;

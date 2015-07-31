@@ -20,6 +20,10 @@
     .form-line, .form-group {
         @include span-columns(12);
         margin-bottom: 0;
+
+        label {
+            padding-left: 2px;
+        }
     }
 
     .form-line {
@@ -35,15 +39,41 @@
                 @include span-columns(3.5 of 12);
                 @include omega();
             }
-
             .separator {
                 @include span-columns(1 of 12);
+                @include omega();
+
                 padding-top: 35px;
                 text-align: center;
             }
 
+            &.two .form-group {
+                float: left;
+                width: 45%;
+            }
+            &.two > div:last-child .form-group {
+                float: right;
+                margin-right: 0;
+            }
+
+            &.two .separator {
+                float: left;
+                width: 10%;
+                margin: 0;
+            }
+
+            &.four .form-group {
+                @include span-columns(2.38);
+                @include omega();
+            }
+
+            &.four .separator {
+                @include span-columns(1.1 of 12);
+            }
+
+
             input {
-                width: 92.5%;
+                //width: 92.5%;
             }
         }
 
@@ -53,12 +83,10 @@
         margin: 8px 0 12px 0;
     }
 
-    .video {
-        @include span-columns(7.5 of 12);
-    }
     .outcome {
-        @include span-columns(3.5 of 12);
-        margin-left: 8.1%;
+        float: left;
+        width: 45%;
+//        margin-left: 8.1%;
         margin-bottom: 12px;
 
         .label {
@@ -66,7 +94,7 @@
             @include span-columns(12 of 12);
         }
         .form-group {
-            @include span-columns(12 of 12);
+            float: left !important;
             margin-top: 12px;
 
             .checkbox {
