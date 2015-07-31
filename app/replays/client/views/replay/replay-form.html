@@ -2,12 +2,16 @@
   {{ #autoForm collection="Rise.Replays" id=formId doc=replay type=type}}
     <div class="form-line two with-separators">
       <div class="video">
-        {{> afQuickField name='video_id' }}
+        {{> afQuickField name='video_id' label="Video URL" class="video-id"}}
+        {{> render component="spinner" while=checkingVideoExists}}
+        {{> render component="icon" icon="tick" explanation="Your video link is valid ;)" when=videoValid }}
+        {{> render component="icon" icon="cross" explanation="Video could not be found :(" when=videoNotValid }}
       </div>
       <span class="separator"></span>
       <div class="outcome">
         <span class="label">Game outcome</span>
-        {{> afQuickField name='victory' }}
+        {{> render component="switch" on="Victory" off="Defeat" }}
+        <!--{{> afQuickField name='victory' }}-->
       </div>
     </div>
 
@@ -23,14 +27,14 @@
 
     <div class="form-line four with-separators">
       <div class="lane">
-        {{> afAutocomplete name='meta_information.general.lane' options=gameLanes }}
+        {{> afAutocomplete name='meta_information.general.lane' options=gameLanes placeholder="Mid" }}
       </div>
       <span class="separator"></span>
-      {{> afFormGroup name='meta_information.specific.kda' }}
+      {{> afFormGroup name='meta_information.specific.kda' placeholder="4/2/13" }}
       <span class="separator"></span>
-      {{> afQuickField name='duration' }}
+      {{> afQuickField name='duration' placeholder="23:14" }}
       <span class="separator"></span>
-      {{> afQuickField name='patch' }}
+      {{> afQuickField name='patch' placeholder="5.14" }}
     </div>
 
     <div class="description">

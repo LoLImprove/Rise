@@ -1,6 +1,14 @@
 @import 'core/base';
 @import 'rise/base';
 
+/* SUMMARY (use search ;))
+
+   = TOOLTIP
+   = SIZES (default, full)
+   = POSITIONS (left, right, bottom, top)
+*/
+
+/* = TOOLTIP */
 .component-tooltip {
     $base-border-color: gainsboro !default;
     $base-border-radius: 3px !default;
@@ -66,6 +74,37 @@
     }
 }
 
+
+/* = SIZES */
+.default.component-tooltip {
+    width: inherit;
+    min-width: 185px;
+}
+
+.full.component-tooltip {
+    width: 100%;
+    .component-tooltip-container {
+        width: 100%;
+    }
+}
+
+
+/* = POSITIONS */
+.right.component-tooltip {
+    bottom: 0;
+    /* right: -35px; */
+    top: -19px;
+    font-size: 16px;
+    left: 2em;
+
+    .component-tooltip-content:before {
+        left: -15px;
+        transform: rotate(270deg);
+        top: 3px;
+    }
+}
+
+/* = TABLE */
 .component-tooltip-content table {
     @include header-font(1em);
     margin: 0;

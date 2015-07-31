@@ -1,0 +1,14 @@
+<template name="icon">
+  {{ #if state$show }}
+    <span class="icon-component">
+      <span class="{{ state$iconName }}">{{ state$icon }}</span>
+
+      {{ #if state$explanation }}
+        {{ #render component="tooltip" when=state$showHelp position="right" }}
+          <div class="explanation">{{ state$explanation }}</div>
+        {{ /render }}
+      {{ /if }}
+    </span>
+  {{ /if }}
+
+</template>

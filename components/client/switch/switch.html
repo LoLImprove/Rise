@@ -1,0 +1,11 @@
+<template name="switch">
+  <div class="switch-component switch-green">
+    <input type="radio" class="switch-input" name="{{ state$name }}" value="{{ state$on }}" id="{{ state$onId }}">
+    <label for="{{ state$onId }}" class="switch-label switch-label-off">{{ state$on }}</label>
+
+    <input type="radio" class="switch-input" name="{{ state$name }}" value="{{ state$off }}" id="{{ state$offId }}" checked>
+    <label for="{{ state$offId }}" class="switch-label switch-label-on">{{ state$off }}</label>
+
+    <span class="switch-selection"></span>
+  </div>
+</template>

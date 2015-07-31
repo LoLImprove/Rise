@@ -79,6 +79,37 @@
 
     }
 
+    .video {
+        position: relative;
+        float: left;
+        width: 45%;
+        input {
+            padding-right: 2.45em;
+        }
+
+        .form-group {
+            width: 100% !important;
+        }
+
+        .icon-component {
+            position: absolute;
+            bottom: 10.5%;
+            right: 8px;
+        }
+
+        .spinner-loader {
+            left: initial;
+            top: initial;
+            bottom: 20%;
+            right: 5px;
+            border-width: 0.35em;
+
+            &, &:after {
+                width: 2.5em;
+                height: 2.5em;
+            }
+        }
+    }
     .description .form-group {
         margin: 8px 0 12px 0;
     }
@@ -92,6 +123,7 @@
         .label {
             font-weight: bold;
             @include span-columns(12 of 12);
+            margin-bottom: 9px;
         }
         .form-group {
             float: left !important;

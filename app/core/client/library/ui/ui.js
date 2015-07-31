@@ -59,7 +59,8 @@ Rise.UI.getParentData = (function(level) {
 Rise.UI.lookup = (function(key, opts, curLevel) {
   var opts     = opts || {};
   var curLevel = curLevel || 0;
-  var lookUpon = _.isNull(Template.instance()) ? Template.instance() : Template.instance().parent(curLevel);
+  var base     = opts.base || Template.instance();
+  var lookUpon = _.isNull(base) ? base : base.parent(curLevel);
 
   opts.maxLevel = (opts.maxLevel === 0) ? 0 : (opts.maxLevel || 15); // cuz 0 is falsy
 

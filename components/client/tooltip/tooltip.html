@@ -1,6 +1,6 @@
 <template name="tooltip">
   {{ #if state$show }}
-    <div class="component-tooltip">
+    <div class="component-tooltip {{state$position}} {{state$size}}">
       <div class="component-tooltip-container">
         <div class="component-tooltip-content">
           {{> flowContentBlock }}
