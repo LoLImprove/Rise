@@ -5,5 +5,5 @@ Superseder.Schema.registerOverride('ReplaysGeneralMetum', new SimpleSchema({
 }));
 
 Superseder.Schema.registerOverride('ReplaysSpecificMetum', new SimpleSchema({
-  kda:   { type: String, label: "KDA" },
+  kda:   { type: String, label: "KDA", regEx: /^(\d{1,3}\/){2}\d{1,3}/ },
 }));

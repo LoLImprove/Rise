@@ -8,7 +8,7 @@ Rise.Schemas.ReplaysGeneralMetum = new SimpleSchema({
 Superseder.Schema.override(Rise.Schemas, 'ReplaysGeneralMetum');
 
 Rise.Schemas.ReplaysSpecificMetum = new SimpleSchema({
-  kda:   { type: String, label: "KDA" },
+  kda:   { type: String, label: "KDA", regEx: /^(\d{1,3}\/){2}\d{1,3}/ },
 });
 Superseder.Schema.override(Rise.Schemas, 'ReplaysSpecificMetum');
 
@@ -34,7 +34,7 @@ Rise.Schemas.Replays = new SimpleSchema({
       }
     }
   },
-  duration:     { type: String, label: "Duration" },
+  duration:     { type: String, label: "Duration", regEx: /^\d{1,2}:\d{1,2}/ },
   patch:        { type: String, label: "Patch", optional: true },
   replay_file:  { type: String, label: "Replay file",   optional: true, autoform: {
     afFieldInput: {

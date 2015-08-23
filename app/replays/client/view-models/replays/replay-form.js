@@ -2,8 +2,8 @@ Template.ReplayForm.hooks({
   created: function() {
     this.checkingVideoExists = new ReactiveVar(false);
     this.currentVideoID      = new ReactiveVar(undefined);
-    this.videoValid          = new ReactiveVar(false); // I know but only
-    this.videoNotValid       = new ReactiveVar(false); // because it's easier
+    this.videoValid          = new ReactiveVar(false); // I know ! But only
+    this.videoNotValid       = new ReactiveVar(false); // because it's easier. Pls.
   }
 });
 
@@ -80,11 +80,20 @@ Template.ReplayForm.events({
 AutoForm.hooks({
   'replay-new-form': {
     formToDoc: function(doc) {
-      console.log('formtodoc', doc);
+      doc.victory = doc.victory.toBool();
       doc.video_id = Youtube.Tools.getID(doc.video_id);
       Rise.UI.lookup('currentVideoID', { base: this.template }).set(doc.video_id);
 
       return doc;
+    },
+    before: {
+      insert: function(doc) {
+        if (Rise.UI.lookup('videoValid', { base: this.template }).get()) {
+          return doc;
+        } else {
+          return false;
+        }
+      }
     }
   }
 });
