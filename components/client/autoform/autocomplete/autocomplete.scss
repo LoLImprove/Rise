@@ -1,0 +1,34 @@
+.af-autocomplete-container {
+    .form-group {
+        position: relative;
+
+        input {
+            padding-left: 38px;
+        }
+    }
+
+    .matching-picture {
+        position: absolute;
+        top: 31px;
+        left: 0;
+
+        -webkit-box-shadow: inset 10px 10px 5px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: inset 10px 10px 5px 0px rgba(0,0,0,0.75);
+        box-shadow: inset 10px 10px 5px 0px rgba(0,0,0,0.75);
+
+        img {
+            position: relative;
+            z-index: -1;
+
+            height: 32px;
+            width: 32px;
+
+            -webkit-border-top-left-radius: 3px;
+            -webkit-border-bottom-left-radius: 3px;
+            -moz-border-radius-topleft: 3px;
+            -moz-border-radius-bottomleft: 3px;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+    }
+}

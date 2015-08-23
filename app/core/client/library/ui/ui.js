@@ -51,7 +51,7 @@ Rise.UI.getParentData = (function(level) {
  *
  *   Rise.UI.lookup('replay_id', { in: 'data' })
  *   Rise.UI.lookup('timeline_entries.0.content', { in: 'data' })
- *   Rise.UI.lookup('timeline_entries.0.content', { maxLvel: 1 }) // Second arg is the maximum level of lookup in the ancestor chain. 0 will lookup only in the current template data.
+ *   Rise.UI.lookup('timeline_entries.0.content', { maxLevel: 1 }) // Second arg is the maximum level of lookup in the ancestor chain. 0 will lookup only in the current template data.
  *
  * Returns the value or `undefined`
  *

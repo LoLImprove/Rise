@@ -1,7 +1,7 @@
 <template name="AfSmartarea">
   <div class="smart-area {{ active }} {{ theme }} {{ full }}">
     <div class="area-field">
-      <textarea id="smart-area-textarea"></textarea>
+      <textarea class="smart-area-textarea" {{this.atts}}>{{this.value}}</textarea>
       {{ #if submit }}
         <span class="comment-submit feather">
           <i class="icon icon-big-feather"></i>

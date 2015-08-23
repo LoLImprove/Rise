@@ -15,6 +15,10 @@ Template.ReplayForm.helpers({
       return 'replay-new-form';
     }
   },
+  // Just used to pass over the method to Autoform Autocomplete
+  characterPicture: function() {
+    return Rise.Game.characterPicture;
+  },
   replay: function() {
     return this.replay;
   },
@@ -76,6 +80,7 @@ Template.ReplayForm.events({
 AutoForm.hooks({
   'replay-new-form': {
     formToDoc: function(doc) {
+      console.log('formtodoc', doc);
       doc.video_id = Youtube.Tools.getID(doc.video_id);
       Rise.UI.lookup('currentVideoID', { base: this.template }).set(doc.video_id);
 

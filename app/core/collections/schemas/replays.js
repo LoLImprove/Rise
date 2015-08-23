@@ -24,7 +24,7 @@ Rise.Schemas.Replays = new SimpleSchema({
 
   meta_information: { type: Rise.Schemas.ReplaysMetum },
 
-  victory:      { type: Boolean, label: "Victory" },
+  victory:      { type: Boolean, label: "Victory", defaultValue: false },
   description:  {
     type: String,
     label: "Description",

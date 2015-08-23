@@ -10,18 +10,19 @@
       <span class="separator"></span>
       <div class="outcome">
         <span class="label">Game outcome</span>
-        {{> render component="switch" on="Victory" off="Defeat" }}
-        <!--{{> afQuickField name='victory' }}-->
+        {{# render component="switch" on="Victory" off="Defeat" }}
+          {{> afQuickField name='victory' }}
+        {{ /render }}
       </div>
     </div>
 
     <div class="form-line two with-separators">
       <div class="player">
-        {{> afAutocomplete name='meta_information.general.champion' options=gameCharacters }}
+        {{> afAutocomplete name='meta_information.general.champion' options=gameCharacters withPictures=true pictureHandler="Rise.Game.characterPicture" }}
       </div>
       <span class="separator">VS</span>
       <div class="matchup">
-        {{> afAutocomplete name='meta_information.general.matchup' options=gameCharacters }}
+        {{> afAutocomplete name='meta_information.general.matchup' options=gameCharacters withPictures=true pictureHandler="Rise.Game.characterPicture" }}
       </div>
     </div>
 

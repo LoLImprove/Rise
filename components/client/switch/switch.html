@@ -7,5 +7,11 @@
     <label for="{{ state$offId }}" class="switch-label switch-label-on">{{ state$off }}</label>
 
     <span class="switch-selection"></span>
+
+    {{# unless state$hasName }}
+      <div class="switch-given-input hide">
+        {{> flowContentBlock }}
+      </div>
+    {{ /unless }}
   </div>
 </template>

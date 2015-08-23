@@ -7,7 +7,11 @@ Rise.Game = {
     return '/packages/' + this.pkgName + '/assets/images/' + img;
   },
   characterPicture: function(character) {
-    var character = _.str.capitalize(character);
+    if (_.isString(character)) {
+      var character = _.str.capitalize(character);
+    } else {
+      var character = "";
+    }
     var picName = _.contains(this.Characters, character) ? character : 'Unknown';
 
     return this.assetsPathFor(picName + '.png');

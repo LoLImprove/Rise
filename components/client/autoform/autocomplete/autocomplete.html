@@ -1,3 +1,11 @@
 <template name="afAutocomplete">
-  {{> afFormGroup name=name type='typeahead' options=options typeaheadOptions=typeaheadOptions placeholder=placeholder class=class }}
+  <div class="af-autocomplete-container">
+    {{# afFormGroup template="nestedGroup" name=name type='typeahead' options=options typeaheadOptions=typeaheadOptions placeholder=placeholder class=class }}
+      {{ #if withPictures }}
+        <span class="matching-picture">
+        <img src="{{ picturePath }}" alt="{{ currentChoice }}">
+      </span>
+      {{ /if }}
+    {{ /afFormGroup }}
+  </div>
 </template>

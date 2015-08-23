@@ -11,7 +11,11 @@ Template.ReplayView.hooks({
 Template.ReplayView.helpers({
   victory: function() {
     var victory = Rise.UI.get('victory');
-    return victory ? 'victory' : 'defeat';
+    if (!_.isNull(victory)) {
+      return victory.toBool() ? 'victory' : 'defeat';
+    } else {
+      return false;
+    }
   },
   video_id: function() {
     return Rise.UI.get('video_id');

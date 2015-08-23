@@ -54,7 +54,7 @@ Rise.Runtime = {
         chain: fullChain,
         context: context,
         get: function() { return this.chain; },
-        call: function() { return this.chain.call(this.context); }
+        call: function() { return this.chain.apply(this.context, arguments); }
       }
     };
   },
