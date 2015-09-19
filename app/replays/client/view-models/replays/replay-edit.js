@@ -22,6 +22,7 @@ Template.ReplayEdit.events({
     var currentValues = Session.get('replay:current-instance'),
         newValues     = AutoForm.getFormValues('replay-edit-form').insertDoc;
     Session.set('replay:current-instance', _.extend(currentValues, newValues));
+    console.log('bla');
   }
 });
 
@@ -33,6 +34,9 @@ AutoForm.hooks({
         var template = this.template;
         var input = template.$('input[name="replay_file"]');
 
+        // Ensure victory is a boolean
+        modifier.$set.victory = modifier.$set.victory.toBool();
+
         input.parent('.form-group').removeClass('has-error');
         input.siblings('.help-block').html('');
 
@@ -40,6 +44,7 @@ AutoForm.hooks({
             doc  = Rise.Replays.findOne(docId),
             curFile = doc.replay_file,
             files   = template.$("input[type=file]")[0].files;
+
 
         if (files.length > 0) {
           var maybeAnError = Rise.Files.upload(files, { dir: "/replays", allow: "applications" }, function(error, result) {

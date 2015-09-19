@@ -29,6 +29,9 @@ Template.afAutocomplete.helpers({
   currentChoice: function() {
     return Rise.UI.lookup("topSuggestion").get();
   },
+  hasPictureClass: function() {
+    return this.withPictures ? 'has-picture' : '' ;
+  },
   picturePath: function() {
     var handler = Rise.UI.lookup('source'),
         choice  = Rise.UI.lookup("topSuggestion").get();

@@ -1,5 +1,5 @@
 <template name="afAutocomplete">
-  <div class="af-autocomplete-container">
+  <div class="af-autocomplete-container {{ hasPictureClass }}">
     {{# afFormGroup template="nestedGroup" name=name type='typeahead' options=options typeaheadOptions=typeaheadOptions placeholder=placeholder class=class }}
       {{ #if withPictures }}
         <span class="matching-picture">

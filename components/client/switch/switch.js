@@ -26,6 +26,16 @@ var switchComponent = FlowComponents.define('switch', function(props) {
 
   this.off = props.off || "off";
   this.offId = Random.hexString(24);
+
+  this.default = props.default || "off";
+
+  this.onRendered(function(a, b, c) {
+    // Hackish
+    var input = this._view._domrange.$('.switch-given-input input');
+    var value = this.default == "on";
+    input.prop('checked', value);
+    input.val(value);
+  });
 });
 
 Template['switch'].events({

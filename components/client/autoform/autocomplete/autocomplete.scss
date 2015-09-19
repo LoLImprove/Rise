@@ -1,10 +1,6 @@
 .af-autocomplete-container {
     .form-group {
         position: relative;
-
-        input {
-            padding-left: 38px;
-        }
     }
 
     .matching-picture {
@@ -22,6 +18,14 @@
             -moz-border-radius-bottomleft: 3px;
             border-top-left-radius: 3px;
             border-bottom-left-radius: 3px;
+        }
+    }
+}
+
+.af-autocomplete-container.has-picture {
+    .form-group {
+        input {
+            padding-left: 38px;
         }
     }
 }

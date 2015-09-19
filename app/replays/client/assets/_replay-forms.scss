@@ -6,7 +6,7 @@
 
 /* = MODAL */
 
-#new-replay-modal {
+#new-replay-modal, #edit-replay-modal {
     .modal-footer {
         border: none;
         padding-top: 0;
@@ -14,7 +14,7 @@
 }
 
 /* = FORM */
-#replay-new-form {
+#replay-new-form, #replay-edit-form {
     @include outer-container;
 
     .form-line, .form-group {
