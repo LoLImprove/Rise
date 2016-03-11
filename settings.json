@@ -1,0 +1,8 @@
+{
+  "public" : {
+    "env" : {
+      "development": true,
+      "production": false
+    }
+  }
+}
