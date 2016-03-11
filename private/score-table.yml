@@ -1,9 +1,0 @@
-score-table:
-  user:registration: 500
-  analysis:insert: 100
-  replay:insert: 20
-  comment:insert: 10
-  voted:upon: 4
-  voted:down: -4
-  vote:up: 2
-  vote:down: -2

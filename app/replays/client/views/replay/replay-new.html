@@ -1,7 +1,0 @@
-<template name="ReplayNew">
-  {{ #modal title="Post a new replay" id="new-replay-modal" canClose=false validateButton="Save" cancelButton="Cancel" onValidate=submitForm onCancel="Router.back"}}
-    {{ > ReplayForm type="insert" }}
-  {{ /modal }}
-
-  {{ > ReplayView newReplay }}
-</template>
