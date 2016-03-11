@@ -1,21 +1,24 @@
 Package.describe({
-  name: "league-of-legends",
-  summary: "Rise specific assets and overrides for League Of Legends",
-  version: "0.0.2",
+  name: "rise:core",
+  summary: "Rise core classes and styles",
+  version: "0.0.1",
 });
 
 /* This defines your actual package */
 Package.onUse(function (api) {
-  api.use(['templating', 'aldeed:simple-schema', 'rise-superseder']);
+  api.use(['fourseven:scss@3.4.0-beta1', 'wolves:bourbon@3.1.0', 'wolves:neat@3.1.0']);
   api.versionsFrom('METEOR@1.2');
 
+  api.addFiles(filesInFolder("Core", "style"), 'client', {isImport: true})
+
+  /*
   api.addFiles(['lib/platform.js'], ['client', 'server']);
   api.addFiles(['lib/game.js'], ['client', 'server']);
   api.addFiles(filesInFolder("LeagueOfLegends","collections"), ['client', 'server']);
   api.addAssets(filesInFolder("LeagueOfLegends","assets"), 'client');
   api.addFiles(filesInFolder("LeagueOfLegends","replays","client"), 'client');
 
-  api.export('Rise');
+  api.export('Rise');*/
 });
 
 var filesInFolder = function(packageName,folder){
