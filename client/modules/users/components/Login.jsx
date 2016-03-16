@@ -1,24 +1,33 @@
 import React from 'react';
 
 const Login = React.createClass({
+    componentWillReceiveProps: function(props) {
+        if (props.didSubmit) {
+            this.login();
+            this.props.submitFinished();
+        }
+    },
+
 	  login(e) {
-		    e.preventDefault();
+        if (e) {
+		        e.preventDefault();
+        }
 
 		    const {loginUser} = this.props;
-		    const {email, password} = this.refs;
+		    const {username, password} = this.refs;
 
-		    loginUser(email.value, password.value);
-
-		    email.value = '';
-		    password.value = '';
+		    loginUser(username.value, password.value, function(error) {
+		        username.value = '';
+		        password.value = '';
+        });
 	  },
 
 	  render() {
 		    const {error} = this.props;
 		    return (
 			      <div>
-				        {error ? <p style={{color: 'red'}}>{error}</p> : null}
-				        <form id="user-auth-form" className="login-form">
+				        {error ? <div className="alert alert-warning">{error}</div> : null}
+				        <form id="user-auth-form" className="login-form" ref="forminside" >
                     <fieldset>
                         <div className="form-group">
                             <label className="control-label" htmlFor="username">Username Or Email</label>
@@ -31,7 +40,6 @@ const Login = React.createClass({
                             <span className="help-block"></span>
                         </div>
                     </fieldset>
-					          <button onClick={this.login} type="submit">Login</button>
 				        </form>
 			      </div>
 		    );

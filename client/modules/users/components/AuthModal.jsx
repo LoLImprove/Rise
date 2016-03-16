@@ -5,13 +5,12 @@ import LoginForm from '../containers/Login.js';
 import ForgotPassword from '../containers/Login.js';
 
 const AuthModal = React.createClass({
-
     getInitialState(props) {
-        return {
-            showModal: false,
-            forgotPassword: false,
-            register: false
-        };
+        return { showModal: false, forgotPassword: false, register: false, didSubmit: false };
+    },
+
+    forgotPassword() {
+        this.setState({ register: false, forgotPassword: true });
     },
 
     toggleRegister() {
@@ -26,13 +25,21 @@ const AuthModal = React.createClass({
         this.setState({ showModal: true });
     },
 
+    submitAuthForm() {
+        this.setState({ didSubmit: true });
+    },
+
+    submitFinished() {
+        this.setState({ didSubmit: false});
+    },
+
     authComponent() {
         if (this.state.forgotPassword) {
-            return (<ForgotPassword />);
+            return (<ForgotPassword didSubmit={this.state.didSubmit} submitFinished={this.submitFinished} />);
         } else if (this.state.register) {
-            return (<RegisterForm />);
+            return (<RegisterForm didSubmit={this.state.didSubmit} submitFinished={this.submitFinished} />);
         } else {
-            return (<LoginForm />);
+            return (<LoginForm didSubmit={this.state.didSubmit} submitFinished={this.submitFinished} />);
         }
     },
 
@@ -51,8 +58,9 @@ const AuthModal = React.createClass({
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        {this.authComponent()}
-
+                        <div ref="auth-form-2">
+                            {this.authComponent()}
+                        </div>
                         <div className="user-auth-tools">
                             <a href="#" onClick={this.toggleRegister} className="toggle-registration">
                                 {this.state.register ? 'Already have an account ? Sign in !' : "Don't have an account ? Create one !" }
@@ -64,7 +72,7 @@ const AuthModal = React.createClass({
 
                     </Modal.Body>
                     <Modal.Footer>
-                        <button className="validate-btn btn btn-primary">Login</button>
+                        <button className="validate-btn btn btn-primary" onClick={this.submitAuthForm}>Login</button>
                         <button className="cancel-btn btn btn-default" onClick={this.close}>Close</button>
                     </Modal.Footer>
                 </Modal>

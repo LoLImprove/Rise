@@ -1,4 +1,5 @@
 import * as Collections from '/lib/collections';
+import {Flash} from '/client/modules/core/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
 import {ReactiveDict} from 'meteor/reactive-dict';
@@ -9,6 +10,7 @@ export default function () {
     Meteor,
     FlowRouter,
     Collections,
+    Flash,
     LocalState: new ReactiveDict(),
     Tracker
   };

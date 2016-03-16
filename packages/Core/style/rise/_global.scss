@@ -1,5 +1,6 @@
 body {
     @include default-font;
+    font-size: 0.9em; // Scaled down
 }
 
 .container {
@@ -19,7 +20,11 @@ a:hover {
 
 .alert {
     background: none;
-    padding: 0.83em 1em;
+    //padding: 0.83em 1em;
+    padding: 0.43em 1em;
+    border: none;
+    opacity: 0.9;
+
     .close {
         @include align-right;
         padding: 0;

@@ -17,19 +17,26 @@ export default {
     FlowRouter.go('/');
   },
 
-  login({Meteor, LocalState, FlowRouter}, email, password) {
+  login({Meteor, Flash, LocalState, FlowRouter}, email, password, callback) {
+    debugger;
     if (!email) {
-      return LocalState.set('LOGIN_ERROR', 'Email is required.');
+      return LocalState.set('LOGIN_ERROR', 'You need to provide an email');
     }
 
     if (!password) {
-      return LocalState.set('LOGIN_ERROR', 'Password is required.');
+      return LocalState.set('LOGIN_ERROR', 'You need to provide a password');
     }
 
     LocalState.set('LOGIN_ERROR', null);
 
-    Meteor.loginWithPassword(email, password);
-    FlowRouter.go('/');
+    Meteor.loginWithPassword(email, password, function(error) {
+      if (error) {
+        callback(error);
+        LocalState.set('LOGIN_ERROR', "The provided email and password do not match");
+      } else {
+        console.log('redirection', Flash);
+      }
+    });
   },
 
   clearErrors({LocalState}) {
