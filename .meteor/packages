@@ -4,8 +4,9 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
+# Base
 meteor-base             # Packages every Meteor app needs to have
-mobile-experience       # Packages for a great mobile UX
+# mobile-experience       # Packages for a great mobile UX
 mongo                   # The database Meteor supports right now
 blaze-html-templates    # Compile .html files into Meteor Blaze views
 session                 # Client-side reactive dictionary for your app
@@ -16,13 +17,26 @@ standard-minifiers      # JS/CSS minifiers run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
-kadira:flow-router-ssr
-reactive-dict
-audit-argument-checks
+# Libraries
 check
 random
 accounts-password
+reactive-dict
+
+kadira:flow-router-ssr
+audit-argument-checks
+ultimatejs:tracker-react
+
+## Models
 jagi:astronomy
 jagi:astronomy-slug-behavior
 jagi:astronomy-timestamp-behavior
 jagi:astronomy-validators
+
+## Styles
+fourseven:scss
+wolves:bourbon
+wolves:neat
+
+# Internals
+rise:core

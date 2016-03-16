@@ -10,7 +10,7 @@ class NewUser extends React.Component {
 				<form>
 					<input ref="email" type="email" placeholder="Email" />
 					<input ref="password" type="password" placeholder="Password" />
-					<button onClick={this.createUser.bind(this)} type="submit">Sign Up</button>
+					<button onClick={this.createUser} type="submit">Sign Up</button>
 				</form>
 			</div>
 		)

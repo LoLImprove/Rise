@@ -1,0 +1,109 @@
+/* # SUMMARY (Use search ;))
+
+   = HEADER
+     = NAVBAR
+       = MENU
+       = USER
+       = NOTIFICATIONS
+     = SUBNAV
+       = LOGO
+       = CALL TO ACTION
+*/
+
+// = HEADER
+.header {
+    @include header-font("normal");
+
+    // = NAVBAR
+    .navbar-wrapper {
+        background-color: $almost-black;
+        color: $almost-white;
+    };
+
+    .navbar {
+        @include outer-container;
+
+        a { color: inherit; }
+        a:hover { color: $light-green };
+
+        // = MENU
+        .menu {
+            @include list-inline("images/misc/black-separator.png");
+            @include span-columns(6 of 12);
+            @include header-font("xsmall");
+
+            margin: 5px 0 6px 0;
+
+            & > li:first-child {
+                padding-left: 0;
+            }
+        }
+
+        // = USER
+        .user {
+            @include list-inline("images/misc/black-separator.png");
+            @include span-columns(6 of 12);
+            @include align-right;
+            @include header-font("small", bold);
+
+            margin: 0;
+            padding-top: 3px;
+
+            text-transform: uppercase;
+
+            & > li {
+                padding: 0 15px;
+            }
+
+            img.user-picture {
+                width: 30px;
+                border-radius: 45px;
+                border: 1px solid $light-grey;
+                vertical-align: middle;
+                margin-right: 6px;
+            }
+            .user-name {
+                vertical-align: middle;
+            }
+
+            // = NOTIFICATIONS
+            // See module notifications -> lib/client/assets/notifications.scss
+        }
+    }
+
+
+    // = SUBNAV
+    .subnav-wrapper {
+        background-color: $almost-white;
+        color: $almost-black;
+    };
+
+    .subnav {
+        @include outer-container;
+
+        // = LOGO
+        .logo {
+            @include span-columns(4 of 12);
+            @include transform(rotate(-1deg));
+
+            padding-top: 13px;
+            padding-bottom: 3px;
+
+            img {
+                width: 55%;
+            }
+    }
+
+        // = CALL TO ACTION
+        .main-action {
+            @include span-columns(8 of 12);
+            @include align-right;
+
+            margin-top: 17px;
+
+            .post-replay {
+                @include button($light-green, $green);
+            }
+        }
+    }
+}

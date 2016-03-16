@@ -1,29 +1,41 @@
 import React from 'react';
 
-class Login extends React.Component {
-	render() {
-		const {error} = this.props;
-		return (
-			<div>
-				<h1>Login</h1>
-				{error ? <p style={{color: 'red'}}>{error}</p> : null}
-				<form>
-					<input ref="email" type="email" placeholder="Email" />
-					<input ref="password" type="password" placeholder="Password" />
-					<button onClick={this.login.bind(this)} type="submit">Login</button>
-				</form>
-			</div>
-		)
-	}
+const Login = React.createClass({
+	  login(e) {
+		    e.preventDefault();
 
-	login(e) {
-		e.preventDefault();
-		const {loginUser} = this.props;
-		const {email, password} = this.refs;
-		loginUser(email.value, password.value);
-		email.value = '';
-		password.value = '';
-	}
-}
+		    const {loginUser} = this.props;
+		    const {email, password} = this.refs;
+
+		    loginUser(email.value, password.value);
+
+		    email.value = '';
+		    password.value = '';
+	  },
+
+	  render() {
+		    const {error} = this.props;
+		    return (
+			      <div>
+				        {error ? <p style={{color: 'red'}}>{error}</p> : null}
+				        <form id="user-auth-form" className="login-form">
+                    <fieldset>
+                        <div className="form-group">
+                            <label className="control-label" htmlFor="username">Username Or Email</label>
+					                  <input ref="username" type="text" id="username" className="form-control" required="required" />
+                            <span className="help-block"></span>
+                        </div>
+                        <div className="form-group">
+                            <label className="control-label" htmlFor="password">Password</label>
+					                  <input ref="password" type="password" id="password" placeholder="***********" className="form-control" required="required" />
+                            <span className="help-block"></span>
+                        </div>
+                    </fieldset>
+					          <button onClick={this.login} type="submit">Login</button>
+				        </form>
+			      </div>
+		    );
+	  }
+});
 
 export default Login;

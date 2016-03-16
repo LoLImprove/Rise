@@ -10,7 +10,10 @@ export default {
 
     LocalState.set('CREATE_USER_ERROR', null);
 
-    Accounts.createUser({email, password});
+    Accounts.createUser({email, password}, function(e) {
+      console.log(e);
+    });
+
     FlowRouter.go('/');
   },
 

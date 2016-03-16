@@ -18,5 +18,6 @@ export const depsMapper = (context, actions) => ({
 
 export default composeAll(
   composeWithTracker(composer),
+
   useDeps(depsMapper)
 )(Login);

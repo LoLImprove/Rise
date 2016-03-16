@@ -1,0 +1,37 @@
+#user-auth-form {
+    fieldset {
+        padding: 0.3em 0.6em 0 0.6em;
+        margin-bottom: 0;
+    }
+}
+
+.user-auth-tools {
+    padding: 0 0.6em;
+
+    a {
+        color: $grey-green;
+        display: inline-block;
+        border-right: 1px solid darken($light-blue, 10%);
+        font-size: 0.9em;
+        padding-right: 12px;
+
+        &:hover {
+            color: darken($green, 11%);
+        }
+
+        &:last-child {
+            border-right: none;
+            padding-left: 8px;
+        }
+    }
+
+    .toggle-registration {
+        font-weight: 800;
+    }
+}
+
+#user-auth-forgot-password-form {
+    .form-group, #forgot-password-email {
+        margin-bottom: 0;
+    }
+}

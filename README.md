@@ -1,11 +1,11 @@
-#Mantraplate
+# Rise -v 2
 
-Mantraplate is a simple boilerplate project for quickly creating Meteor apps that follow the Mantra spec.
+## Run
 
-For more info on Mantra, read the [specs](https://kadirahq.github.io/mantra/) and check out the [sample app](https://github.com/mantrajs/mantra-sample-blog-app).
+`$ meteor --setting settings.json `
 
-To get this set up clone the repo with:
+## Routes
 
-`git clone git@github.com:kenrogers/mantraplate.git`
+## Collections & Models
 
-And then run `npm install`
+## React Containers & Components
