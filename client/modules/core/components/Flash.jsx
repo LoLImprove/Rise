@@ -13,7 +13,7 @@ const FlashComponent = React.createClass({
         // If we have message we hide them after 4 seconds
         if (Flash.hasMessages()) {
             setTimeout(() => {
-                this.animator.visibility.fadeOut(this, 35, 500, () => {
+                this.animator.visibility.fadeOut(this, 500, () => {
                     Flash.hasBeenSeen();
                     // Reset the animation in case other flashes have been queued rapidly
                     this.animator.visibility.show(this); 
@@ -34,7 +34,7 @@ const FlashComponent = React.createClass({
             <div className="flash-messages">
                 {this.props.messages.map((message, index) =>
                     (
-                        <div key={index} className={`flash-message alert alert-${message.type}`} style={this.animator.stylesFor(this, 'visibility')}>
+                        <div key={index} className={`flash-message alert alert-${message.type}`} style={this.animator.target(this).stylesFor('visibility')}>
                             <button className="close" onClick={this.hideMessage.bind(this, message._id)}>
                                 <span aria-hidden="true">&times;</span>
                             </button>

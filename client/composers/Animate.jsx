@@ -70,11 +70,29 @@ const Animate = {
 
     '@abortAnimation': Symbol('abortAnimation'),
 
+    '@animateCss': Symbol('animate'),
+
+    '@getAnimatedClass': Symbol('getAnimatedClass'),
+
     '@animate': Symbol('animate'),
 
     '@getAnimatedStyle': Symbol('getAnimatedStyle'),
 
     '@isAnimated': Symbol('isAnimated'),
+
+    getAnimatedClass(...args) {
+        if(__DEV__) {
+            this.should.not.be.exactly(Animate);
+        }
+        return this[Animate['@getAnimatedClass']](...args);
+    },
+
+    animateCss(...args) {
+        if(__DEV__) {
+            this.should.not.be.exactly(Animate);
+        }
+        return this[Animate['@animateCss']](...args);
+    },
 
     animate(...args) {
         if(__DEV__) {
@@ -111,26 +129,6 @@ const Animate = {
 
 function animatedStyleStateKey(name) {
     return `Animate@${name}`;
-}
-
-Animate.animations = {
-    stylesFor(context, name) {
-        return Animate.getAnimatedStyle.call(context, name);
-    },
-
-    visibility: {
-        show(context, onComplete) {
-            Animate.animate.call(context, 'visibility', { opacity: 1 }, { opacity: 1 }, 1, { easing: 'linear', onComplete: onComplete });
-        },
-
-        fadeOut(context, speed = 500, onComplete) {
-            Animate.animate.call(context, 'visibility', { opacity: 1}, { opacity: 0 }, speed, { easing: 'linear', onComplete: onComplete });
-        },
-
-        fadeIn(context, speed = 500, onComplete) {
-            Animate.animate.call(context, 'visibility', { opacity: 0 }, { opacity: 1 }, speed, { easing: 'linear', onComplete: onComplete });
-        },
-    } // Visiblity
 }
 
 Animate.extend = function (Component) {
@@ -181,6 +179,18 @@ Animate.extend = function (Component) {
             }
             // silently fail but returns false
             return false;
+        }
+
+        [Animate['@animateCss']](name) {
+            this.setState({ 'Animation#Css': name });
+        }
+
+        [Animate['@getAnimatedClass']]() {
+            if(__DEV__) {
+                name.should.be.a.String;
+            }
+            let cssClass = (this.state && this.state['Animation#Css']) || '';
+            return `animated ${cssClass}`;
         }
 
         [Animate['@animate']](name, fromStyle, toStyle, duration, opts = {}) {
@@ -263,6 +273,54 @@ Animate.extend = function (Component) {
         }
     }
 };
+
+// this.animator in component
+Animate.animations = {
+    target(componentInstance) {
+        if (componentInstance) {
+            this._target = componentInstance;
+            return this;
+        } else {
+            return this._target;
+        }
+    },
+
+    stylesFor(name) {
+        return Animate.getAnimatedStyle.call(this.target(), name);
+    },
+
+    animationClass() {
+        return Animate.getAnimatedClass.call(this.target());
+    },
+
+    animateWithCss(name) {
+        // If the animation class only contains 'animate' it means no animation was ever
+        if (/^animated\s?$/.test(this.animationClass())) {
+            Animate.animateCss.call(this.target(), name);
+        // Otherwise we reset the state
+        } else {
+            // Reset the state animation
+            Animate.animateCss.call(this.target(), '');
+            // Give time to the state to update
+            setTimeout(() => { Animate.animateCss.call(this.target(), name) }, 10);
+        }
+    },
+
+    visibility: {
+        show(context, onComplete = (() => {})) {
+            Animate.animate.call(context, 'visibility', { opacity: 1 }, { opacity: 1 }, 1, { easing: 'linear', onComplete: onComplete });
+        },
+
+        fadeOut(context, speed = 500, onComplete = (() => {})) {
+            Animate.animate.call(context, 'visibility', { opacity: 1}, { opacity: 0 }, speed, { easing: 'linear', onComplete: onComplete });
+        },
+
+        fadeIn(context, speed = 500, onComplete = (() => {})) {
+            Animate.animate.call(context, 'visibility', { opacity: 0 }, { opacity: 1 }, speed, { easing: 'linear', onComplete: onComplete });
+        },
+    } // Visiblity
+}
+
 
 export const AnimateComposer = Animate.extend;
 export default Animate;

@@ -1,17 +1,40 @@
 export default {
-  create({Meteor, LocalState, FlowRouter}, email, password) {
+  create({Meteor, Flash, LocalState, Collections, FlowRouter}, email, password, callback) {
+    const {User} = Collections;
+
+    let user = new User();
+    user.set({
+      username: email,
+      emails: [{ address: email }],
+      profile : {
+        IGN: 'Diacred',
+        level_of_play: 'Gold V'
+      }
+    });
+    debugger;
     if (!email) {
-      return LocalState.set('CREATE_USER_ERROR', 'Email is required.');
+      return LocalState.set('CREATE_USER_ERROR', 'You need to provide an email');
     }
 
     if (!password) {
-      return LocalState.set('CREATE_USER_ERROR', 'Password is required.');
+      return LocalState.set('CREATE_USER_ERROR', 'You need to provide a password.');
     }
 
     LocalState.set('CREATE_USER_ERROR', null);
 
-    Accounts.createUser({email, password}, function(e) {
-      Flash.flash('Your account has been created successfully !', 'success');
+    Accounts.createUser({
+      username: user.username,
+      email: user.email(),
+      password: password,
+      profile: { level_of_play: user.profile.level_of_play, IGN: user.profile.IGN }
+    }, function(error) {
+      if (error) {
+        callback(error);
+        console.log(error);
+        LocalState.set('CREATE_USER_ERROR', error.reason);
+      } else {
+        Flash.flash('Your account has been created successfully !', 'success');
+      }
     });
 
     FlowRouter.go('/');
@@ -19,7 +42,7 @@ export default {
 
   login({Meteor, Flash, LocalState, FlowRouter}, email, password, callback) {
     if (!email) {
-      return LocalState.set('LOGIN_ERROR', 'You need to provide an email');
+      return LocalState.set('LOGIN_ERROR', 'You need to provide an username or an email');
     }
 
     if (!password) {

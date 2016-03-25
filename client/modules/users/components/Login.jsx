@@ -2,6 +2,11 @@ import React from 'react';
 
 const Login = React.createClass({
     componentWillReceiveProps: function(props) {
+        // On new/different errors
+        if (props.error && (props.error !== this.props.error)) {
+            this.props.onError(props.error);
+        }
+
         if (props.didSubmit) {
             this.login();
             this.props.submitFinished();
@@ -9,17 +14,13 @@ const Login = React.createClass({
     },
 
 	  login(e) {
-        if (e) {
-		        e.preventDefault();
-        }
+        if (e) { e.preventDefault(); }
 
 		    const {loginUser} = this.props;
 		    const {username, password} = this.refs;
 
 		    loginUser(username.value, password.value, function(error) {
-            if (error) {
-                this.props.onError();
-            } else {
+            if (!error) {
 		            username.value = '';
 		            password.value = '';
             }

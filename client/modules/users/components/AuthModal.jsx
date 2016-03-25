@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Button, Popover, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import Animate from '/client/composers/Animate.jsx';
 import RegisterForm from '../containers/NewUser.js';
 import LoginForm from '../containers/Login.js';
 import ForgotPassword from '../containers/Login.js';
@@ -33,8 +34,8 @@ const AuthModal = React.createClass({
         this.setState({ didSubmit: false});
     },
 
-    onError() {
-        console.log('error');
+    onError(error) {
+        this.animator.target(this).animateWithCss('shake');
     },
 
     authComponent() {
@@ -55,7 +56,7 @@ const AuthModal = React.createClass({
             <span>
                 <a href="#" className="sign-in" onClick={this.open}>{this.props.button}</a>
 
-                <Modal show={this.state.showModal} onHide={this.close}>
+                <Modal show={this.state.showModal} onHide={this.close} className={this.animator.target(this).animationClass()}>
                     <Modal.Header closeButton>
                         <Modal.Title>
                             {this.state.register ? 'Register' : 'Login' }
@@ -76,7 +77,7 @@ const AuthModal = React.createClass({
 
                     </Modal.Body>
                     <Modal.Footer>
-                        <button className="validate-btn btn btn-primary" onClick={this.submitAuthForm}>Login</button>
+                        <button className="validate-btn btn btn-primary" onClick={this.submitAuthForm}>{this.state.register ? 'Register' : 'Login' }</button>
                         <button className="cancel-btn btn btn-default" onClick={this.close}>Close</button>
                     </Modal.Footer>
                 </Modal>
@@ -85,4 +86,4 @@ const AuthModal = React.createClass({
     }
 });
 
-export default AuthModal;
+export default Animate.extend(AuthModal);
