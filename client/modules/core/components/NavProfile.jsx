@@ -2,12 +2,6 @@ import React from 'react';
 import AuthModal from '../../users/components/AuthModal.jsx';
 
 const NavProfile = React.createClass({
-
-    logout() {
-        // Pass an empty callback so Meteor logout doesn't throw an error
-        this.props.logout(()=>{});
-    },
-
     userInfos() {
         if (this.props.loggedIn) {
             return (
@@ -32,6 +26,9 @@ const NavProfile = React.createClass({
             );
         }
     },
+
+    // Pass an empty callback so Meteor logout doesn't throw an error
+    logout() { this.props.logout(()=>{}); },
 
     render() {
         return (

@@ -30,7 +30,7 @@ const Header = () => (
         <div className="subnav-wrapper">
             <section className="subnav">
                 <h1 className="logo">
-                    <img src="/images/logo.png" />
+                    <a href="/"><img src="/images/logo.png" /></a>
                 </h1>
                 <div className="main-action">
                     <a href="" className="post-replay">

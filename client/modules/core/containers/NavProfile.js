@@ -1,5 +1,5 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
-import Auth from '../composers/auth.js';
+import Auth from '/client/composers/Auth.jsx';
 import NavProfile from '../components/NavProfile.jsx';
 
 export default composeAll(

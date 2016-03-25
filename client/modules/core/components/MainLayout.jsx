@@ -1,14 +1,15 @@
 import React from 'react';
+
 import Header from './Header.jsx';
-import Flash from './Flash.jsx';
+import Flash from '../containers/Flash.js';
 
 const Layout = ({content = () => null }) => (
     <div>
         <section className="wrapper">
             <Header></Header>
-            <Flash></Flash>
-
             <main className="container">
+                <Flash></Flash>
+
                 {content()}
             </main>
         </section>

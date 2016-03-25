@@ -11,14 +11,13 @@ export default {
     LocalState.set('CREATE_USER_ERROR', null);
 
     Accounts.createUser({email, password}, function(e) {
-      console.log(e);
+      Flash.flash('Your account has been created successfully !', 'success');
     });
 
     FlowRouter.go('/');
   },
 
   login({Meteor, Flash, LocalState, FlowRouter}, email, password, callback) {
-    debugger;
     if (!email) {
       return LocalState.set('LOGIN_ERROR', 'You need to provide an email');
     }
@@ -34,7 +33,7 @@ export default {
         callback(error);
         LocalState.set('LOGIN_ERROR', "The provided email and password do not match");
       } else {
-        console.log('redirection', Flash);
+        Flash.flash('You have been logged in.', 'success');
       }
     });
   },

@@ -1,11 +1,7 @@
-// Bitters 1.0.0
-// http://bitters.bourbon.io
-// Copyright 2013-2015 thoughtbot, inc.
-// MIT License
-
-// Normalize
+/* = NORMALIZE = */
 @import "normalize";
 
+/* = LIBRARIES = */
 // Bourbon
 @import 'base';
 
@@ -13,7 +9,10 @@
 @import '../vendor/bootstrap.min';
 @import '../vendor/bootstrap-theme.min';
 
-// Base styles
+// Animate
+@import '../vendor/animate';
+
+/* = BASE STYLES = */
 @import "buttons";
 @import "forms";
 @import "lists";

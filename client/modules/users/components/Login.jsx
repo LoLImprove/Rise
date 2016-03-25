@@ -17,8 +17,12 @@ const Login = React.createClass({
 		    const {username, password} = this.refs;
 
 		    loginUser(username.value, password.value, function(error) {
-		        username.value = '';
-		        password.value = '';
+            if (error) {
+                this.props.onError();
+            } else {
+		            username.value = '';
+		            password.value = '';
+            }
         });
 	  },
 

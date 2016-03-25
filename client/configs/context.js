@@ -1,9 +1,12 @@
-import * as Collections from '/lib/collections';
-import {Flash} from '/client/modules/core/lib/collections';
+// Base
 import {Meteor} from 'meteor/meteor';
 import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
 import {ReactiveDict} from 'meteor/reactive-dict';
 import {Tracker} from 'meteor/tracker';
+// Collections
+import * as Collections from '/lib/collections';
+// LocalCollections
+import {FlashMessages as Flash} from '/lib/client/collections';
 
 export default function () {
   return {

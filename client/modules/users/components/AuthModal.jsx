@@ -33,13 +33,17 @@ const AuthModal = React.createClass({
         this.setState({ didSubmit: false});
     },
 
+    onError() {
+        console.log('error');
+    },
+
     authComponent() {
         if (this.state.forgotPassword) {
-            return (<ForgotPassword didSubmit={this.state.didSubmit} submitFinished={this.submitFinished} />);
+            return (<ForgotPassword didSubmit={this.state.didSubmit} submitFinished={this.submitFinished} onError={this.onError} />);
         } else if (this.state.register) {
-            return (<RegisterForm didSubmit={this.state.didSubmit} submitFinished={this.submitFinished} />);
+            return (<RegisterForm didSubmit={this.state.didSubmit} submitFinished={this.submitFinished} onError={this.onError} />);
         } else {
-            return (<LoginForm didSubmit={this.state.didSubmit} submitFinished={this.submitFinished} />);
+            return (<LoginForm didSubmit={this.state.didSubmit} submitFinished={this.submitFinished} onError={this.onError} />);
         }
     },
 
