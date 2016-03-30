@@ -1,10 +1,13 @@
 import React from 'react';
+import Core from 'meteor/rise:core';
+import Game from '/lib/game.js';
+
+const Input = Core.Components.Form.Input;
 
 const NewUser = React.createClass({
     componentWillReceiveProps: function(props) {
         // On new/different errors
-        console.log(props.error, this.props.error);
-        if (props.error && (props.error !== this.props.error)) {
+        if (props.error && (props.error != this.props.error)) {
             this.props.onError(props.error);
         }
 
@@ -18,9 +21,16 @@ const NewUser = React.createClass({
         if (e) { e.preventDefault(); }
 
 		    const {create} = this.props;
-		    const {email, password} = this.refs;
+		    const {level_of_play, username, email, password} = this.refs;
 
-		    create(email.value, password.value, function(error) {
+        const form = {
+            level_of_play: level_of_play.value(),
+            username: username.value(),
+            email: email.value(),
+            password: password.value()
+        };
+
+		    create(form, function(error) {
             if (!error) {
 		            email.value = '';
 		            password.value = '';
@@ -35,31 +45,10 @@ const NewUser = React.createClass({
 				        {error ? <div className="alert alert-warning">{error}</div> : null}
 				        <form id="user-auth-form" className="register-form" ref="forminside" >
                     <fieldset>
-                        <div className="form-group">
-                            <label className="control-label" htmlFor="username">Username</label>
-					                  <input ref="username" type="text" id="username" className="form-control" required="required" />
-                            <span className="help-block"></span>
-                        </div>
-                        <div className="form-group">
-                            <label className="control-label" htmlFor="email">Email</label>
-					                  <input ref="email" type="email" id="email" className="form-control" required="required" />
-                            <span className="help-block"></span>
-                        </div>
-                        <div className="form-group">
-                            <label className="control-label" htmlFor="IGN">IGN</label>
-					                  <input ref="IGN" type="text" id="IGN" className="form-control" required="required" />
-                            <span className="help-block"></span>
-                        </div>
-                        <div className="form-group">
-                            <label className="control-label" htmlFor="level_of_play">Level of play</label>
-					                  <input ref="level_of_play" type="text" id="level_of_play" className="form-control" required="required" />
-                            <span className="help-block"></span>
-                        </div>
-                        <div className="form-group">
-                            <label className="control-label" htmlFor="password">Password</label>
-					                  <input ref="password" type="password" id="password" placeholder="***********" className="form-control" required="required" />
-                            <span className="help-block"></span>
-                        </div>
+                        <Input type="email" ref="email" name="email" placeholder="derick@gmail.com" />
+                        <Input type="password" ref="password" name="password" placeholder="*********" />
+                        <Input type="text" ref="username" name="username" placeholder="Your name on LoLImprove" />
+                        <Input type="typeahead" ref="level_of_play" name="level_of_play" data={Game.data.ranks} placeholder="Gold V" />
                     </fieldset>
 				        </form>
 			      </div>

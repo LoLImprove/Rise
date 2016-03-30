@@ -5,13 +5,18 @@ Package.describe({
 });
 
 Package.onUse(function (api) {
-  api.use(['modules', 'fourseven:scss@3.4.1', 'wolves:bourbon@3.1.0', 'wolves:neat@3.1.0']);
-  api.versionsFrom('METEOR@1.2');
-
-  api.addFiles(filesInFolder("Core", "style"), 'client', { isImport: true })
-  
   // When in dire need of including an internal library
   // https://github.com/meteor/meteor/tree/release-1.3/packages/modules#modular-package-structure
+
+  api.use(['ecmascript', 'fourseven:scss@3.4.1', 'wolves:bourbon@3.1.0', 'wolves:neat@3.1.0', 'tmeasday:check-npm-versions']);
+  api.versionsFrom('METEOR@1.3-modules-beta.6');
+
+  // Import styles
+  api.addFiles(filesInFolder("Core", "style"), 'client', { isImport: true })
+
+  // Import the core library
+  api.mainModule("index.js", "client");
+//  api.export('Core');
 });
 
 var filesInFolder = function(packageName, folder){

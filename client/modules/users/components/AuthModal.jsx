@@ -6,8 +6,18 @@ import LoginForm from '../containers/Login.js';
 import ForgotPassword from '../containers/Login.js';
 
 const AuthModal = React.createClass({
-    getInitialState(props) {
+    getInitialState() {
         return { showModal: false, forgotPassword: false, register: false, didSubmit: false };
+    },
+
+    componentDidMount() {
+        if (this.props.showModal) {
+            this.setState({ showModal: true });
+            this.props.hideModal();
+            console.log(this.props);
+        } else {
+            this.setState({ showModal: false });
+        }
     },
 
     forgotPassword() {
@@ -31,7 +41,7 @@ const AuthModal = React.createClass({
     },
 
     submitFinished() {
-        this.setState({ didSubmit: false});
+        this.setState({ didSubmit: false });
     },
 
     onError(error) {
@@ -49,9 +59,6 @@ const AuthModal = React.createClass({
     },
 
     render() {
-        let popover = <Popover id="popover" title="popover">very popover. such engagement</Popover>;
-        let tooltip = <Tooltip id="tooletip">wow.</Tooltip>;
-
         return (
             <span>
                 <a href="#" className="sign-in" onClick={this.open}>{this.props.button}</a>

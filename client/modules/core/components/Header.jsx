@@ -1,5 +1,8 @@
 import React from 'react';
-import NavProfile from '../containers/NavProfile.js'
+import NavProfile from '../containers/NavProfile.js';
+import Core from 'meteor/rise:core';
+
+const Link = Core.Components.Link;
 
 const Header = () => (
     <header className="header">
@@ -36,7 +39,9 @@ const Header = () => (
                     <a href="" className="post-replay">
                         Help somebody <strong style={{"fontSize": "1em"}}>&hearts;</strong>
                     </a>
-                    //  > NewReplayButton
+                    <Link for="replays:new" className="post-replay" >
+                        Add your replay
+                    </Link>
                 </div>
             </section>
         </div>
@@ -44,74 +49,4 @@ const Header = () => (
 );
 
 export default Header;
-/*
-   <header className="header">
-   <div class="navbar-wrapper">
-   <nav class="navbar">
-   <ul class="menu">
-   <li>
-   <a href="#">
-   <i class="icon icon-pin"></i><span class="icon-text">LEARN MORE</span>
-   </a>
-   </li>
-   <li>
-   <a href="#">
-   <i class="icon icon-book"></i><span class="icon-text">RESOURCES</span>
-   </a>
-   </li>
-   <li>
-   <a href="#">
-   <i class="icon icon-medias"></i><span class="icon-text">VODs</span>
-   </a>
-   </li>
-   </ul>
-
-   <ul class="user">
-   //    {{ #if currentUser }}
-   <li class="info">
-   <a href="<!-- {{pathFor route='profile' username=currentUser.username}} -->">
-   <img class="user-picture" src="/images/misc/mockup/ascensionfull.jpg">
-   <span class="user-name">{{ currentUser.username }}</span>
-   </a>
-   </li>
-   //    {{ / if }}
-   <li class="align-middle">
-   //    {{> UserAuthButtons}}
-   </li>
-   //    {{> notificationsDropdown }}
-   </ul>
-   </nav>
-   </div>
-
-   <div class="subnav-wrapper">
-   <section class="subnav">
-   <h1 class="logo">
-   <img src="/images/logo.png">
-   </h1>
-   <div class="main-action">
-   <a href="" class="post-replay">
-   Help somebody <strong style="font-size: 1em;">&hearts;</strong>
-   </a>
-   //  {{> NewReplayButton}}
-   </div>
-   </section>
-   </div>
-   </header>
-    </div>
-   <ul className="user">
-   {if (currentUser)}
-   <li className="info">
-   <a href="<!-- {{pathFor route='profile' username=currentUser.username}} -->">
-   <img className="user-picture" src="/images/misc/mockup/ascensionfull.jpg" />
-   <span className="user-name">currentUser.username</span>
-   </a>
-   </li>
-   /*  endif 
-<li className="align-middle">
-//    > UserAuthButtons
-</li>
-//    > notificationsDropdown 
-</ul>
-
-*/
 

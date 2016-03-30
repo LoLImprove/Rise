@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthModal from '../../users/components/AuthModal.jsx';
+import AuthModal from '../../users/containers/AuthModal.js';
 
 const NavProfile = React.createClass({
     userInfos() {

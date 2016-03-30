@@ -1,23 +1,33 @@
+import _ from 'lodash';
+
 export default {
-  create({Meteor, Flash, LocalState, Collections, FlowRouter}, email, password, callback) {
+  create({Meteor, Flash, LocalState, Collections, FlowRouter}, form, callback) {
     const {User} = Collections;
 
     let user = new User();
     user.set({
-      username: email,
-      emails: [{ address: email }],
+      username: form.username,
+      emails: [{ address: form.email }],
       profile : {
-        IGN: 'Diacred',
-        level_of_play: 'Gold V'
+        level_of_play: form.level_of_play
       }
     });
-    debugger;
-    if (!email) {
+
+    if (!form.level_of_play) {
+      return LocalState.set('CREATE_USER_ERROR', 'You need to specify your level of play (Bronze V, Gold II, ...)');
+    }
+
+    if (!form.username) {
+      return LocalState.set('CREATE_USER_ERROR', 'You need to provide a username');
+    }
+
+    if (!form.email) {
       return LocalState.set('CREATE_USER_ERROR', 'You need to provide an email');
     }
 
-    if (!password) {
-      return LocalState.set('CREATE_USER_ERROR', 'You need to provide a password.');
+    if (!user.validate()) {
+      const error = _.values(user.getValidationErrors())[0];
+      return LocalState.set('CREATE_USER_ERROR', error);
     }
 
     LocalState.set('CREATE_USER_ERROR', null);
@@ -25,8 +35,8 @@ export default {
     Accounts.createUser({
       username: user.username,
       email: user.email(),
-      password: password,
-      profile: { level_of_play: user.profile.level_of_play, IGN: user.profile.IGN }
+      password: form.password,
+      profile: { level_of_play: user.profile.level_of_play, IGN: '' }
     }, function(error) {
       if (error) {
         callback(error);

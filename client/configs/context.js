@@ -8,7 +8,9 @@ import * as Collections from '/lib/collections';
 // LocalCollections
 import {FlashMessages as Flash} from '/lib/client/collections';
 
-export default function () {
+const ENV = Meteor.settings.public.env;
+
+const context = function () {
   return {
     Meteor,
     FlowRouter,
@@ -17,4 +19,10 @@ export default function () {
     LocalState: new ReactiveDict(),
     Tracker
   };
+};
+
+if (ENV.development) {
+  window.ReactContext = context;
 }
+
+export default context;

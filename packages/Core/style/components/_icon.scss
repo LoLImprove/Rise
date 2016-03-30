@@ -1,0 +1,17 @@
+.icon-component {
+    cursor: default;
+    position: relative;
+    font-size: 1.4em;
+
+    & > span {
+        display: inline-block;
+    }
+
+    .tick { color: $light-green; font-size: 1.2em; margin-top: -2px; }
+    .bang { font-weight: bold; color: $pale-orange; font-family: monospace; font-size: 1.2em; }
+    .cross { color: $pale-orange; margin-bottom: 3px; }
+
+    .explanation {
+        padding: 7px 10px;
+    }
+}

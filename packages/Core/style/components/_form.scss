@@ -1,0 +1,78 @@
+// Imported in ../rise/_all.scss
+/* === SUMMARY ==
+ *
+ *   = TYPEAHEAD
+ *   = INPUTURL
+ *
+ */
+
+/* === TYPEAHEAD === */
+.react-autosuggest__container {
+    position: relative;
+}
+.react-autosuggest__suggestions-container {
+    margin: 0;
+    margin-top: -5px;
+
+    border: 1px solid #C8C8C8;
+    border-radius: 5px;
+
+    position: absolute;
+    width: 100%;
+
+    li {
+        background-color: white;
+        color: $dark-grey;
+
+        padding: 5px 10px;
+        border-bottom: 1px solid $very-light-grey;
+        margin: 0;
+        cursor: pointer;
+
+        strong {
+            color: #333;
+        }
+        
+        &:first-child {
+            border-top-right-radius: 5px;
+            border-top-left-radius: 5px;
+        }
+
+        &:last-child {
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        &:hover {
+            background-color: darken(#FFFFFF, 3%);
+        }
+    }
+}
+
+/* === URLINPUT === */
+
+.input-type-url {
+    position: relative;
+    display: block;
+
+    input {
+        padding-right: 2.45em;
+    }
+
+    .icon-component {
+        position: absolute;
+        top: 2px;
+        right: 8px;
+    }
+
+    .spinner-loader {
+        left: initial;
+        top: 5px;
+        right: 5px;
+        border-width: 0.35em;
+
+        &, &:after {
+               width: 2.5em;
+               height: 2.5em;
+           }
+    }
+}

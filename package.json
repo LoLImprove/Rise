@@ -25,15 +25,17 @@
     "sinon": "1.17.x"
   },
   "dependencies": {
+    "bluebird": "^2.9.30",
     "domready": "^1.0.8",
+    "lodash": "^3.9.3",
     "mantra-core": "^1.2.0",
+    "nprogress": "^0.2.0",
+    "raf": "^3.0.0",
     "react": "^0.14.6",
+    "react-autosuggest": "^3.6.0",
     "react-bootstrap": "^0.28.3",
     "react-dom": "^0.14.6",
     "react-mounter": "^1.0.0",
-    "bluebird": "^2.9.30",
-    "lodash": "^3.9.3",
-    "raf": "^3.0.0",
     "should": "^6.0.3",
     "tween-interpolate": "^1.0.1"
   },

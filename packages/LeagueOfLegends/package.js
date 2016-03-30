@@ -1,21 +1,21 @@
 Package.describe({
   name: "league-of-legends",
-  summary: "Rise specific assets and overrides for League Of Legends",
+  summary: "Rise specific assets, data and overrides for League Of Legends",
   version: "0.0.2",
 });
 
 /* This defines your actual package */
 Package.onUse(function (api) {
-  api.use(['templating', 'aldeed:simple-schema', 'rise-superseder']);
-  api.versionsFrom('METEOR@1.2');
+  api.use(['ecmascript', 'rise-superseder']);
+  api.versionsFrom('METEOR@1.3-modules-beta.6');
 
-  api.addFiles(['lib/platform.js'], ['client', 'server']);
-  api.addFiles(['lib/game.js'], ['client', 'server']);
-  api.addFiles(filesInFolder("LeagueOfLegends","collections"), ['client', 'server']);
+  //  api.addFiles(['lib/platform.js'], ['client', 'server']);
+  //  api.addFiles(['lib/game.js'], ['client', 'server']);
+  //  api.addFiles(filesInFolder("LeagueOfLegends","collections"), ['client', 'server']);
+  //  api.addFiles(filesInFolder("LeagueOfLegends","replays","client"), 'client');
   api.addAssets(filesInFolder("LeagueOfLegends","assets"), 'client');
-  api.addFiles(filesInFolder("LeagueOfLegends","replays","client"), 'client');
 
-  api.export('Rise');
+  api.mainModule('client.js', "client");
 });
 
 var filesInFolder = function(packageName,folder){
