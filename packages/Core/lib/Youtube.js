@@ -30,7 +30,7 @@ const Youtube = {
       return url;
     },
 
-    videoExists(id, callbacks) {
+    resourceExists(id, callbacks) {
       let success = callbacks.success || function() {};
       let error = callbacks.error || function() {};
       let done = callbacks.done || function() {};

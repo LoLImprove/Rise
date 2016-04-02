@@ -26,22 +26,22 @@ const NewReplay = React.createClass({
         return Auth.helpers.render(this.props, () => {
             return (
                 <span>
-                  <Modal show={true} className={this.animator.target(this).animationClass()} >
-                      <Modal.Header closeButton>
-                      <Modal.Title>
-                          Post a new replay
-                      </Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                      <ReplayForm didSubmit={this.state.didSubmit} submitFinished={this.submitFinished} onError={this.onError} />
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <button className="validate-btn btn btn-primary" onClick={this.submitForm}>
-                        Save
-                      </button>
-                      <button className="cancel-btn btn btn-default" onClick={this.close}>Cancel</button>
-                    </Modal.Footer>
-                  </Modal>
+                    <Modal show={true} className={this.animator.target(this).animationClass()} onHide={this.close} >
+                        <Modal.Header closeButton>
+                            <Modal.Title>
+                                Post a new replay
+                            </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <ReplayForm didSubmit={this.state.didSubmit} submitFinished={this.submitFinished} onError={this.onError} />
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <button className="validate-btn btn btn-primary" onClick={this.submitForm}>
+                                Save
+                            </button>
+                            <button className="cancel-btn btn btn-default" onClick={this.close}>Cancel</button>
+                        </Modal.Footer>
+                    </Modal>
                 </span>
             );
         });
