@@ -41,12 +41,21 @@ const Youtube = {
     Player(element, opts) {
       if (Meteor.isServer) throw new Error("Can't call Youtube.DOM on the server");
 
-      const YoutubeAPI = new YoutubeIframeAPI();
-      YoutubeAPI.onReady((api) => {
-        api.createPlayer();
+      if (window.YoutubeIframeAPI) {
+        var YoutubeAPI = window.YoutubeIframeAPI
+      } else {
+        var YoutubeAPI = window.YoutubeIframeAPI = new YoutubeIframeAPI();
+      }
 
-        new Yannotate(element, api, opts);
-      });
+      if (YoutubeAPI.ready) {
+        YoutubeAPI.createPlayer();
+      } else {
+        YoutubeAPI.onReady((api) => {
+          api.createPlayer();
+
+          new Yannotate(element, api, opts);
+        });
+      }
 
       return YoutubeAPI;
     }
