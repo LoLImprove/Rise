@@ -5,6 +5,7 @@ import Animate from '../../composers/Animate.jsx';
 import OutsideClickEvent from 'react-onclickoutside';
 import Textarea from 'react-textarea-autosize';
 
+import Icon from '../Icon.jsx';
 /*
  *  Smartarea Component
  *
@@ -197,7 +198,7 @@ const Smartarea = React.createClass({
     render() {
         const submitButton = (
             <span className="comment-submit feather" onClick={this.onSubmit}>
-                <i className="icon icon-big-feather"></i>
+                <Icon name="big-feather" />
             </span>
         );
 
@@ -207,14 +208,14 @@ const Smartarea = React.createClass({
                     <li>
                         <span className="icon-text help-title">Help :</span>
                         <span className="help-new-line" onClick={this.addNewLine}>
-                            <i className={`icon icon-shift-enter-${this.props.theme}`}></i><span className="icon-text">New line</span>
+                            <Icon name={`shift-enter-${this.props.theme}`}>New Line</Icon>
                         </span>
                     </li>
                     <li>
-                        <i className={`icon icon-enter-${this.props.theme}`}></i><span className="icon-text">Submit</span>
+                        <Icon name={`enter-${this.props.theme}`}>Submit</Icon>
                     </li>
                     <li className="info" onClick={this.toggleHelp}>
-                        <i className={`icon icon-info-${this.props.theme}`}></i><span className="icon-text">Formatting help</span>
+                        <Icon name={`info-${this.props.theme}`}>Formatting help</Icon>
                     </li>
                 </ul>
             );
@@ -222,7 +223,7 @@ const Smartarea = React.createClass({
             var help = (
                 <ul className="help">
                     <li className="info" onClick={this.toggleHelp}>
-                        <i className={`icon icon-info-${this.props.theme}`}></i><span className="icon-text">Formatting help</span>
+                        <Icon name={`info-${this.props.theme}`}>Formatting help</Icon>
                     </li>
                 </ul>
             );
@@ -266,7 +267,7 @@ const Smartarea = React.createClass({
         );
 
         return (
-            <div className={`smart-area ${this.state.active ? 'active' : ''} ${this.props.theme} ${this.props.full ? 'full' : ''}`}>
+            <div className={`smart-area ${this.state.active ? 'active' : ''} ${this.props.theme} ${this.props.full ? 'full' : ''} ${this.state.showHelp ? 'full-help' : ''}`}>
                 <div className="area-field">
                     <Textarea value={this.state.value}
                               minRows={this.props.minRows}

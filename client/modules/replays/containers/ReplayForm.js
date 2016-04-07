@@ -4,15 +4,13 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 export const composer = ({context, clearErrors}, onData) => {
   const {LocalState} = context();
   const error = LocalState.get('REPLAY_FORM_ERROR');
-  console.log(LocalState, error);
   onData(null, {error});
 
-  return clearErrors;
+  //return clearErrors;
 };
 
 export const depsMapper = (context, actions) => ({
-  createReplay: actions.replays.createReplay,
-//  updateReplay: actions.replays.updateReplay,
+  saveReplay: actions.replays.saveReplay,
   clearErrors: actions.replays.clearErrors,
   context: () => context
 });

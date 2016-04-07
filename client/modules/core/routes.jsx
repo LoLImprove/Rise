@@ -12,6 +12,8 @@ import Login from '../users/containers/Login.js';
 
 // Replays
 import NewReplay from '../replays/containers/NewReplay.js';
+import ReplayEdit from '../replays/containers/ReplayEdit.js';
+import ReplayShow from '../replays/containers/ReplayShow.js';
 
 const History = {
     _history: [],
@@ -109,6 +111,30 @@ export default function (injectDeps, {FlowRouter, Flash, LocalState}) {
         action() {
             mount(MainLayoutCtx, {
                 content: () => (<NewReplay />)
+            });
+        }
+    });
+
+    FlowRouter.route('/replays/:replayId/edit', {
+        name: 'replays:edit',
+        triggersEnter: [function(context, redirect) {
+            if (!Meteor.userId()) {
+                LocalState.set('SHOW_AUTH', true);
+            }
+            return;
+        }],
+        action(params, queryParams) {
+            mount(MainLayoutCtx, {
+                content: () => (<ReplayEdit replayId={params.replayId} />)
+            });
+        }
+    });
+
+    FlowRouter.route('/replays/:replayId', {
+        name: 'replays:show',
+        action(params, queryParams) {
+            mount(MainLayoutCtx, {
+                content: () => (<ReplayShow replayId={params.replayId} />)
             });
         }
     });

@@ -34,6 +34,7 @@ import UploadInput from './UploadInput.jsx';
  *      - value() : returns the value of the input (might differ from the actual DOM value)
  *      - valid() : Returns true or false. Might not be implemented, in this case it will return true
  *      - error() : Returns null or an object {reason: '', message: ''} Might not be implemented, in this case it will return false
+ *      - component() : Returns the underlying component
  *
  *    Examples:
  *
@@ -68,6 +69,10 @@ export default React.createClass({
 
     error() {
         return this.refs.input.error ? this.refs.input.error() : null;
+    },
+
+    component() {
+        return this.refs.input;
     },
 
     render() {

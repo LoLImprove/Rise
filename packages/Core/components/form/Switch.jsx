@@ -18,6 +18,7 @@ export default React.createClass({
         name:      React.PropTypes.string.isRequired,
         onText:    React.PropTypes.string.isRequired, // Left side text
         offText:   React.PropTypes.string.isRequired, // Right side text
+        isOn:      React.PropTypes.bool,
         valueAsText: React.PropTypes.bool, // Tells us if the value is returned as text or as a boolean
         onChange:  React.PropTypes.func
     },
@@ -28,6 +29,12 @@ export default React.createClass({
             idForOn: Random.hexString(24),
             idForOff: Random.hexString(24)
         };
+    },
+
+    componentDidMount() {
+        if (this.props.isOn) {
+            this.setState({ checked: true });
+        }
     },
 
     value() {

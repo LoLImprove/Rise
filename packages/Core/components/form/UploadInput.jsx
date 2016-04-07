@@ -21,6 +21,7 @@ export default React.createClass({
         type:            React.PropTypes.oneOf(["upload"]).isRequired,
         name:            React.PropTypes.string.isRequired,
         through:         React.PropTypes.string.isRequired, // Slingshot.Directive name
+        value:           React.PropTypes.string,
         allowed:         React.PropTypes.arrayOf(React.PropTypes.string), // An array of file extensions 
         required:        React.PropTypes.bool,
         inputLabel:      React.PropTypes.string, // The text displayed on the left side of the input
@@ -30,7 +31,13 @@ export default React.createClass({
     },
 
     getInitialState() {
-        return { value: null, progress: 0, error: null };
+        return { fileName: null, value: null, progress: 0, error: null };
+    },
+
+    componentDidMount() {
+        if (this.props.value) {
+            this.setState({ fileName: this.props.value });
+        }
     },
 
     value() {
@@ -73,7 +80,8 @@ export default React.createClass({
         return new Slingshot.Upload(this.props.through);
     },
 
-    upload() {
+    upload({ done }) {
+        const doneCb   = done || (() => {});
         const uploader = this.uploader();
         const file = this.refs.input.files[0];
 
@@ -94,6 +102,8 @@ export default React.createClass({
                 this.setState({ value: null, error: errors });
             }
 
+            doneCb(error, downloadUrl);
+
             clearInterval(_progressInterval);
         });
 
@@ -112,8 +122,14 @@ export default React.createClass({
             this.upload();
         } else {
             this.valid();
+            this.setState({ fileName: this.refs.input.value });
             this.props.onChange && this.props.onChange(e);
         }
+    },
+
+    cancel(e) {
+        this.refs.input.value = "";
+        this.setState({ fileName: null, value: null, error: null, progress: 0 });
     },
 
     render() {
@@ -142,9 +158,10 @@ export default React.createClass({
                                className={`form-control NFI-current ${this.props.className || ''}`} />
                     </div>
                     <span className="NFI-container">
-                        <input type="text" readOnly="readonly" className="NFI-filename" />
+                        <input type="text" readOnly="readonly" className="NFI-filename" value={this.state.progress == 0 ? this.state.fileName : ''} />
                         <span className="NFI-progress-bar" style={ ({ width: `${this.state.progress}%` }) }></span>
                         <span className={`NFI-progress-text ${this.state.error ? 'error' : ''}`}>{inputText}</span>
+                        <span onClick={this.cancel} className={`NFI-cancel ${(this.state.progress == 0 && this.state.fileName) ? '' : 'hidden'}`}>x</span>
                     </span>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 
 ## Run
 
-`$ meteor --setting settings.json `
+`$ meteor --setting settings.dev.json `
 
 ## Routes
 

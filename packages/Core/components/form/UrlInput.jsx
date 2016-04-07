@@ -17,6 +17,7 @@ import Icon from '../Icon.jsx';
  *                 getID(inputValue) {
  *                   // the value returned by this function will be used by #resourceExists
  *                 },
+ *                 getURL(id) {}, // Inverse of getID
  *                 resourceExists(value, { success = (()=>()), error = (()=>()), done = (()=>()) }) {
  *                   // does what's needed to validate the resource and calls the callbacks accordingly
  *                 },
@@ -32,20 +33,40 @@ export default React.createClass({
     propTypes: {
         type:      React.PropTypes.oneOf(["url"]).isRequired,
         name:      React.PropTypes.string.isRequired,
+        provider:  React.PropTypes.object.isRequired, 
         value:     React.PropTypes.string,
-        provider:  React.PropTypes.object, 
+        valueAsId: React.PropTypes.bool,
         onChange:  React.PropTypes.func,
         onFocus:   React.PropTypes.func,
         onBlur:    React.PropTypes.func,
         placeholder:  React.PropTypes.string
     },
 
+    getDefaultProps() {
+        return {
+            valueAsId: true
+        };
+    },
+
     getInitialState() {
-        return { value: '', valid: null, error: null, loading: false, typingTimer: null };
+        return { value: null, valid: null, error: null, loading: false, typingTimer: null };
+    },
+
+    componentDidMount() {
+        if (this.props.value) {
+            let getURL = this.props.provider.Tools.getURL;
+            this.setState({ value: getURL(this.props.value) });
+            this.checkInputValue(this.props.value);
+        }
     },
 
     value() {
-        return this.refs.input.value;
+        const getID = this.props.provider.Tools.getID;
+        if (this.props.valueAsId) {
+            return getID(this.state.value);
+        } else {
+            return this.state.value;
+        }
     },
 
     input() {
@@ -65,38 +86,34 @@ export default React.createClass({
         return this.state.error;
     },
 
-    checkInputValue() {
+    checkInputValue(value) {
         const component = this;
         const {input} = this.refs;
         const {provider} = this.props;
 
-        // Only if input value is different
-        if ( input.value !== this.state.value ) {
-            if (provider) {
-                let { resourceExists, getID } = provider.Tools;
-                resourceExists(getID(input.value), {
-                    loading() { component.setState({ valid: null,  loading: true }) },
-                    success() { setTimeout(() => { component.setState({ valid: true,  loading: false }) }, 1200) },
-                    error()   { setTimeout(() => { component.setState({ valid: false, loading: false }) }, 1200) }
-                });
-            }
+        var value = value || input.value;
 
-            if (_.isEmpty(input.value)) {
-                this.setState({ value: input.value, loading: false, valid: null });
-            } else {
-                this.setState({ value: input.value });
-            }
+        // Only if input value is different
+        if (provider) {
+            let { resourceExists, getID } = provider.Tools;
+            resourceExists(getID(value), {
+                loading() { component.setState({ valid: null,  loading: true }) },
+                success() { setTimeout(() => { component.setState({ valid: true,  loading: false }) }, 1200) },
+                error()   { setTimeout(() => { component.setState({ valid: false, loading: false }) }, 1200) }
+            });
         }
+
+        if (_.isEmpty(value)) {
+            this.setState({ loading: false, valid: null });
+        } 
+
+
     },
 
     check(e) {
         clearTimeout(this.state.typingTimer);
         let typingTimer = setTimeout(this.checkInputValue, 500);
-        this.setState({ typingTimer: typingTimer });
-    },
-
-    componentWillUpdate(newProps, newState) {
-        //console.debug('Will Update', newProps, newState);
+        this.setState({ typingTimer: typingTimer, value: this.refs.input.value });
     },
 
     render() {
@@ -105,6 +122,7 @@ export default React.createClass({
                 <span className="input-type-url">
                   <input ref="input"
                          type="text"
+                         value={this.state.value}
                          name={_.snakeCase(this.props.name)}
                          id={_.snakeCase(this.props.name)}
                          onChange={this.check}
@@ -112,8 +130,8 @@ export default React.createClass({
                          placeholder={this.props.placeholder || ""} />
 
                   {this.state.loading ? <Spinner /> : '' }
-                  {this.state.valid === true ? <Icon name="tick" explanation="Your video link is valid" /> : '' }
-                  {this.state.valid === false ? <Icon name="cross" explanation="Video could not be found" /> : '' }
+                  {this.state.valid === true ? <Icon name="tick" type="text" explanation="Your video link is valid" /> : '' }
+                  {this.state.valid === false ? <Icon name="cross" type="text" explanation="Video could not be found" /> : '' }
                 </span>
             );
         } else {

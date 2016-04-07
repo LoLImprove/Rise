@@ -1,0 +1,62 @@
+#replay-form {
+    @include outer-container;
+    .form-line {
+        @include span-columns(12);
+        @include omega();
+        // margin-bottom: 0;
+
+        .separator {
+            @include span-columns(2 of 12);
+            @include omega();
+
+            width: 10%;
+            margin: 0;
+            padding-top: 35px;
+            text-align: center;
+        }
+
+        .video-id, .victory {
+            @include span-columns(5 of 12);            
+            @include omega();
+            width: 45%;
+
+            .switch-component {
+                margin-top: 9px;
+            }
+        }
+
+        .champion, .matchup {
+            @include span-columns(5 of 12);            
+            @include omega();
+            width: 45%;
+        }
+
+        .lane, .kda, .duration, .patch {
+            @include span-columns(3 of 12);            
+            @include omega();
+            width: 25%;
+        }
+        .lane {
+            margin-right: 4.4%;
+        }
+        .kda {
+            margin-right: 4px;
+        }
+        .duration {
+            width: 20.2%;
+        }
+        .patch {
+            width: initial;
+        }
+
+        .description {
+            @include span-columns(12 of 12);
+            @include omega();
+        }
+
+        .replay-file {
+            margin-bottom: 0;
+        }
+
+    }
+}

@@ -1,23 +1,44 @@
 import _ from 'lodash';
 
-export default {
-  createReplay({Meteor, Flash, LocalState, Collections, FlowRouter}, form, callback) {
-    const {Replay} = Collections;
-		const {video_id, victory, champion, matchup, lane, kda, duration, patch, description, replay_file} = form;
 
-    let replay = new Replay();
-    /*
-    replay.set({
-      username: form.username,
-      emails: [{ address: form.email }],
-      profile : {
-        level_of_play: form.level_of_play
-      }
-    });
-     */
+
+export default {
+  saveReplay({Meteor, Flash, LocalState, Collections, FlowRouter}, form, { method, replay }, callback) {
+		const {video_id, victory, champion, matchup, lane, kda, duration, patch, description, replay_file} = form;
+    
+    // This method is called at the end either when a file has been uploaded or when no file was given
+    // It is just the remaining of the method that might be called only after an upload
+    // The function flow here is weird to read so bare with it and I am sorry about it
+    const done = (error, replay_url) => {
+      LocalState.set('REPLAY_FORM_ERROR', null);
+
+      // Here we assume everything is valid
+      let data = {
+        replay_id, // null if create
+        video_id: video_id.value(),
+        victory: victory.value(),
+        champion: champion.value(),
+        matchup: matchup.value(),
+        lane: lane.value(),
+        kda: kda.value(),
+        duration: duration.value(),
+        patch: patch.value(),
+        description: description.value(),
+        replay_file: replay_url
+      };
+
+      Meteor.call(`replay:${method}`, data, (error, replay) => {
+        if (error) {
+          return LocalState.set('REPLAY_FORM_ERROR', error.message);
+        } else {
+          console.log('replays', replay);
+          FlowRouter.go('replays:show', { replayId: replay._id });
+        }
+      });
+    };
+
     if (!video_id.valid()) {
-      LocalState.set('REPLAY_FORM_ERROR', 'Your youtube URL or video ID is invalid !');
-      return ;
+      return LocalState.set('REPLAY_FORM_ERROR', 'Your youtube URL or video ID is invalid !');
     }
 
     if (_.isEmpty(champion.value())) {
@@ -48,39 +69,22 @@ export default {
       return LocalState.set('REPLAY_FORM_ERROR', 'You need to provide a description of your game and what seems to be the main pain points for you');
     }
 
-    if (!replay_file.valid()) {
-      return LocalState.set('REPLAY_FORM_ERROR', `The provided replay file is not valid. ${replay_file.error().message}`);
+    if (replay_file.valid()) {
+
+      if (replay_file.input().files.length > 0) {
+        return replay_file.component().upload({ done });
+      } else {
+        // If no file provided we just don't upload and go straight to the creation
+        done(null, null);
+      }
+
+    } else {
+      return LocalState.set('REPLAY_FORM_ERROR', `The provided replay file is not valid. ${replay_file.error().message}`);      
     }
 
-
-    /*if (!user.validate()) {
-      const error = _.values(user.getValidationErrors())[0];
-      return LocalState.set('CREATE_USER_ERROR', error);
-    }*/
-
-    LocalState.set('REPLAY_FORM_ERROR', null);
-
-    /*Accounts.createUser({
-      username: user.username,
-      email: user.email(),
-      password: form.password,
-      profile: { level_of_play: user.profile.level_of_play, IGN: '' }
-    }, function(error) {
-      if (error) {
-        callback(error);
-        console.log(error);
-        LocalState.set('CREATE_USER_ERROR', error.reason);
-      } else {
-        Flash.flash('Your account has been created successfully !', 'success');
-      }
-    });
-*/
-    FlowRouter.go('/');
   },
 
   clearErrors({LocalState}) {
-    // Not working for now, is called everytime a props change
-    console.log('Cleanup');
-    //return LocalState.set('REPLAY_FORM_ERROR', null);
+    return LocalState.set('REPLAY_FORM_ERROR', null);
   }
 };

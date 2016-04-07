@@ -18,6 +18,7 @@ export default React.createClass({
         type:  React.PropTypes.oneOf(["typeahead"]).isRequired,
         name:  React.PropTypes.string.isRequired,
         data:  React.PropTypes.array.isRequired, // An array of objects with at least a name key e.g [{ name: "Ahri" }, { name: "Graves" }]
+        value: React.PropTypes.string,
         onChange:    React.PropTypes.func,
         onFocus:     React.PropTypes.func,
         onBlur:      React.PropTypes.func,
@@ -38,9 +39,16 @@ export default React.createClass({
 
     // Initialize the picture by calling the source with an empty value
     componentDidMount() {
-        if (this.props.withPicture) {
-            this.setState({ currentPicture: this.props.source(this.state.value) });
+        const value = _.isEmpty(this.state.value) ? (this.props.value || '') : this.state.value;
+
+        if (this.props.value) {
+            this.setState({ value: value });
         }
+
+        if (this.props.withPicture) {
+            this.setState({ currentPicture: this.props.source(value) });
+        }
+
     },
 
     value() {
