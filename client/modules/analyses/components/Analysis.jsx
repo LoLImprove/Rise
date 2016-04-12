@@ -63,8 +63,6 @@ const Analysis = React.createClass({
                     </Link>
                 </div>
 
-                {editButton}
-
                 <div className="analysis-tools">
                     <span className="analysis-time">
                         2 hours ago
