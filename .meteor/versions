@@ -1,5 +1,6 @@
 accounts-base@1.2.4
 accounts-password@1.1.6
+alanning:roles@1.2.15
 aldeed:template-extension@3.4.3
 allow-deny@1.0.2
 audit-argument-checks@1.0.5
@@ -21,6 +22,7 @@ caching-html-compiler@1.0.4
 callback-hook@1.0.6
 check@1.1.2
 chuangbo:cookie@1.1.0
+dburles:mongo-collection-instances@0.3.4
 ddp@1.2.3
 ddp-client@1.2.3
 ddp-common@1.2.3
@@ -36,6 +38,7 @@ email@1.0.10
 es5-shim@4.5.8
 fourseven:scss@3.4.1
 geojson-utils@1.0.6
+gwendall:body-events@0.1.6
 hot-code-push@1.0.2
 html-tools@1.0.7
 htmljs@1.0.7
@@ -48,6 +51,7 @@ jagi:astronomy-validators@1.1.2
 jagi:reactive-map@2.0.0
 jquery@1.11.6
 kadira:flow-router-ssr@3.12.2
+lai:collection-extensions@0.1.4
 league-of-legends@0.0.2
 livedata@1.0.16
 localstorage@1.0.7
@@ -58,6 +62,21 @@ meteorhacks:fast-render@2.13.0
 meteorhacks:inject-data@2.0.0
 meteorhacks:meteorx@1.4.1
 meteorhacks:picker@1.0.3
+meteortoys:allthings@2.3.1
+meteortoys:authenticate@2.1.0
+meteortoys:autopub@2.1.0
+meteortoys:blueprint@2.1.0
+meteortoys:email@2.1.0
+meteortoys:hotreload@2.1.0
+meteortoys:listen@2.1.0
+meteortoys:method@3.0.2
+meteortoys:pub@3.0.2
+meteortoys:result@2.1.0
+meteortoys:shell@2.1.0
+meteortoys:status@2.1.0
+meteortoys:sub@2.1.0
+meteortoys:throttle@2.1.0
+meteortoys:toykit@2.2.1
 minifier-css@1.1.9
 minifier-js@1.1.9
 minimongo@1.0.12
@@ -65,6 +84,8 @@ modules@0.5.1
 modules-runtime@0.6.1
 mongo@1.1.5
 mongo-id@1.0.2
+msavin:jetsetter@1.5.2
+msavin:mongol@1.6.2
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.41
 observe-sequence@1.0.9

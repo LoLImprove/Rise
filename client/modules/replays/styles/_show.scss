@@ -235,7 +235,15 @@
 
 .analyses {
     @include outer-container();
-    margin-top: 2.2em;
+    clear: both;
+    padding-top: 2.2em;
+
+    // = CONTAINER
+
+    .analyses-container {
+        @include span-columns(12);
+        @include omega();
+    }
 
     // = TITLE
     .analyses-title {
@@ -247,7 +255,7 @@
 
     // = ANALYSIS
     .analysis {
-        @include span-columns(12);
+        display: flex;
         margin-bottom: 3.6em;
 
         // = TITLE
@@ -260,27 +268,24 @@
 
         // = INFO
         .analysis-info {
-            @include span-columns(2.4 of 12);
-
+            flex: 0 0 auto;
             border-top: 1px solid $border-darker-grey;
 
             // = USER
             .user {
                 @include user-block;
-                @include span-columns(2.4 of 2.4);
 
                 margin-right: 0;
                 padding: 0.6em;
-                border-bottom: 1px solid $border-light;
 
                 .user-picture {
                     width: 65px;
                     border: 3px solid white;
+                    margin-bottom: 0.6em;
                     border-radius: 2px;
                 }
 
                 .user-info {
-                    width: 60%;
                     .name { margin: 0 auto; }
                     .level-of-play { margin: 0 auto; }
                 }
@@ -291,6 +296,7 @@
             .analysis-votes {
                 @include span-columns(2.4 of 2.4);
                 text-align: center;
+                border-top: 1px solid $border-light;
                 border-bottom: 1px solid $border-light;
 
                 cursor: pointer;
@@ -307,17 +313,37 @@
 
             }
 
+            .analysis-expanded-menu {
+                clear: both;
+            }
+
+            .permalink {
+                @include span-columns(6 of 12);                
+                @include omega();
+            }
+
+            .edit-analysis {
+                @include button($light-green, darken($light-green, 5%));
+                @include span-columns(6 of 12);
+                @include omega();
+                float: right;
+                padding: 0.3em 1.5em;
+                font-size: 0.9em;
+                width: auto;
+            }
+
             // = TOOLS
             .analysis-tools {
-                @include span-columns(2.4 of 2.4);
+                @include span-columns(12 of 12);
                 border-bottom: 1px solid $border-darker-grey;
-                margin-bottom: 0.6em;
+                margin-bottom: 0.7em;
+                margin-top: 0.7em;
                 padding-top: 2px 0 4px 0;
             }
 
 
             .analysis-time {
-                @include span-columns(1.2 of 2.4);
+                @include span-columns(6 of 12);
                 @include omega();
                 font-size: 0.8em;
                 font-style: italic;
@@ -325,7 +351,7 @@
             }
 
             .analysis-report {
-                @include span-columns(1.2 of 2.4);
+                @include span-columns(6 of 12);
                 @include align-right;
                 @include omega();
                 font-size: 0.8em;
@@ -346,7 +372,8 @@
 
         // = CONTENT
         .analysis-content {
-            @include span-columns(9.6);
+            flex: 1 0 0;
+            margin-left: 25px;
             color: $grey-green;
 
             // = GENERAL NOTES

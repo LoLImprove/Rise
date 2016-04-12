@@ -7,7 +7,7 @@ const NavProfile = React.createClass({
             return (
                 <a href="pathFor route='profile' username=currentUser.username">
                     <img className="user-picture" src="/images/misc/mockup/ascensionfull.jpg"/>
-                    <span className="user-name">{this.props.user.username}</span>
+                    <span className="user-name">{this.props.currentUser.username}</span>
                 </a>
             );
         } else {

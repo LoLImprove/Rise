@@ -10,6 +10,14 @@
 
 /* Module styles */
 
-// User module
+// Users module
 @import "modules/users/styles/auth";
+
+// Replays module
 @import "modules/replays/styles/replays";
+
+// Analyses
+@import "modules/analyses/styles/analyses";
+
+// Comments
+@import "modules/comments/styles/comments";

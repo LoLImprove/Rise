@@ -1,7 +1,7 @@
-import replays from './replays';
+//import analyses from './analyses';
 import core from '/client/modules/core/actions';
 
 export default {
   core,
-  replays
+//  analyses
 };

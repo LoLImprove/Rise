@@ -7,15 +7,19 @@ export const composer = ({context, replayId}, onData) => {
 
   if (Meteor.subscribe('replays:single', replayId).ready()) {
     let replay = Collections.Replays.findOne(replayId);
-    let replayUser = replay && replay.user();
+    let replayUser = replay.user();
+    let analyses = replay.analyses();
+    let currentUserAnalysis = replay.userAnalysis(Meteor.userId());
 
-    onData(null, {replay, replayUser });
+    onData(null, {replay, replayUser, analyses, currentUserAnalysis });
   } else {
     let replay = Collections.Replays.findOne(replayId);
-    let replayUser = replay && replay.user()
+    let replayUser = replay && replay.user();
+    let analyses = replay && replay.analyses();
+    let currentUserAnalysis = replay && replay.userAnalysis(Meteor.userId());
 
     if (replay && replayUser) {
-      onData(null, {replay, replayUser});
+      onData(null, {replay, replayUser, analyses, currentUserAnalysis});
     } else {
       onData();
     }
@@ -23,14 +27,12 @@ export const composer = ({context, replayId}, onData) => {
 };
 
 export const depsMapper = (context, actions) => ({
-  //createReplay: actions.replays.createReplay,
-  //  updateReplay: actions.replays.updateReplay,
-  //clearErrors: actions.replays.clearErrors,
+  showLogin: actions.core.showLogin,
   context: () => context
 });
 
 export default composeAll(
-  composeWithTracker(composer),
   composeWithTracker(Auth),
+  composeWithTracker(composer),
   useDeps(depsMapper)
 )(ReplayShow);

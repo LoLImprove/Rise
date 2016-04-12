@@ -3,6 +3,7 @@ import { Modal, Button, Popover, Tooltip, OverlayTrigger } from 'react-bootstrap
 
 import Animate from '/client/composers/Animate.jsx';
 import ReplayForm from '../containers/ReplayForm.js';
+import ReplayView from './ReplayView.jsx';
 import { Auth } from '/client/composers/Auth.jsx';
 
 const ReplayEdit = React.createClass({
@@ -28,6 +29,7 @@ const ReplayEdit = React.createClass({
         return Auth.helpers.render({...permission, ...this.props}, () => {
             return (
                 <span>
+                    <ReplayView {...this.props} />
                     <Modal show={true} className={this.animator.target(this).animationClass()} onHide={this.close} >
                         <Modal.Header closeButton>
                             <Modal.Title>

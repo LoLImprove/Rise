@@ -58,24 +58,26 @@ export default function (injectDeps, {FlowRouter, Flash, LocalState}) {
         History.back() || FlowRouter.go('/');
     }
 
+    // When we enter a page display progress and hide the auth window 
     FlowRouter.triggers.enter(function(context) {
+        // Handle auth modal display
+        LocalState.set('SHOW_AUTH', null);
+
         // Handle fake progress bar
         Progress.start();
         Progress.inc(0.3);
         setTimeout(Progress.done, 1500);
 
+
         // Push route in history
         History.push(context.path, context.queryParams);
     });
 
-    // When we leave a page we empty the Flash and hide the auth window 
+    // When we leave a page we empty the Flash and hide progress
     FlowRouter.triggers.exit(function(context) {
         // Handle fake progress bar
         Progress.inc(0.8);
         Progress.done();
-
-        // Handle auth modal display
-        LocalState.set('SHOW_AUTH', null);
 
         // Handle flash
         Flash.hasBeenSeen();
@@ -103,6 +105,7 @@ export default function (injectDeps, {FlowRouter, Flash, LocalState}) {
     FlowRouter.route('/new-replay', {
         name: 'replays:new',
         triggersEnter: [function(context, redirect) {
+            console.log('Enters new replay');
             if (!Meteor.userId()) {
                 LocalState.set('SHOW_AUTH', true);
             }
@@ -132,6 +135,15 @@ export default function (injectDeps, {FlowRouter, Flash, LocalState}) {
 
     FlowRouter.route('/replays/:replayId', {
         name: 'replays:show',
+        action(params, queryParams) {
+            mount(MainLayoutCtx, {
+                content: () => (<ReplayShow replayId={params.replayId} />)
+            });
+        }
+    });
+
+    FlowRouter.route('/replays/:replayId/analysis/:analysisId', {
+        name: 'analysis:show',
         action(params, queryParams) {
             mount(MainLayoutCtx, {
                 content: () => (<ReplayShow replayId={params.replayId} />)

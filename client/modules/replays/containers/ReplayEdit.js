@@ -6,16 +6,16 @@ export const composer = ({context , replayId}, onData) => {
   const {Meteor, Collections} = context();
 
   PermissionsComposer('replays:single', replayId, {
-    ready: ({ user, hasPermissionsFor }) => {
+    ready: ({ hasPermissionsFor }) => {
       let replay = Collections.Replays.findOne(replayId);
       let replayUser = replay && replay.user();
       onData(null, {replay, replayUser, hasPermissionsFor});
     },
-    fromCache: ({ user, hasPermissionsFor }) => {
+    fromCache: ({ hasPermissionsFor }) => {
       let replay = Collections.Replays.findOne(replayId);
       let replayUser = replay && replay.user()
 
-      if (replay && replayUser && user) {
+      if (replay && replayUser) {
         onData(null, {replay, replayUser, hasPermissionsFor});
       } else {
         onData();
@@ -29,7 +29,7 @@ export const depsMapper = (context, actions) => ({
 });
 
 export default composeAll(
-  composeWithTracker(composer),
   composeWithTracker(Auth),
+  composeWithTracker(composer),
   useDeps(depsMapper)
 )(ReplayEdit);

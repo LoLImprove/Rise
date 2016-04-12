@@ -1,7 +1,5 @@
 import _ from 'lodash';
 
-
-
 export default {
   saveReplay({Meteor, Flash, LocalState, Collections, FlowRouter}, form, { method, replay }, callback) {
 		const {video_id, victory, champion, matchup, lane, kda, duration, patch, description, replay_file} = form;

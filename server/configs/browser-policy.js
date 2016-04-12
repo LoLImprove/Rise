@@ -7,7 +7,7 @@ export default (function() {
     BrowserPolicy.content.allowOriginForAll('https://www.youtube.com/');
     BrowserPolicy.content.allowOriginForAll('https://*.ytimg.com/');
     BrowserPolicy.content.allowOriginForAll('*.bootstrapcdn.com');
-    BrowserPolicy.content.allowInlineScripts();
+    BrowserPolicy.content.allowDataUrlForAll();
     BrowserPolicy.content.allowEval();
     BrowserPolicy.content.allowInlineStyles()
   });

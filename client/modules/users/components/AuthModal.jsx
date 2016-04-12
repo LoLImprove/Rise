@@ -11,17 +11,23 @@ const AuthModal = React.createClass({
     },
 
     componentDidMount() {
-        if (this.props.showModal) {
-            this.setState({ showModal: true });
-            this.props.hideModal();
-            console.log(this.props);
-        } else {
-            this.setState({ showModal: false });
-        }
+        this.toggleModalFromProps(this.props);
+    },
+
+    componentWillReceiveProps(props) {
+        this.toggleModalFromProps(props);
     },
 
     forgotPassword() {
         this.setState({ register: false, forgotPassword: true });
+    },
+
+    toggleModalFromProps(props) {
+        if (props.showModal) {
+            this.setState({ showModal: true });
+        } else {
+            this.setState({ showModal: false });
+        }
     },
 
     toggleRegister() {
@@ -29,6 +35,7 @@ const AuthModal = React.createClass({
     },
 
     close() {
+        this.props.hideModal(); // Sets the local state to null
         this.setState({ showModal: false, forgotPassword: false });
     },
 

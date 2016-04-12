@@ -15,22 +15,25 @@ export default (function() {
   });
 
   Meteor.users.permit(['update']).ifLoggedIn().ifIsCurrentUser().onlyProps(['username', 'emails', 'profile']).allowInClientCode();
+  Meteor.users.permit(['insert', 'update', 'remove']).ifLoggedIn().ifHasRole('admin').allowInClientCode();
 
-  // Only loggedin user can create replays
   Collections.Replays.permit(['insert']).ifLoggedIn().allowInClientCode();
-  // Makes sure user can only update or remove his own replays
-  Collections.Replays.permit(['update']).ifLoggedIn().ifCurrentUserOwnsRessource().allowInClientCode();
-  Collections.Replays.permit(['remove']).ifLoggedIn().ifCurrentUserOwnsRessource().allowInClientCode();
+  Collections.Replays.permit(['update', 'remove']).ifLoggedIn().ifCurrentUserOwnsRessource().allowInClientCode();
+  Collections.Replays.permit(['insert', 'update', 'remove']).ifLoggedIn().ifHasRole('admin').allowInClientCode();
 
-  // Only logged in user can post analysis
-  // Collections.Analyses.permit(['insert']).ifLoggedIn().apply();
-  // Makes sure a user can only update his own analyses
-  // Collections.Analyses.permit(['update']).ifLoggedIn().ifCurrentUserOwnsRessource().apply();
-  // Collections.Analyses.permit(['remove']).ifLoggedIn().ifCurrentUserOwnsRessource().apply();
+  Collections.Analyses.permit(['insert']).ifLoggedIn().allowInClientCode();
+  Collections.Analyses.permit(['update', 'remove']).ifLoggedIn().ifCurrentUserOwnsRessource().allowInClientCode();
+  Collections.Analyses.permit(['insert', 'update', 'remove']).ifLoggedIn().ifHasRole('admin').allowInClientCode();
 
-  // Only logged in user can post analysis
-  // Collections.Comments.permit(['insert']).ifLoggedIn().apply();
-  // Makes sure a user can only update his own analyses
-  // Collections.Comments.permit(['update']).ifLoggedIn().ifCurrentUserOwnsRessource().apply();
+  Collections.GeneralNotes.permit(['insert']).ifLoggedIn().allowInClientCode();
+  Collections.GeneralNotes.permit(['update', 'remove']).ifLoggedIn().ifCurrentUserOwnsRessource().allowInClientCode();
+  Collections.GeneralNotes.permit(['insert', 'update', 'remove']).ifLoggedIn().ifHasRole('admin').allowInClientCode();
 
+  Collections.TimelineEntries.permit(['insert']).ifLoggedIn().allowInClientCode();
+  Collections.TimelineEntries.permit(['update', 'remove']).ifLoggedIn().ifCurrentUserOwnsRessource().allowInClientCode();
+  Collections.TimelineEntries.permit(['insert', 'update', 'remove']).ifLoggedIn().ifHasRole('admin').allowInClientCode();
+
+  Collections.Comments.permit(['insert']).ifLoggedIn().allowInClientCode();
+  Collections.Comments.permit(['update', 'remove']).ifLoggedIn().ifCurrentUserOwnsRessource().allowInClientCode();
+  Collections.Comments.permit(['insert', 'update', 'remove']).ifLoggedIn().ifHasRole('admin').allowInClientCode();
 });

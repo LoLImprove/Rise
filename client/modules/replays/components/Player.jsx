@@ -27,17 +27,18 @@ const Player = React.createClass({
     },
 
     componentDidMount() {
+        component = this;
         const api = Youtube.DOM.Player(this.refs.player, {
             videoId: this.props.videoId,
             dimensions: 'relative',
             onPlayerReady: (api, e) => {
-                this.setState({ isReady: true, status: "ready" });
+                component.setState({ isReady: true, status: "ready" });
             },
             onPlayerStarted: (api, e) => {
-                this.setState({ status: "playing", isRunning: true });
+                component.setState({ status: "playing", isRunning: true });
             },
             onPlayerStopped: (api, e, time) => {
-                this.setState({ status: "paused", time: time });
+                component.setState({ status: "paused", time: time });
             }
         });
 

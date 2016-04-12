@@ -16,14 +16,40 @@ export const Auth = {
                 return (<Forbidden message="You do not have the rights to access this page." />);
             }
         },
-        isOwnerOf(resource, user, component) {
-            if (!resource || !user || !component) return '';
-
-            if (resource.user_id === user._id) {
+        isLoggedIn(user, component) {
+            if (user && user._id && user._id === Meteor.userId()) {
                 return component;
             }
-        }
+        },
+        isNotLoggedIn(user, component) {
+            if (!user || (user && !user._id) || (user && user._id !== Meteor.userId())) {
+                return component;
+            }
+        },
+        // If called with a component will return the component or undefined otherwise returns true or undefined
+        isOwnerOf(resource, user, component) {
+            if (!resource || !user) return '';
 
+            if (resource.user_id === user._id) {
+                if (component) {
+                    return component;
+                } else {
+                    return true;
+                }
+            } 
+        },
+        // If called with a component will return the component or undefined otherwise returns true or undefined
+        isNotOwnerOf(resource, user, component) {
+            if (!resource || !user) return '';
+
+            if (resource.user_id !== user._id) {
+                if (component) {
+                    return component;
+                } else {
+                    return true;
+                }
+            }
+        }
     }
 }
 
@@ -41,13 +67,13 @@ export const PermissionsComposer = function(subscription, arg, { ready, fromCach
     const permissionsFor = _.curry(hasPermissions);
 
     if (Meteor.subscribe(subscription, arg).ready() && Meteor.subscribe('users:current').ready()) {
-        let user = Meteor.users.findOne(Meteor.userId());
-        let hasPermissionsFor = permissionsFor(user);
-        ready({ user, hasPermissionsFor });
+        let currentUser = Meteor.users.findOne({ _id: Meteor.userId() });
+        let hasPermissionsFor = permissionsFor(currentUser);
+        ready({ currentUser, hasPermissionsFor });
     } else {
-        let user = Meteor.users.findOne(Meteor.userId());
-        let hasPermissionsFor = permissionsFor(user);
-        fromCache({ user, hasPermissionsFor });
+        let currentUser = Meteor.users.findOne({ _id: Meteor.userId() });
+        let hasPermissionsFor = permissionsFor(currentUser);
+        fromCache({ currentUser, hasPermissionsFor });
     }
 };
 
@@ -58,7 +84,7 @@ export default ({context}, onData) => {
     Meteor.subscribe('users:current');
     const loggedIn = Meteor.userId() || false;
     const logout = Meteor.logout;
-    const user = Collections.User.findOne(Meteor.userId());
+    const currentUser = Collections.User.findOne({ _id: Meteor.userId() });
 
-    onData(null, {loggedIn, user, logout});
+    onData(null, {loggedIn, currentUser, logout});
 };
