@@ -5,7 +5,7 @@ import {check} from 'meteor/check';
 export default function() {
   Meteor.methods({
     'replay:create'(data) {
-      check(form, {
+      check(data, {
         replay_id: null, // Should be null
         video_id: String,
         victory: Boolean,
@@ -62,9 +62,14 @@ export default function() {
 
       Security.can(this.userId).update(replay_id).for(Replay.getCollection()).throw();
 
-      let replay = new Replay();
+      let replay = Replay.findOne({ _id: replay_id });
+
+      if (!replay)  {
+        throw new Meteor.Error("ReplayError", "This replay does not exists");
+      }
+
       replay.set({
-        user_id: this.userId,
+        //user_id: this.userId,
         video_id,
         victory,
         meta_information: { champion, matchup, lane, kda },

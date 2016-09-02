@@ -248,14 +248,31 @@
     // = TITLE
     .analyses-title {
         @include default-font(2.2em, bold);
+        display: inline-block;
         color: $light-grey;
         font-style: italic;
         margin-bottom: 0.4em;
     }
 
+    .edit-analysis {
+        @include button($light-green, darken($light-green, 5%));
+        margin-left: 45px;
+        margin-top: -10px;
+        padding: 0.3em 1.3em 0.3em 1em;
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            margin-top: 1px;
+        }
+    }
+
+
     // = ANALYSIS
     .analysis {
-        display: flex;
+        // display: flex;
+        float: left;
+        width: 100%;
         margin-bottom: 3.6em;
 
         // = TITLE
@@ -268,7 +285,9 @@
 
         // = INFO
         .analysis-info {
-            flex: 0 0 auto;
+            //flex: 0 0 auto;
+            @include span-columns(2 of 12)
+            @include omega();
             border-top: 1px solid $border-darker-grey;
 
             // = USER
@@ -279,14 +298,14 @@
                 padding: 0.6em;
 
                 .user-picture {
-                    width: 65px;
+                    width: 60px;
                     border: 3px solid white;
                     margin-bottom: 0.6em;
                     border-radius: 2px;
                 }
 
                 .user-info {
-                    .name { margin: 0 auto; }
+                    .name { margin: 0 auto; word-wrap: normal; }
                     .level-of-play { margin: 0 auto; }
                 }
 
@@ -300,7 +319,7 @@
                 border-bottom: 1px solid $border-light;
 
                 cursor: pointer;
-                padding: 0.5em 0 0.2em 0;
+                padding: 0.5em 0 0.4em 0;
                 color: $light-green;
                 font-size: 2em;
                 font-family: $base-font-family;
@@ -311,36 +330,42 @@
                     margin-left: 4px;
                 }
 
+                .icon-text {
+                    font-family: $header-font;
+                    font-weight: bold;
+                    font-size: 1.1em;
+                    margin-top: 2px;
+                    margin-left: -6px;
+                    margin-right: 6px;
+                }
+
             }
 
             .analysis-expanded-menu {
                 clear: both;
             }
 
-            .permalink {
-                @include span-columns(6 of 12);                
-                @include omega();
-            }
-
-            .edit-analysis {
-                @include button($light-green, darken($light-green, 5%));
-                @include span-columns(6 of 12);
-                @include omega();
-                float: right;
-                padding: 0.3em 1.5em;
-                font-size: 0.9em;
-                width: auto;
-            }
-
             // = TOOLS
             .analysis-tools {
                 @include span-columns(12 of 12);
                 border-bottom: 1px solid $border-darker-grey;
-                margin-bottom: 0.7em;
-                margin-top: 0.7em;
-                padding-top: 2px 0 4px 0;
-            }
+                //margin-bottom: 0.7em;
+                padding: 1px 0 3px 0;
 
+                a {
+                    color: $green;
+                    font-weight: bold;
+
+                    &:hover {
+                        color: darken($green, 10%);
+                    }
+                }
+
+                .icon {
+                    height: 17px;
+                    width: 11px;
+                }
+            }
 
             .analysis-time {
                 @include span-columns(6 of 12);
@@ -367,23 +392,53 @@
                 background-color: rgba(0, 0, 0, 0.04);
                 padding: 3px 0;
                 text-align: center;
+
+                .icon {
+                    margin-left: 5px;
+                    width: 16px;
+                    height: 16px;
+                }
+                .left {
+                    float: left;
+                }
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.08)
+                }
             }
         }
 
         // = CONTENT
         .analysis-content {
-            flex: 1 0 0;
-            margin-left: 25px;
+            @include span-columns(10 of 12)
+            width: 85%;
+            @include omega();
+
+            transition: min-height 0.2s ease, max-height 0.2s ease, height 0.2s ease;
+
+            // flex: 1 0 0;
+            padding-left: 27px;
             color: $grey-green;
 
             // = GENERAL NOTES
             &.expanded .general-notes {
-                min-height: 251px;
+                min-height: 200px;
+                max-height: 100000px; // To make sure
+            }
+            &.expanded .general-notes-content {
+                min-height: 195px;
+            }
+
+            &.expanded .general-notes.fully-open {
+                @include border-bottom-radius(0px);
             }
 
             .general-notes {
                 @include bubble-block();
-                min-height: 155px;
+                min-height: 174px;
+                max-height: 145px;
+
+                transition: min-height 0.2s ease, max-height 0.2s ease, height 0.2s ease;
 
                 // = CONTENT
                 .general-notes-content {
@@ -391,6 +446,7 @@
 
                     .general-notes-text {
                         padding-left: 6px;
+                        margin-bottom: 0.83em;
 
                         p:last-child {
                             margin-bottom: 0;
@@ -414,8 +470,12 @@
 
             // = TIMELINE ENTRIES
             .timeline-entries {
+                clear: both;
+                padding-top: 5px;
+
                 .timeline-entry {
                     @include bubble-block(13px);
+                    @include border-bottom-radius(0);
                     margin-top: 0.5em;
 
                     // = CONTENT
@@ -427,10 +487,10 @@
 
                 // = TIME
                 .time-block {
-                    margin-left: -150px;
+                    margin-left: -172px;
                     display: inline-block;
                     border: 1px solid $border-light;
-                    padding: 0em 0.8em;
+                    padding: 0.2em 0.8em 0 0.8em;
                     background: rgba(249, 249, 249, 0.8);
                     text-align: center;
                     width: 15%;
@@ -447,7 +507,7 @@
                     }
 
                     .time {
-                        font-family: "Ubuntu", "Calibri", "Roboto", "Helvetica", "Arial", "Verdana" !important; // Thank you Mongol.
+                        font-family: "Montserrat", "Ubuntu", "Calibri", "Roboto", "Helvetica", "Arial", "Verdana" !important; // Thank you Mongol.
                         color: $light-green;
                         font-size: 1.6em;
                         line-height: 1.5em;
@@ -456,9 +516,43 @@
                 }
             }
 
+            .comments-actions {
+                display: inline-block;
+                margin-bottom: 0.83em;
+                position: absolute;
+                bottom: -5px;
+                margin-left: 1.2em;
+                font-weight: bold;
+                font-style: italic;
+                cursor: pointer;
+
+                .dot-separator {
+                    margin: 0 9px;
+                }
+
+                .action:hover {
+                    color: $green;
+                }
+                
+            }
+
             // = COMMENTS
             .analysis-comments {
-                @include comment-block();
+                @include comment-block();                
+                display: block !important;
+                overflow: hidden;
+                max-height: 0px;
+                transition: max-height 0.4s ease;
+
+                &.shown {
+                    max-height: 10000px;
+                    overflow: visible;
+                }
+
+                &.hidden {
+                    border: none;
+                }
+
             }
         }
     }

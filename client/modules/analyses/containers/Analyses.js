@@ -11,7 +11,6 @@ export const composer = ({ context, replayId, replay, analyses, currentUserAnaly
   if (!replay || !analyses) {
     Core.Libs.Subscriber.subscribeOnce('replays:single', replayId);
 
-    console.debug('Resubscribing to replays:single');
     let replay = Collections.Replays.findOne(replayId);
     let analyses = replay.analyses();
     let currentUserAnalysis = replay.userAnalysis(Meteor.userId());

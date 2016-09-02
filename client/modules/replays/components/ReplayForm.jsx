@@ -28,14 +28,12 @@ const ReplayForm = React.createClass({
 		    const {video_id, victory, champion, matchup, lane, kda, duration, patch, description, replay_file} = this.refs;
 		    const form = {video_id, victory, champion, matchup, lane, kda, duration, patch, description, replay_file };
 
-        var method = null;
-        var replay = null;
         if (this.props.replay) {
-            method = 'update';
-            replay_id = this.props.replay._id;
+            var method = 'update';
+            var replay_id = this.props.replay._id;
         } else {
-            method = 'create';
-            replay_id = null;
+            var method = 'create';
+            var replay_id = null;
         }
 
 		    this.props.saveReplay(form, { method, replay_id }, function(error) {

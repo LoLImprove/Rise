@@ -26,7 +26,18 @@
     font-size: 1.4em;
     cursor: default;
 
-    .tick { color: $light-green; font-size: 1.2em; margin-top: -2px; }
+    .icon-text {
+        font-size: 0.7em;
+        margin-left: 5px;
+    }
+
+    &.has-text .icon {
+        vertical-align: middle;
+        margin-top: 5px;
+        display: inline-block;
+    }
+
+    .tick { color: $light-green; font-size: 1.2em; margin-top: -2px;}
     .bang { font-weight: bold; color: $pale-orange; font-family: monospace; font-size: 1.2em; }
     .cross { color: $pale-orange; margin-bottom: 3px; }
 }
@@ -37,6 +48,7 @@
         margin-right: 5px;
         background-position: center;
         background-repeat: no-repeat;
+        background-size: 100%;
         display: inline-block;
         width: 22px;
         height: 22px;
@@ -57,6 +69,10 @@
     }
     .icon-report { @include icon("report"); }
     .icon-thumb { @include icon("thumb"); }
+    .icon-thumb:hover, .icon-thumb.active { @include icon("thumb-active"); }
+    .icon-thumb.active:hover { @include icon("thumb"); }
+    .icon-thumb.enabled, .icon-thumb.enabled:hover { @include icon("thumb-active"); cursor: default; }
+
     .icon-big-feather { @include icon("big-feather"); width: 30px; height: 30px; }
 
     .icon-double-arrow { @include icon("double-arrow"); }
@@ -71,7 +87,6 @@
     .icon-info-blue { @include icon("info-blue"); }
     .icon-info-green { @include icon("info-green"); }
 
-    .icon-pin { @include icon("pin"); }
     .icon-time { @include icon("time"); }
     .icon-big-thumb { @include icon("big-thumb"); width: 36px; height: 43px; }
     .icon-big-thumb:hover, icon-big-thumb.active { @include icon("big-thumb-active"); width: 36px; height: 43px; }

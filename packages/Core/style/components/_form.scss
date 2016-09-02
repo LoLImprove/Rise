@@ -287,18 +287,17 @@ $border-color: $light-blue;
 $color: $light-blue;
 
 .smart-area {
-    &.full {
-        @include span-columns(12);
-        @include omega();
-    }
+    @include span-columns(12);
+    @include omega();
 
     &.active {
-        border-color: $border-color;
+        border: 1px solid $border-color;
         box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 5px rgba(103, 208, 94, 0.7);
 
         .area-field textarea {
             height: 80px;
-            padding-bottom: 28px;
+            //padding-bottom: 28px;
+            padding-bottom: 1.2em;
             resize: none;
             @include border-bottom-radius(0px);
             border: 0;
@@ -307,7 +306,25 @@ $color: $light-blue;
         }
 
         .area-field .comment-submit {
-            bottom: 35px;
+            right: -15px;
+            bottom: 21px;
+        }
+    }
+
+    &.error {
+        border: 1px solid rgba(226, 111, 58, 0.49) !important;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 5px rgba(208, 126, 94, 0.7) !important;
+        @include border-bottom-radius(5px);
+
+        .help {
+            background: $pale-orange;
+            border-top: 0 !important;
+
+            .smartarea-error {
+                color: white;
+                font-size: 1.1em;
+                padding: 0.76em;
+            }
         }
     }
 
@@ -336,14 +353,13 @@ $color: $light-blue;
         }
 
         .comment-submit {
-            @include span-columns(1 of 11);
             cursor: pointer;
 
             padding: 10px;
             margin: 5px;
             position: absolute;
-            right: 5px;
-            bottom: 6px;
+            right: -14px;
+            bottom: 3px;
 
             &:hover {
                 opacity: 0.6;
@@ -374,12 +390,10 @@ $color: $light-blue;
         border-top: 1px solid $border-color;
         @include border-bottom-radius(3px);
 
-    
-        /*position: absolute;
-        bottom: 12px;
-        left: 0;*/
+        //position: absolute;
+        //bottom: 12px;
+        //left: 0;
         margin: 0;
-
 
         font-size: 0.8em;
         line-height: 0.8em;
@@ -476,6 +490,11 @@ $color: $light-blue;
     $border-color: $light-blue;
     $color: $light-blue;
     
+    &.active {
+        border: 1px solid $border-color;
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.06), 0 0 5px rgba(94, 178, 218, 0.6);
+    }
+
     .help {
         border-top: 1px solid $border-color;        
 
@@ -502,6 +521,10 @@ $color: $light-blue;
 .smart-area.green {
     $border-color: $light-green;
     $color: $light-green;
+
+    &.active {
+        border: 1px solid $border-color;
+    }
 
     .help {
         border-top: 1px solid $border-color;        

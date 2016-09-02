@@ -1,12 +1,13 @@
 import _ from 'lodash';
 
 export default {
-  saveReplay({Meteor, Flash, LocalState, Collections, FlowRouter}, form, { method, replay }, callback) {
+  saveReplay({Meteor, Flash, LocalState, Collections, FlowRouter}, form, { method, replay_id }, callback) {
 		const {video_id, victory, champion, matchup, lane, kda, duration, patch, description, replay_file} = form;
     
     // This method is called at the end either when a file has been uploaded or when no file was given
     // It is just the remaining of the method that might be called only after an upload
     // The function flow here is weird to read so bare with it and I am sorry about it
+
     const done = (error, replay_url) => {
       LocalState.set('REPLAY_FORM_ERROR', null);
 

@@ -30,6 +30,8 @@ const Smartarea = React.createClass({
         type:      React.PropTypes.oneOf(["smartarea"]).isRequired,
         name:      React.PropTypes.string.isRequired,
         value:     React.PropTypes.string,
+        disabled:  React.PropTypes.bool,
+        style:     React.PropTypes.object,
         minRows:   React.PropTypes.number,
         maxRows:   React.PropTypes.number,
         full:      React.PropTypes.bool,
@@ -39,17 +41,19 @@ const Smartarea = React.createClass({
         onChange:  React.PropTypes.func, 
         onFocus:   React.PropTypes.func, 
         onBlur:    React.PropTypes.func, 
+        onClick:   React.PropTypes.func, 
         placeholder:  React.PropTypes.string
     },
 
     mixins: [OutsideClickEvent],
 
     getInitialState() {
-        return { value: null, active: false, showHelp: false, caretPosition: null };
+        return { value: null, error: null, active: false, showHelp: false, caretPosition: null };
     },
 
     getDefaultProps: function() {
         return {
+            disabled: false,
             canSubmit: true,
             minRows: 2,
             maxRows: 20,
@@ -69,7 +73,23 @@ const Smartarea = React.createClass({
 
     inputNode() {
         return $(DOM.findDOMNode(this)).find('textarea')[0];
+    },
 
+    clear() {
+        this.setState({ value: "" });
+    },
+
+    focus() {
+        this.setState({ active: true});
+        this.refs.input.focus();
+    },
+
+    setError(error) {
+        this.setState({ error: error });
+    },
+
+    clearError() {
+        this.setState({ error: null });
     },
 
     componentDidMount() {
@@ -113,9 +133,18 @@ const Smartarea = React.createClass({
     },
 
     onBlur(e) {
-        this.setState({ active: false, showHelp: false });
+        this.setState({ active: false, showHelp: false, error: null });
         if (this.props.onBlur) {
             this.props.onBlur(e);
+        }
+    },
+
+    onClick(e) {
+        if (!this.state.active) {
+            this.setState({ active: true });
+        }
+        if (this.props.onClick) {
+            this.props.onClick(e);
         }
     },
 
@@ -203,22 +232,32 @@ const Smartarea = React.createClass({
         );
 
         if (this.props.canSubmit) {
-            var help = (
-                <ul className="help">
-                    <li>
-                        <span className="icon-text help-title">Help :</span>
-                        <span className="help-new-line" onClick={this.addNewLine}>
-                            <Icon name={`shift-enter-${this.props.theme}`}>New Line</Icon>
-                        </span>
-                    </li>
-                    <li>
-                        <Icon name={`enter-${this.props.theme}`}>Submit</Icon>
-                    </li>
-                    <li className="info" onClick={this.toggleHelp}>
-                        <Icon name={`info-${this.props.theme}`}>Formatting help</Icon>
-                    </li>
-                </ul>
-            );
+            if (this.state.error) {
+                var help = (
+                    <ul className="help">
+                      <li className="smartarea-error">
+                        {this.state.error}
+                      </li>
+                    </ul>
+                );
+            } else {
+                var help = (
+                    <ul className="help">
+                        <li>
+                            <span className="icon-text help-title">Help :</span>
+                            <span className="help-new-line" onClick={this.addNewLine}>
+                                <Icon name={`shift-enter-${this.props.theme}`}>New Line</Icon>
+                            </span>
+                        </li>
+                        <li>
+                            <Icon name={`enter-${this.props.theme}`}>Submit</Icon>
+                        </li>
+                        <li className="info" onClick={this.toggleHelp}>
+                            <Icon name={`info-${this.props.theme}`}>Formatting help</Icon>
+                        </li>
+                    </ul>
+                );
+            }
         } else {
             var help = (
                 <ul className="help">
@@ -267,24 +306,26 @@ const Smartarea = React.createClass({
         );
 
         return (
-            <div className={`smart-area ${this.state.active ? 'active' : ''} ${this.props.theme} ${this.props.full ? 'full' : ''} ${this.state.showHelp ? 'full-help' : ''}`}>
+            <div className={`smart-area ${(this.state.active && !this.props.disabled) ? 'active' : ''} ${this.props.theme} ${this.props.full ? 'full' : ''} ${this.state.showHelp ? 'full-help' : ''} ${this.state.error ? 'error' : ''}`}>
                 <div className="area-field">
                     <Textarea value={this.state.value}
                               minRows={this.props.minRows}
                               maxRows={this.props.maxRows}
+                              style={this.props.style}
                               onChange={this.onChange}
                               onFocus={this.onFocus}
                               onClick={this.onClick}
                               onKeyPress={this.onSpecialKeyPress}
                               onKeyDown={this.onKeyDown}
+                              disabled={this.props.disabled}
                               ref="input"
                               name={_.snakeCase(this.props.name)}
                               id={_.snakeCase(this.props.name)}
                               className={`smart-area-textarea ${this.props.className || ''}`}
                               placeholder={this.props.placeholder || ""}></Textarea>
 
-                    {this.props.canSubmit ? submitButton : ''}
-                    {this.state.active ? help : '' }
+                    {this.props.canSubmit && !this.props.disabled ? submitButton : ''}
+                    {this.state.active && !this.props.disabled ? help : '' }
                 </div>
 
                 {this.state.showHelp ? fullHelp : '' }
@@ -296,4 +337,4 @@ const Smartarea = React.createClass({
 export default Animate.extend(Smartarea);
 
 /*
-*/
+ */

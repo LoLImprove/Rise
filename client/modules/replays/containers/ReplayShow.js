@@ -18,7 +18,7 @@ export const composer = ({context, replayId}, onData) => {
     let analyses = replay && replay.analyses();
     let currentUserAnalysis = replay && replay.userAnalysis(Meteor.userId());
 
-    if (replay && replayUser) {
+    if (replay && replayUser && analyses) {
       onData(null, {replay, replayUser, analyses, currentUserAnalysis});
     } else {
       onData();

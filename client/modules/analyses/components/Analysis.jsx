@@ -16,6 +16,8 @@ const Link = Core.Components.Link;
 const Analysis = React.createClass({
     propTypes: {
         analysis: React.PropTypes.object.isRequired,
+        showLogin: React.PropTypes.func.isRequired,
+        currentUser: React.PropTypes.any
     },
 
     getInitialState() {
@@ -50,60 +52,60 @@ const Analysis = React.createClass({
 
         var editButton;
         if (this.state.isOwner && !this.state.isEditing) {
-            var editButton = (<button className="edit-analysis">Edit</button>);
-        } 
+            var editButton = (<button className="edit-analysis"><Icon name="feather">Edit</Icon></button>);
+        }
 
         // TODO: Add me some nice animation boyyy
         //                     <Link href="/" for="analysis:show" data={({analysisId: analysis._id})} >
         const expandedMenu = (
             <div className="analysis-expanded-menu">
-                <div className="permalink">
-                    <Link href="/" for="analysis:show" data={({replayId: replay._id, analysisId: analysis._id})} >
-                        Permalink
-                    </Link>
-                </div>
-
                 <div className="analysis-tools">
-                    <span className="analysis-time">
-                        2 hours ago
-                    </span>
+                    <Link href="/" for="analysis:show" data={({replayId: replay._id, analysisId: analysis._id})} >
+                        <span className="analysis-time">
+                            2 hours ago
+                        </span>
+                    </Link>
 
                     <a href="#" className="analysis-report">
-                        <Icon name="report">Report</Icon>
+                        <Icon name="report-green">Report</Icon>
                     </a>
                 </div>
             </div>
         );
 
         return (
-            <section className="analysis">
-                <div className="analysis-info">
-                    <div className="user">
-                        <img className="user-picture" src={analysisUser.profile.avatar || "/images/misc/mockup/spazie1.jpg"} />
-                        <div className="user-info">
-                            <span className="name">{analysisUser.username}</span>
-                            <span className="level-of-play">{analysisUser.profile.level_of_play}</span>
+            <span>
+                {editButton}
+                <section className="analysis">
+                    <div className={`analysis-info ${this.state.isExpanded ? 'expanded' : ''}`}>
+                        <div className="user">
+                            <img className="user-picture" src={analysisUser.profile.avatar || "/images/misc/mockup/spazie1.jpg"} />
+                            <div className="user-info">
+                                <span className="name">{analysisUser.username}</span>
+                                <span className="level-of-play">{analysisUser.profile.level_of_play}</span>
+                            </div>
+                        </div>
+                        <div className="analysis-votes">
+                            <Icon name="big-thumb" childPosition="left" onClick={this.state.isOwner ? null : this.toggleVote}>
+                                {analysis.votes.toString()}
+                            </Icon>
+                        </div>
+
+                        {this.state.isExpanded ? expandedMenu : ''}
+
+                        <div onClick={this.toggleExpansion} className="analysis-collapse collapse-button toggle-expansion">
+                            <Icon name={`double-arrow ${this.state.isExpanded ? 'up' : 'down'} left`} />
+                            <span className="middle-text">{this.state.isExpanded ? 'Collapse' : 'Expand'}</span>
+                            <Icon name={`double-arrow ${this.state.isExpanded ? 'up' : 'down'} right`} />
                         </div>
                     </div>
-                    <div className="analysis-votes">
-                        <Icon name="big-thumb" childPosition="left" onClick={this.state.isOwner ? null : this.toggleVote}>
-                            {analysis.votes}
-                        </Icon>
+
+                    <div className={`analysis-content ${this.state.isExpanded ? 'expanded' : ''}`}>
+                        <GeneralNote currentUser={this.props.currentUser} generalNote={analysis.generalNote()} showLogin={this.props.showLogin} isExpanded={this.state.isExpanded} toggleExpansion={this.toggleExpansion} />
+                        { this.state.isExpanded ? <TimelineEntries currentUser={this.props.currentUser} entries={analysis.timelineEntries()} showLogin={this.props.showLogin} isExpanded={this.state.isExpanded} /> : '' }
                     </div>
-
-                    {this.state.isExpanded ? expandedMenu : ''}
-
-                    <div onClick={this.toggleExpansion} className="analysis-collapse collapse-button toggle-expansion">
-                        <Icon name="double-arrow up">{this.state.isExpanded ? 'Collapsed' : 'Expand'}</Icon>
-                        <Icon name="double-arrow up right" />
-                    </div>
-                </div> 
-
-                <div className={`analysis-content ${this.state.isExpanded ? 'expanded' : ''}`}>
-                    <GeneralNote generalNote={analysis.generalNote()} isExpanded={this.state.isExpanded} toggleExpansion={this.toggleExpansion} />
-                    { this.state.isExpanded ? <TimelineEntries entries={analysis.timelineEntries()} isExpanded={this.state.isExpanded} /> : '' }
-                </div>
-            </section>
+                </section>
+            </span>
         );
     }
 });

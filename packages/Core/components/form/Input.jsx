@@ -93,11 +93,19 @@ export default React.createClass({
             input = (<BasicInput {...this.props} ref="input"/>);
         }
 
+        var label = (
+            <label className="control-label" htmlFor={this.props.name}>
+                {this.props.label || _.capitalize(this.props.name.replace(/-|_/g, " "))}
+            </label>
+        );
+
+        if (this.props.label == false) {
+            label = '';
+        } 
+
         return (
             <div className={`form-group ${_.kebabCase(this.props.name).toLowerCase()}`}>
-                <label className="control-label" htmlFor={this.props.name}>
-                    {this.props.label || _.capitalize(this.props.name.replace(/-|_/g, " "))}
-                </label>
+                {label}
                 {input}
                 <span className="help-block"></span>
             </div>

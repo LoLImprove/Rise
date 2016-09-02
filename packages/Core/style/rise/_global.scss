@@ -7,6 +7,17 @@ body {
     @include outer-container;
 }
 
+.dot-separator {
+    font-family: serif;
+    font-size: 2em;
+    color: $light-grey;
+    position: relative;
+    top: -2px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
 .align-middle {
     vertical-align: middle;
 }

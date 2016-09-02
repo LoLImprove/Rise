@@ -92,7 +92,7 @@
         width: 8px;
         height: 17px;
         top: $arrow-offset;
-        left: -8px;
+        left: -7px;
     }
 }
 
@@ -100,12 +100,17 @@
 
 
 @mixin comment-block {
+    float: left;
+    width: 100%;
     background-color: $medium-light-grey;
     border-top: 1px solid $border-light;
-    margin-top: 0.83em;
+    //margin-top: 0.83em;
 
     & > li {
-        padding: 0.83em 0.83em 0.5em 0.83em;
+        display: block;
+        float: left;
+        width: 100%;
+        padding: 0.63em 0.63em 0.5em 0.69em;
         border-bottom: 1px solid $border-light;
     }
 
@@ -136,6 +141,10 @@
                 font-weight: bold;
                 font-size: 0.8em;
                 font-style: italic;
+                vertical-align: middle;
+                margin-left: 10px;
+                margin-top: -2px;
+                display: inline-block;
             }
         }
     }
@@ -143,7 +152,11 @@
     .comment-content {
         @include span-columns(11 of 12);
         @include omega();
-        margin-bottom: 0.4em;
+        margin-bottom: 0.2em;
+
+        p {
+            margin-bottom: 0.6em;
+        }
     }
 
     .comment-tools {
@@ -156,28 +169,48 @@
             font-size: 0.9em;
         }
 
-        .dot-separator {
-            font-family: serif;
-            font-size: 2em;
-            color: $light-grey;
-            position: relative;
-            top: -2px;
-            margin-left: 5px;
-            margin-right: 5px;
-        }
-
         .comment-votes {
             display: inline-block;
             position: relative;
             top: -2px;
 
-            a {
-                color: $light-green;
-            }
+            color: $light-green;
 
             .icon {
                 vertical-align: top;
                 margin-top: -2px;
+            }
+            .icon-text {
+                font-size: 1.1em;
+            }
+        }
+
+        .comment-edit {
+            .icon {
+                width: 20px;
+                height: 20px;
+            }
+            .icon-text {
+                color: $green;
+            }
+
+            &:hover .icon-text {
+                color: darken($green, 10%);
+            }
+        }
+
+        .comment-remove {
+            cursor: pointer;
+
+            .icon-component { cursor: pointer; }
+            .icon, .icon-text {
+                color: $pale-orange;
+            }
+
+            &:hover {
+                .icon, .icon-text {
+                    color: $orange;
+                }
             }
         }
     }
@@ -185,83 +218,27 @@
     .comment-input {
         @include outer-container();
 
+        .picture-container {
+            @include span-columns(1 of 12);            
+            @include omega();
+            margin-right: 0.73em;
+        }
         .user-picture {
-            @include span-columns(1);
+            margin-right: 1em;
+            margin-top: 0;
+            margin-left: 3px;
             max-width: 50px;
         }
 
         .comment-area {
-            @include span-columns(11);
+            @include span-columns(11 of 12);
+            @include omega();
+            width: 92.3%;
             position: relative;
 
-            &.active {
-                .comment-field textarea {
-                    height: 80px;
-                }
-
-                .comment-field .comment-submit {
-                    bottom: 35px;
-                }
-            }
-
-            .comment-field {
-                @include span-columns(11 of 11);
-                position: relative;
-
+            .active {
                 textarea {
-                    @include span-columns(11 of 11);
-                    @include omega();
-                    height: 50px;
-                    padding-right: 50px;
-                    padding-bottom: 15px;
-
-                    &:focus {
-                        border-color: $light-blue;
-                    }
-                }
-
-                .comment-submit {
-                    @include span-columns(1 of 11);
-                    cursor: pointer;
-
-                    padding: 10px;
-                    margin: 5px;
-                    position: absolute;
-                    right: 5px;
-                    bottom: 6px;
-
-                    &:hover {
-                        opacity: 0.6;
-                    }
-                }
-            }
-            .help {
-                @include span-columns(11 of 11);
-                @include list-inline;
-
-                .help-title {
-                    padding-right: 12px;
-                }
-
-                position: absolute;
-                bottom: 12px;
-                left: 0;
-                margin: 0;
-                border-top: 1px solid $light-blue;
-
-                font-size: 0.8em;
-                line-height: 0.8em;
-
-                & > li {
-                    font-weight: 800;
-                    color: $light-blue;
-
-                    padding: 2px 10px 3px 12px;
-                    border-right: 1px solid $light-blue;
-
-                    &:last-child {
-                        border-right: none;
-                    }
+                    padding-bottom: 1.2em;
                 }
             }
         }

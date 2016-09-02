@@ -10,7 +10,7 @@ export default React.createClass({
     render() {
         const route = FlowRouter.path(this.props.for, this.props.data || {});
         //const route = FlowRouter._routesMap[this.props.for]
-        const href = route ? route.path : this.props.href || "";
+        const href = route ? route : this.props.href || "";
 
         return (
             <a id={this.props.id} className={this.props.className} href={href}>{this.props.children}</a>

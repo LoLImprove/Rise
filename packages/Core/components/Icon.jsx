@@ -37,15 +37,15 @@ export default React.createClass({
 
         if (this.props.type === "text") {
             var icon = (
-                <span className="icon-component type-text" onClick={this.props.onClick}>
+                <span className={`icon-component type-text ${this.props.children ? 'has-text' : ''}`} onClick={this.props.onClick}>
                     {childPosition == "left" ? text : ''}
-                    <span className={this.props.name} dangerouslySetInnerHTML={this.iconFromText()} />
+                    <span className={`icon ${this.props.name}`} dangerouslySetInnerHTML={this.iconFromText()} />
                     {childPosition == "right" ? text : ''}
                 </span>
             );
         } else {
             var icon = (
-                <span className={`icon-component ${this.props.name} type-base`} onClick={this.props.onClick}>
+                <span className={`icon-component ${this.props.name} type-base ${this.props.children ? 'has-text' : ''}`} onClick={this.props.onClick}>
                     {childPosition == "left" ? text : ''}
                     <i className={`icon icon-${this.props.name}`}></i>
                     {childPosition == "right" ? text : ''}

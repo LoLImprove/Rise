@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 //import Core from 'meteor/rise:core';
 //import { Auth } from '/client/composers/Auth.jsx';
-import Analysis from './Analysis.jsx';
+import Analysis from '../containers/Analysis.js';
 
 const Analyses = React.createClass({
     propTypes: {
@@ -12,11 +12,10 @@ const Analyses = React.createClass({
         analyses: React.PropTypes.object,
         currentUserAnalysis: React.PropTypes.object
     },
-    
+
     render() {
         const hasAnalyses = this.props.analyses.count() > 0;
         var currentUserAnalysis;
-        console.log(hasAnalyses);
 
         if (this.props.currentUserAnalysis) {
             let props = { analysis: this.props.currentUserAnalysis, ...this.props };
